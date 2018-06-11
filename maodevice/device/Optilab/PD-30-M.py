@@ -1,13 +1,33 @@
 # coding: utf-8
-class PD_30_M(object):
+class Pd30M(object):
+    """Control 'PD-30-M'.
+
+    This class control the O/E converter 'PD-30-M'.
+    This class is based on 'device.Device'.
+
+    Attributes:
+        manufacturer (str): Manufacturer of the device, 'Optilab'.
+        product_name (str): Name of the device, 'PD-30-M'.
+        classification (str): Classification of the device, 'O/E Converter'.
+    """
     manufacturer = 'Optilab'
     product = 'PD-30-M'
     classification = 'O/E Converter'
 
     def __init__(self, com):
+        """Initialize 'Pd30M'.
+
+        Args:
+            com (Communicator): Communicator to control 'PD-30-M'.
+        """
         self.com.set_terminator('\r\n')
 
     def show_status(self):
+        """Show status of 'PD-30-M'.
+
+        Return:
+            ret (str): Status of 'PD-30-M'.
+        """
         self.com.send('READP')
         ret = self.com.recv()
         return ret

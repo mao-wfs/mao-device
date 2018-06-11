@@ -3,10 +3,10 @@ from .. import device
 
 
 class Lta20M(device.Device):
-    """Control 'LTA-20-M'
+    """Control 'LTA-20-M'.
 
     This class control the E/O converter 'LTA-20-M'.
-    This class is based on 'device.Device'
+    This class is based on 'device.Device'.
 
     Attributes:
         manufacturer (str): Manufacturer of the device, 'Optilab'.
@@ -27,6 +27,11 @@ class Lta20M(device.Device):
         self.com.set_terminator('\r\n')
 
     def show_status(self):
+        """Show status of 'LTA-20-M'.
+
+        Return:
+            ret (str): Status of 'LTA-20-M'.
+        """
         self.com.send('READ')
         ret = self.com.recv()
         return ret

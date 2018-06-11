@@ -14,7 +14,7 @@ class Device(object):
         product_name (str): Name of the device.
         classification (str): Classification of the device.
         com (Communicator): Communicator for controlling the device.
-        _shortcut_command (dict): Dictionary of methods and its shortcuts
+        _shortcut_command (dict): Dictionary of methods and its shortcuts.
     """
     manufacturer = ''
     product_name = ''
@@ -27,7 +27,7 @@ class Device(object):
         """Initialize 'Device'.
 
         Args:
-            com (): Communicator to control the device.
+            com (Communicator): Communicator to control the device.
         """
         self.com = com
         self.com.open()

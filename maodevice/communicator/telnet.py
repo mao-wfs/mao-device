@@ -1,6 +1,6 @@
 # coding: utf-8
 import telnetlib
-from .... import communicator
+from . import communicator
 
 
 class Telnet(communicator.Communicator):

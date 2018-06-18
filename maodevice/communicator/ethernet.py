@@ -1,9 +1,9 @@
 # coding: utf-8
 import socket
-from ... import communicator
+from . import communicator
 
 
-class Socket(communicator.Communicator):
+class Ethernet(communicator.Communicator):
     """Provides socket communication based on 'Comunicator'.
 
     Note:
@@ -11,11 +11,11 @@ class Socket(communicator.Communicator):
         communication.
 
     Attributes:
-        method (str): Communication method, 'Socket'.
+        method (str): Communication method, 'Ethernet'.
         connection (bool): If True, it is connected.
         terminator (str): Termination character. (Default: '\n')
     """
-    method = 'Socket'
+    method = 'Ethernet'
 
     def __init__(
         self,
@@ -27,7 +27,7 @@ class Socket(communicator.Communicator):
         proto=0,
         fileno=None,
     ):
-        """Initialize 'Socket'.
+        """Initialize 'Ethernet'.
         
         Args:
             host (str): IP Address of a device.

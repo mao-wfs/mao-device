@@ -1,9 +1,9 @@
 # coding: utf-8
 import serial
-from .. import communicator
+from . import communicator
 
 
-class Serial(communicator.Communicator):
+class Rs232C(communicator.Communicator):
     """Provide serial communication based on 'Communicator'
 
     Note:
@@ -11,11 +11,11 @@ class Serial(communicator.Communicator):
         communication.
 
     Attributes:
-        method (str): Communication method, 'Serial'.
+        method (str): Communication method, 'Rs232C'.
         connection (bool): If True, it is connected.
         terminator (str): Termination character. (Default: '\n')
     """
-    method = 'Serial'
+    method = 'RS-232C'
 
     def __init__(
         self,
@@ -23,7 +23,7 @@ class Serial(communicator.Communicator):
         baudrate=9600,
         bytesize=8,
         parity='N',
-        stopbits=1,
+        stopbits=1.,
         timeout=1.,
         xonxoff=False,
         rtscts=False,
@@ -31,7 +31,7 @@ class Serial(communicator.Communicator):
         write_timeout=1.,
         inter_byte_timeout=None,
     ):
-        """Initialize 'Serial'.
+        """Initialize 'Rs232C'.
         
         Args:
             port (str): Device name or None
@@ -41,7 +41,7 @@ class Serial(communicator.Communicator):
             parity (str): Enable parity checking. (Default: 'N')
                 (Allowed values: 'N', 'E', 'O', 'M', 'S')
             stopbits (float): Number of stop bits. (Default: 1.)
-                (Allowed values: 1., 1,5, 2.)
+                (Allowed values: 1., 1.5, 2.)
             timeout (float): Set a read timeout values. (Default: 1.)
             xonxoff (bool): Enable software flow control. (Default: False)
             rtscts (bool): Enable hardware (RTS/CTS) flow control. (Default: False)

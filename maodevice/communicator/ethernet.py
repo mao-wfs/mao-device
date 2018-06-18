@@ -65,7 +65,7 @@ class Ethernet(communicator.Communicator):
             None
         """
         if not self.connection:
-            self.sock = socket.Socket(
+            self.sock = socket.socket(
                 self.family,
                 self.type,
                 self.proto,
@@ -104,7 +104,7 @@ class Ethernet(communicator.Communicator):
         Return:
             None
         """
-        self.sock.send(msg + self.terminator)
+        self.sock.send((msg + self.terminator).encode())
         return
 
     def recv(self, byte=1024):

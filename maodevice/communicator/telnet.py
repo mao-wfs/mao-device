@@ -98,5 +98,5 @@ class Telnet(communicator.Communicator):
         Return:
             ret (str): A message to receive a device.
         """
-        ret = self.tn.expect(f'{self.terminator}$'.decode(), self.timeout)
+        ret = self.tn.expect(f'{self.terminator}$', self.timeout).decode()
         return ret

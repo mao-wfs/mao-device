@@ -1,2 +1,2 @@
 # coding: utf-8
-from . import 3390
+from .tektronix_3390 import Tektronix3390

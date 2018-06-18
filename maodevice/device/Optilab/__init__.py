@@ -1,4 +1,4 @@
 # coding: utf-8
-from . import LTA_20_M
-from . import MD_20_M
-from . import PD_30_M
+from .LTA_20_M import Lta20M
+from .MD_20_M import Md20M
+from .PD_30_M import Pd30M

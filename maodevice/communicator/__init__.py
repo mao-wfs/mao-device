@@ -1,4 +1,4 @@
 # coding: utf-8
-from . import ethernet
-from . import telnet
-from . import rs232c
+from .ethernet import Ethernet
+from .rs232c import Rs232C
+from .telnet import Telnet

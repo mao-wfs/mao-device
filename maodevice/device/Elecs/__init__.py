@@ -1,2 +1,2 @@
 # coding: utf-8
-from . import OCTAD_S
+from .OCTAD_S import OctadS

@@ -2,5 +2,5 @@
 from ..SCPI import scpi
 
 # T.B.D.
-class 3390(scpi.ScpiFamily):
+class Tektronix3390(scpi.ScpiFamily):
     pass

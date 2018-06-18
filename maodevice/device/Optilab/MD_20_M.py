@@ -38,7 +38,7 @@ class Md20M(device.Device):
         Return:
             None
         """
-        if 0.01 <= vadj <= 4.49:
+        if not 0.01 <= vadj <= 4.49:
             raise ValueError('Set VADJ 0.01 - 4.99.')
         self.com.send(f'SETADJ:{vadj:.3}')
         return
@@ -55,7 +55,7 @@ class Md20M(device.Device):
         Return:
             None
         """
-        if 0.01 <= vbias <= 9.99:
+        if not 0.01 <= vbias <= 9.99:
             raise ValueError('Set VBIAS 0.01 - 9.99.')
         self.com.send(f'SETBIAS:{vbias:.3}')
         return
@@ -72,7 +72,7 @@ class Md20M(device.Device):
         Return:
             None
         """
-        if 1.00 <= vgain <= 8.50:
+        if not 1.00 <= vgain <= 8.50:
             raise ValueError('Set VGAIN 1.00 - 8.50.')
         self.com.send(f'SETGAIN:{vgain:.3}')
         return

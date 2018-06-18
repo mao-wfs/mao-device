@@ -11,7 +11,7 @@ class Pd30M(object):
         classification (str): Classification of the device, 'O/E Converter'.
     """
     manufacturer = 'Optilab'
-    product = 'PD-30-M'
+    product_name = 'PD-30-M'
     classification = 'O/E Converter'
 
     def __init__(self, com):

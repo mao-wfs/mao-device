@@ -46,28 +46,12 @@ class OctadS(device.Device):
               'synchronize_with_external'.
 
         Args:
-            n (int): ADC number. (1 or 2)
+            n (int): ADC number. (Allowed values: 1, 2)
 
         Return:
             None
         """
         self.com.send(f'ctl_dmxcal{n}')
-        return
-
-    def start_vdif_transmission(self, port1='0000', port2='0000'):
-        """Set and start VDIF transmission.
-
-        Args:
-            port1 (str): 10G port1 threads 1-4.
-            port2 (str): 10G port2 threads 1-4.
-
-        Return:
-            None
-
-        Example:
-            >>> vdif_transmission_start(port1='1111', port2='1111')
-        """
-        self.com.send(f'ctl_vdiftx=start:{port1}:{port2}')
         return
 
     def select_adc_sampling_bit_response(self, n, response=False):
@@ -82,10 +66,7 @@ class OctadS(device.Device):
         Return:
             None
         """
-        if response:
-            __output = 'on'
-        else:
-            __output = 'off'
+        __output = 'on' if response else 'off'
         self.com.send(f'sel_dbbcsmpbitreq{n}={__output}')
         return
 
@@ -154,10 +135,7 @@ class OctadS(device.Device):
         Return:
             None
         """
-        if response:
-            __output = 'on'
-        else:
-            __output = 'off'
+        __output = 'on' if response else 'off'
         self.com.send(f'sel_dbbcsmpbitreq{n}={__output}')
         return
 
@@ -182,10 +160,7 @@ class OctadS(device.Device):
         Return:
             None
         """
-        if response:
-            output = 'on'
-        else:
-            output = 'off'
+        __output = 'on' if response else 'off'
         self.com.send(f'sel_smpdatereq{n}={output}')
         return
 
@@ -218,11 +193,11 @@ class OctadS(device.Device):
             offset (float): Offset voltage of ADC dynamic range.
                 (Allowed values: -128.0 - 128.0)
         """
-        if 240.0 < drange < 270.0:
-            raise ValueError('Set dynamic range 240.0 < drange < 270.0.')
-        if -128.0 < offset < 128.0:
-            raise ValueError('Set offset voltage -128.0 < offset < 128.0.')
-        self.com.send(f'set_adc{n}={drange}:{offset}')
+        if 240.0 <= drange <= 270.0:
+            raise ValueError('Set dynamic range 240.0 - 270.0.')
+        if -128.0 <= offset <= 128.0:
+            raise ValueError('Set offset voltage -128.0 - 128.0.')
+        self.com.send(f'set_adc{n}={drange:.1f}:{offset:.1f}')
         return
 
     def set_dbbc_nco_freq(self, n, nco_freq):
@@ -351,6 +326,22 @@ class OctadS(device.Device):
         self.com.send('show_status?')
         ret = self.com.readline()
         return ret
+
+    def start_vdif_transmission(self, port1='0000', port2='0000'):
+        """Set and start VDIF transmission.
+
+        Args:
+            port1 (str): 10G port1 threads 1-4.
+            port2 (str): 10G port2 threads 1-4.
+
+        Return:
+            None
+
+        Example:
+            >>> vdif_transmission_start(port1='1111', port2='1111')
+        """
+        self.com.send(f'ctl_vdiftx=start:{port1}:{port2}')
+        return
 
     def stop_vdif_transmission(self):
         """Stop VDIF transmission.

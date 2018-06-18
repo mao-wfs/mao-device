@@ -14,7 +14,7 @@ class Lta20M(device.Device):
         classification (str): Classification of the device, 'E/O converter'.
     """
     manufacturer = 'Optilab'
-    product = 'LTA-20-M'
+    product_name = 'LTA-20-M'
     classification = 'E/O Converter'
 
     def __init__(self, com):

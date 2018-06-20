@@ -6,9 +6,9 @@ class Pd30M(object):
     This class is based on 'device.Device'.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device, 'Optilab'.
-        product_name (str): Name of the device, 'PD-30-M'.
-        classification (str): Classification of the device, 'O/E Converter'.
+        manufacturer (str): Manufacturer of the device.
+        product_name (str): Name of the device.
+        classification (str): Classification of the device.
     """
     manufacturer = 'Optilab'
     product_name = 'PD-30-M'
@@ -18,7 +18,7 @@ class Pd30M(object):
         """Initialize 'Pd30M'.
 
         Args:
-            com (Communicator): Communicator to control 'PD-30-M'.
+            com (communicator.Communicator): Communicator to control 'PD-30-M'.
         """
         self.com.set_terminator('\r\n')
 

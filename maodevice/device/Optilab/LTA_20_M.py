@@ -9,9 +9,9 @@ class Lta20M(device.Device):
     This class is based on 'device.Device'.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device, 'Optilab'.
-        product_name (str): Name of the device, 'LTA-20-M'.
-        classification (str): Classification of the device, 'E/O converter'.
+        manufacturer (str): Manufacturer of the device.
+        product_name (str): Name of the device.
+        classification (str): Classification of the device.
     """
     manufacturer = 'Optilab'
     product_name = 'LTA-20-M'
@@ -21,7 +21,7 @@ class Lta20M(device.Device):
         """Initialize 'Lta20M'.
 
         Args:
-            com (Communicator): Communicator to control 'LTA-20-M'.
+            com (communicator.Communicator): Communicator to control 'LTA-20-M'.
         """
         super().__init__(com)
         self.com.set_terminator('\r\n')

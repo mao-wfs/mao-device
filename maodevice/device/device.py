@@ -6,20 +6,19 @@ class Device(object):
     Various classes to control devices are created inheriting this class.
 
     Note:
-        You do not use this class itself. You override this class and create a
-        class corresponding to each device. 
+        You do not use this class itself. You override this class
+        and create a class corresponding to each device. 
 
     Attributes:
         manufacturer (str): Manufacturer of the device.
         product_name (str): Name of the device.
         classification (str): Classification of the device.
-        com (Communicator): Communicator for controlling the device.
+        com (communicator.Communicator): Communicator for controlling the device.
         _shortcut_command (dict): Dictionary of methods and its shortcuts.
     """
     manufacturer = ''
     product_name = ''
     classification = ''
-
     com = None
     _shortcut_command = {}
 
@@ -27,7 +26,7 @@ class Device(object):
         """Initialize 'Device'.
 
         Args:
-            com (Communicator): Communicator to control the device.
+            com (communicator.Communicator): Communicator to control the device.
         """
         self.com = com
         self.com.open()

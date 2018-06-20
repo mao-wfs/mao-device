@@ -7,11 +7,11 @@ class Telnet(communicator.Communicator):
     """Provides telnet communication based on 'Communicator'
 
     Note:
-        This class is an override of the base class 'Communicator' for telnet
-        communication.
+        This class is an override of the base class 'Communicator'
+        for telnet communication.
 
     Attributes:
-        method (str): Communication method, 'Telnet'.
+        method (str): Communication method.
         connection (bool): If True, it is connected.
         terminator (str): Termination character. (Default: '\n')
     """

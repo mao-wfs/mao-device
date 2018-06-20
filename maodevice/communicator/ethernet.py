@@ -7,11 +7,11 @@ class Ethernet(communicator.Communicator):
     """Provides socket communication based on 'Comunicator'.
 
     Note:
-        This class is an override of the base class 'Communicator' for socket
-        communication.
+        This class is an override of the base class 'Communicator'
+        for socket communication.
 
     Attributes:
-        method (str): Communication method, 'Ethernet'.
+        method (str): Communication method.
         connection (bool): If True, it is connected.
         terminator (str): Termination character. (Default: '\n')
     """

@@ -11,7 +11,7 @@ class Rs232C(communicator.Communicator):
         communication.
 
     Attributes:
-        method (str): Communication method, 'Rs232C'.
+        method (str): Communication method.
         connection (bool): If True, it is connected.
         terminator (str): Termination character. (Default: '\n')
     """

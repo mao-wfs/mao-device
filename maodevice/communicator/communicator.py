@@ -6,8 +6,8 @@ class Communicator(object):
     Various communicator are created by overriding this class.
 
     Note:
-        You do not use this class itself. You override this class and create a
-        class for each communication format.
+        You do not use this class itself. You override this class
+        and create a class for each communication format.
 
     Attributes:
         method (str): Communication method. (Default: 'communicator_base_class')

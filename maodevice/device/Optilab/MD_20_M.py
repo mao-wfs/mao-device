@@ -41,6 +41,7 @@ class Md20M(device.Device):
         if not 0.01 <= vadj <= 4.49:
             raise ValueError('Set VADJ 0.01 - 4.99.')
         self.com.send(f'SETADJ:{vadj:.3}')
+        self.com.recv()
         return
 
     def set_vbias(self, vbias):
@@ -58,6 +59,7 @@ class Md20M(device.Device):
         if not 0.01 <= vbias <= 9.99:
             raise ValueError('Set VBIAS 0.01 - 9.99.')
         self.com.send(f'SETBIAS:{vbias:.3}')
+        self.com.recv()
         return
 
     def set_vgain(self, vgain):
@@ -75,6 +77,7 @@ class Md20M(device.Device):
         if not 1.00 <= vgain <= 8.50:
             raise ValueError('Set VGAIN 1.00 - 8.50.')
         self.com.send(f'SETGAIN:{vgain:.3}')
+        self.com.recv()
         return
 
     def show_status(self):
@@ -84,5 +87,5 @@ class Md20M(device.Device):
             ret (str): Status of 'MD-20-M'.
         """
         self.com.send('READ')
-        ret = self.com.recv()
+        ret = self.readlines()
         return ret

@@ -33,5 +33,5 @@ class Lta20M(device.Device):
             ret (str): Status of 'LTA-20-M'.
         """
         self.com.send('READ')
-        ret = self.com.recv()
+        ret = self.readlines()
         return ret

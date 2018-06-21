@@ -1,5 +1,8 @@
 # coding: utf-8
-class Pd30M(object):
+from .. import device
+
+
+class Pd30M(device.Device):
     """Control 'PD-30-M'.
 
     This class control the O/E converter 'PD-30-M'.
@@ -20,6 +23,7 @@ class Pd30M(object):
         Args:
             com (communicator.Communicator): Communicator to control 'PD-30-M'.
         """
+        super().__init__(com)
         self.com.set_terminator('\r\n')
 
     def show_status(self):
@@ -29,5 +33,5 @@ class Pd30M(object):
             ret (str): Status of 'PD-30-M'.
         """
         self.com.send('READP')
-        ret = self.com.recv()
+        ret = self.readlines()
         return ret

@@ -83,3 +83,12 @@ class Communicator(object):
             class.
         """
         pass
+
+    def readlines(self):
+        """Read lines of a device output.
+
+        Note:
+            This method is what is override to the 'readline' method of child
+            class.
+        """
+        pass

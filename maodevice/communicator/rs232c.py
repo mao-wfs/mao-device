@@ -21,15 +21,16 @@ class Rs232C(communicator.Communicator):
         self,
         port,
         baudrate=9600,
-        bytesize=8,
-        parity='N',
-        stopbits=1.,
+        bytesize=serial.EIGHTBITS,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
         timeout=1.,
         xonxoff=False,
         rtscts=False,
         dsrdtr=False,
-        write_timeout=1.,
+        write_timeout=None,
         inter_byte_timeout=None,
+        exclusive=None,
     ):
         """Initialize 'Rs232C'.
         
@@ -49,6 +50,9 @@ class Rs232C(communicator.Communicator):
             write_timeout (float): Set a write timeout value. (Default: 1.)
             inter_byte_timeout (float or None): (Default: None)
                 Inter-character timeout, None to disable.
+            exclusive (bool): Set exclusive access mode (POSIX only).
+                A port cannot be opened in exclusive access mode
+                if it is already open in exclusive access mode.
         """
         self.port = port
         self.baudrate = baudrate
@@ -60,6 +64,7 @@ class Rs232C(communicator.Communicator):
         self.dsrdtr = dsrdtr
         self.write_timeout = write_timeout
         self.inter_byte_timeout = inter_byte_timeout
+        self.exclusive = exclusive
 
     def open(self):
         """Connect to a device via serial communication.
@@ -72,18 +77,21 @@ class Rs232C(communicator.Communicator):
         """
         if not self.connection:
             self.ser = serial.Serial(
-                self.port,
-                self.timeout,
-                self.parity,
-                self,stopbits,
-                self.timeout,
-                self.xonxoff,
-                self.rtscts,
-                self.dsrdtr,
-                self.write_timeout,
-                self.inter_byte_timeout,
+                port=self.port,
+                baudrate=self.baudrate,
+                parity=self.parity,
+                stopbits=self.stopbits,
+                timeout=self.timeout,
+                xonxoff=self.xonxoff,
+                rtscts=self.rtscts,
+                dsrdtr=self.dsrdtr,
+                write_timeout=self.write_timeout,
+                inter_byte_timeout=self.inter_byte_timeout,
+                exclusive=self.exclusive,
             )
             self.connection = True
+        else:
+            print('The communication has already been established.')
         return
 
     def close(self):
@@ -115,19 +123,19 @@ class Rs232C(communicator.Communicator):
         self.ser.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=1024):
+    def recv(self, size=1024):
         """Receive messages from a device.
 
         Note:
             This method is an override of the 'recv' method of the base class.
 
         Args:
-            byte (int): Number of bytes to read.
+            size (int): Number of bytes to read.
 
         Return:
             ret (): A message to receive a device.
         """
-        ret = self.ser.readinto(byte)
+        ret = self.ser.read(size)
         return ret
 
     def readline(self):
@@ -140,5 +148,20 @@ class Rs232C(communicator.Communicator):
         Return:
             ret (): A message to receive a device.
         """
-        self.ser.readline()
+        ret = self.ser.readline()
+        return ret
+
+    def readlines(self):
+        """Read lines of a device output.
+
+        Note:
+            This method if an override of the 'readlines' method of the base
+            class.
+
+        Return:
+            ret (str): Messages to receive a device.
+        """
+        if self.timeout is None:
+            raise ValueError('You must set "timeout".')
+        ret = ','.join(self.readlines)
         return ret

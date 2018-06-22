@@ -42,6 +42,8 @@ class Telnet(communicator.Communicator):
             self.tn = telnetlib.Telnet(self.host, self.port, self.timeout)
             self.tn.open(self.host, self.port, self.timeout)
             self.connection = True
+        else:
+            print('The Communication is already established.')
         return
 
     def close(self):
@@ -88,15 +90,15 @@ class Telnet(communicator.Communicator):
         ret = self.tn.read_until(byte, self.timeout)
         return
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
             This method is an override of the 'readline' method of the base
             class.
 
         Return:
-            ret (str): A message to receive a device.
+            ret (str): Messages to receive a device.
         """
         ret = self.tn.expect(f'{self.terminator}$', self.timeout).decode()
         return ret

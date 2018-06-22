@@ -10,9 +10,9 @@ class OctadS(device.Device):
     This class is based on 'Device'.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device, 'Elecs'.
-        product_name (str): Name of the device, 'OCTAD-S'.
-        classification (str): Classification of the device, 'Correlator'.
+        manufacturer (str): Manufacturer of the device.
+        product_name (str): Name of the device.
+        classification (str): Classification of the device.
     """
     manufacturer = 'Elecs'
     producct_name = 'OCTAD-S'
@@ -28,7 +28,7 @@ class OctadS(device.Device):
             Initialize and start VDIF transmission.
 
             >>> octad = OctadS(
-                    telnet(host='192.168.1.1', port='5653', timeout=1.),
+                    Telnet(host='192.168.1.1', port='5653', timeout=1.),
                 )
             >>> octad.start_vdif_transmission()
         """

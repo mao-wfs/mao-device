@@ -91,7 +91,7 @@ class Rs232C(communicator.Communicator):
             )
             self.connection = True
         else:
-            print('The communication has already been established.')
+            print('The Communication is already established.')
         return
 
     def close(self):
@@ -138,19 +138,6 @@ class Rs232C(communicator.Communicator):
         ret = self.ser.read(size)
         return ret
 
-    def readline(self):
-        """Read a line of a device output.
-
-        Note:
-            This method is an override of the 'readline' method of the base
-            class.
-
-        Return:
-            ret (): A message to receive a device.
-        """
-        ret = self.ser.readline()
-        return ret
-
     def readlines(self):
         """Read lines of a device output.
 
@@ -163,5 +150,5 @@ class Rs232C(communicator.Communicator):
         """
         if self.timeout is None:
             raise ValueError('You must set "timeout".')
-        ret = ','.join(self.readlines)
+        ret = ','.join(self.ser.readlines())
         return ret

@@ -75,6 +75,8 @@ class Ethernet(communicator.Communicator):
             self.sock.connect((self.host, self.port))
             self.sockfp = self.sock.makefile()
             self.connection = True
+        else:
+            print('The communication has already been established.')
         return
 
     def close(self):
@@ -122,15 +124,15 @@ class Ethernet(communicator.Communicator):
         ret = self.sock.recv(byte)
         return
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
             This method is an override of the 'readline' method of the base
             class.
 
         Return:
-            ret (): A message to receive a device.
+            ret (str): Messages to receive a device.
         """
-        ret = self.sockfp.readline()
+        ret = ','.join(self.sock.sockfp.readline())
         return ret

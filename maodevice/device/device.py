@@ -26,7 +26,7 @@ class Device(object):
         """Initialize 'Device'.
 
         Args:
-            com (communicator.Communicator): Communicator to control the device.
+            com (communicator.Communicator): Communicator to control a device.
         """
         self.com = com
         self.com.open()
@@ -39,7 +39,7 @@ class Device(object):
             This method is only for the internal use.
             User can add shortcuts by editting '_shortcut_command'.
         """
-        items = self._shortcut_command.items()
-        for shortcut, method in items:
+        __items = self._shortcut_command.items()
+        for shortcut, method in __items:
             self.__setattr__(shortcut, self.__getattribute__(method))
         return

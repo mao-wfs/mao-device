@@ -13,17 +13,18 @@ class Telnet(communicator.Communicator):
     Attributes:
         method (str): Communication method.
         connection (bool): If True, it is connected.
-        terminator (str): Termination character. (Default: '\n')
+        terminator (str): Termination character.
     """
     method = 'Telnet'
 
-    def __init__(self, host, port, timeout=3.):
+    def __init__(self, host, port, timeout=1.):
         """Initialize 'Telnet'
 
         Args:
             host (str): IP Address of a device.
             port (int): Port of a device.
-            timeout (float): Set a read timeout values. Default: 3.)
+            timeout (float): Set a read timeout values.
+                Defaults to 1.0.
         """
         self.host = host
         self.port = port
@@ -42,8 +43,6 @@ class Telnet(communicator.Communicator):
             self.tn = telnetlib.Telnet(self.host, self.port, self.timeout)
             self.tn.open(self.host, self.port, self.timeout)
             self.connection = True
-        else:
-            print('The Communication is already established.')
         return
 
     def close(self):
@@ -75,30 +74,32 @@ class Telnet(communicator.Communicator):
         self.tn.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=1024):
-        """Receive messages from a device.
+    # def recv(self, expected=1024)
+    #     """Receive messages from a device.
+    #
+    #     Note:
+    #         This method is an override of the 'recv' method of the base class.
+    #
+    #     Args:
+    #         expected (int): Number of bytes to read.
+    #
+    #     Return:
+    #         ret (int or str): A message to receive a device.
+    #     """
+    #     ret = self.tn.read_until(byte, self.timeout)
+    #     return
+
+    def readline(self):
+        """Read a line of a device output.
 
         Note:
-            This method is an override of the 'recv' method of the base class.
-
-        Args:
-            byte (int): Number of bytes to read.
+            This method is an override of the 'readline' method of the base class.
 
         Return:
-            ret (int or str): A message to receive a device.
+            ret (bytes): A Message line to receive a device.
         """
-        ret = self.tn.read_until(byte, self.timeout)
-        return
-
-    def readlines(self):
-        """Read lines of a device output.
-
-        Note:
-            This method is an override of the 'readline' method of the base
-            class.
-
-        Return:
-            ret (str): Messages to receive a device.
-        """
-        ret = self.tn.expect(f'{self.terminator}$', self.timeout).decode()
+        ret = self.tn.read_until(
+            expected=self.terminator.encode(),
+            timeout=self.timeout,
+        )
         return ret

@@ -4,16 +4,16 @@ from . import communicator
 
 
 class Rs232C(communicator.Communicator):
-    """Provide serial communication based on 'Communicator'
+    """Provides serial communication based on 'Communicator'
 
     Note:
-        This class is an override of the base class 'Communicator' for serial
-        communication.
+        This class is an override of the base class 'Communicator'
+        for serial communication.
 
     Attributes:
         method (str): Communication method.
         connection (bool): If True, it is connected.
-        terminator (str): Termination character. (Default: '\n')
+        terminator (str): Termination character.
     """
     method = 'RS-232C'
 
@@ -35,22 +35,29 @@ class Rs232C(communicator.Communicator):
         """Initialize 'Rs232C'.
         
         Args:
-            port (str): Device name or None
-            baudrate (int): Baud rate. (Default: 9600)
-            byteize (int): Number of data bits. (Default: 8)
-                (Allowed values: 5, 6, 7, 8.)
-            parity (str): Enable parity checking. (Default: 'N')
-                (Allowed values: 'N', 'E', 'O', 'M', 'S')
-            stopbits (float): Number of stop bits. (Default: 1.)
-                (Allowed values: 1., 1.5, 2.)
-            timeout (float): Set a read timeout values. (Default: 1.)
-            xonxoff (bool): Enable software flow control. (Default: False)
-            rtscts (bool): Enable hardware (RTS/CTS) flow control. (Default: False)
-            dsrdtr (bool): Enable hardware (DSR/DTR) flow control. (Default: False)
-            write_timeout (float): Set a write timeout value. (Default: 1.)
-            inter_byte_timeout (float or None): (Default: None)
-                Inter-character timeout, None to disable.
+            port (str): Device name.
+            baudrate (int): Baud rate.
+                Defaults to 9600.
+            byteize (int): Number of data bits.
+                Defaults to serial.EIGHTBITS.
+            parity (str): Enable parity checking.
+                Defaults to serial.PARITY_NONE.
+            stopbits (float): Number of stop bits.
+                Defaults to serial.STOPBITS_ONE.
+            timeout (float): A read timeout values.
+                Defaults to 1.0.
+            xonxoff (bool): Enable software flow control.
+                Defaults to False.
+            rtscts (bool): Enable hardware (RTS/CTS) flow control.
+                Defaults to False.
+            dsrdtr (bool): Enable hardware (DSR/DTR) flow control.
+                Defaults to False.
+            write_timeout (float): Set a write timeout value.
+                Defaults to None.
+            inter_byte_timeout (float or None): Inter-character timeout.
+                Defaults to None (None to disable).
             exclusive (bool): Set exclusive access mode (POSIX only).
+                Defaults to None.
                 A port cannot be opened in exclusive access mode
                 if it is already open in exclusive access mode.
         """
@@ -90,8 +97,6 @@ class Rs232C(communicator.Communicator):
                 exclusive=self.exclusive,
             )
             self.connection = True
-        else:
-            print('The Communication is already established.')
         return
 
     def close(self):
@@ -123,32 +128,29 @@ class Rs232C(communicator.Communicator):
         self.ser.write((msg + self.terminator).encode())
         return
 
-    def recv(self, size=1024):
+    def recv(self, byte=1024):
         """Receive messages from a device.
 
         Note:
             This method is an override of the 'recv' method of the base class.
 
         Args:
-            size (int): Number of bytes to read.
+            byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (): A message to receive a device.
+            ret (bytes): A message to receive a device.
         """
-        ret = self.ser.read(size)
+        ret = self.ser.read(size=byte)
         return ret
 
-    def readlines(self):
-        """Read lines of a device output.
+    def readline(self):
+        """Read a line of a device output.
 
         Note:
-            This method if an override of the 'readlines' method of the base
-            class.
+            This method if an override of the 'readlines' method of the base class.
 
         Return:
-            ret (str): Messages to receive a device.
+            ret (bytes): A Message line to receive a device.
         """
-        if self.timeout is None:
-            raise ValueError('You must set "timeout".')
-        ret = ','.join(self.ser.readlines())
+        ret = self.ser.readline()
         return ret

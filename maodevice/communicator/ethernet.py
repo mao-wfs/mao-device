@@ -4,7 +4,7 @@ from . import communicator
 
 
 class Ethernet(communicator.Communicator):
-    """Provides socket communication based on 'Comunicator'.
+    """Provides socket communication based on 'Communicator'.
 
     Note:
         This class is an override of the base class 'Communicator'
@@ -13,7 +13,7 @@ class Ethernet(communicator.Communicator):
     Attributes:
         method (str): Communication method.
         connection (bool): If True, it is connected.
-        terminator (str): Termination character. (Default: '\n')
+        terminator (str): Termination character.
     """
     method = 'Ethernet'
 
@@ -21,7 +21,7 @@ class Ethernet(communicator.Communicator):
         self,
         host,
         port,
-        timeout=3.,
+        timeout=1.
         family=socket.AF_INET,
         type=socket.SOCK_STREAM,
         proto=0,
@@ -32,20 +32,24 @@ class Ethernet(communicator.Communicator):
         Args:
             host (str): IP Address of a device.
             port (int): Port of a device.
-            timeout (float): Set a read timeout values. (Default: 3.)
-            family (): A constant indicating the address (and protocol) family.
-                (Default: socket.AF_INET)
-            type (): A Constant indicating the socket type.
-                (Default: socket.SOCK_STREAM)
-            proto (): Protocol number. (Default: 0)
-                      If family=socket.AF_CAN, either socket.CAN_RAW or
-                      socket.CAN_BCM should be specified.
-                      fileno (): (Default: None)
-                If fileno=True, another argument is ignored, so the socket of
-                the specified file descriptor is returned.
-                Unlike socket.fromfd(), fileno returns the same socket,
-                not socket replicas. This may be useful to close a
-                detached socket with socket.close().
+            timeout (float): A read timeout values.
+                Defaults to 1.0.
+            family (socket.AddressFamily): A constant indicating the address
+                (and protocol) family.
+                Defaults to socket.AF_INET.
+            type (socket.SocketKind): A Constant indicating the socket type.
+                Defaults to socket.SOCK_STREAM.
+            proto (int): Protocol number.
+                Defaults to 0.
+                If family=socket.AF_CAN, either socket.CAN_RAW or
+                socket.CAN_BCM should be specified.
+            fileno (None or int): File descriptor.
+                Defaults to None.
+                If it is specified, the other arguments are ignored, causing
+                the socket with the specified file descriptor to return.
+                Unlike socket.fromfd(), fileno will return the same socket and
+                not a duplicate. This may help close a detached socket using
+                socket.close().
         """
         self.host = host
         self.port = port
@@ -75,16 +79,13 @@ class Ethernet(communicator.Communicator):
             self.sock.connect((self.host, self.port))
             self.sockfp = self.sock.makefile()
             self.connection = True
-        else:
-            print('The communication has already been established.')
         return
 
     def close(self):
         """Close the connection.
 
         Note:
-            This method is an override of the 'close' method of the base
-            class.
+            This method is an override of the 'close' method of the base class.
 
         Return:
             None
@@ -101,7 +102,7 @@ class Ethernet(communicator.Communicator):
             This method is an override of the 'send' method of the base class.
 
         Args:
-            msg (str): Message to send a device.
+            msg (str): A Message to send a device.
 
         Return:
             None
@@ -116,23 +117,22 @@ class Ethernet(communicator.Communicator):
             This method is an override of the 'recv' method of the base class.
 
         Args:
-            byte (int): Number of bytes to read.
+            byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (): A message to receive a device.
+            ret (int, float or str): A message to receive a device.
         """
-        ret = self.sock.recv(byte)
-        return
+        ret = self.sock.recv(bufsize=byte)
+        return ret
 
-    def readlines(self):
-        """Read lines of a device output.
+    def readline(self):
+        """Read a line of a device output.
 
         Note:
-            This method is an override of the 'readline' method of the base
-            class.
+            This method is an override of the 'readline' method of the base class.
 
         Return:
-            ret (str): Messages to receive a device.
+            ret (int, float or str): A message line to receive a device.
         """
-        ret = ','.join(self.sock.sockfp.readline())
+        ret = self.sockfp.readline()
         return ret

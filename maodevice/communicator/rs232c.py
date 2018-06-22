@@ -57,9 +57,9 @@ class Rs232C(communicator.Communicator):
             inter_byte_timeout (float or None): Inter-character timeout.
                 Defaults to None (None to disable).
             exclusive (bool): Set exclusive access mode (POSIX only).
-                Defaults to None.
                 A port cannot be opened in exclusive access mode
                 if it is already open in exclusive access mode.
+                Defaults to None.
         """
         self.port = port
         self.baudrate = baudrate

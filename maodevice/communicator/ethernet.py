@@ -21,7 +21,7 @@ class Ethernet(communicator.Communicator):
         self,
         host,
         port,
-        timeout=1.
+        timeout=1.,
         family=socket.AF_INET,
         type=socket.SOCK_STREAM,
         proto=0,
@@ -40,16 +40,16 @@ class Ethernet(communicator.Communicator):
             type (socket.SocketKind): A Constant indicating the socket type.
                 Defaults to socket.SOCK_STREAM.
             proto (int): Protocol number.
-                Defaults to 0.
                 If family=socket.AF_CAN, either socket.CAN_RAW or
                 socket.CAN_BCM should be specified.
+                Defaults to 0.
             fileno (None or int): File descriptor.
-                Defaults to None.
                 If it is specified, the other arguments are ignored, causing
                 the socket with the specified file descriptor to return.
                 Unlike socket.fromfd(), fileno will return the same socket and
                 not a duplicate. This may help close a detached socket using
                 socket.close().
+                Defaults to None.
         """
         self.host = host
         self.port = port

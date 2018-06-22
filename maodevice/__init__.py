@@ -1,3 +1,3 @@
 # coding: utf-8
-from .communicator import *
-from .device import *
+from . import communicator
+from . import device

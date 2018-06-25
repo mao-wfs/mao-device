@@ -1,9 +1,9 @@
 # coding: utf-8
 import socket
-from . import communicator
+from .. import communicator
 
 
-class Ethernet(communicator.Communicator):
+class Socket(communicator.Communicator):
     """Provides socket communication based on 'Communicator'.
 
     Note:
@@ -15,7 +15,7 @@ class Ethernet(communicator.Communicator):
         connection (bool): If True, it is connected.
         terminator (str): Termination character.
     """
-    method = 'Ethernet'
+    method = 'Socket'
 
     def __init__(
         self,
@@ -27,7 +27,7 @@ class Ethernet(communicator.Communicator):
         proto=0,
         fileno=None,
     ):
-        """Initialize 'Ethernet'.
+        """Initialize 'Socket'.
         
         Args:
             host (str): IP Address of a device.
@@ -110,6 +110,7 @@ class Ethernet(communicator.Communicator):
         self.sock.send((msg + self.terminator).encode())
         return
 
+
     def recv(self, byte=1024):
         """Receive messages from a device.
 
@@ -120,19 +121,19 @@ class Ethernet(communicator.Communicator):
             byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (int, float or str): A message to receive a device.
+            ret (bytes): Byte string received from a device.
         """
         ret = self.sock.recv(bufsize=byte)
         return ret
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
-            This method is an override of the 'readline' method of the base class.
+            This method if an override of the 'readlines' method of the base class.
 
         Return:
-            ret (int, float or str): A message line to receive a device.
+            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
         """
-        ret = self.sockfp.readline()
+        ret = self.sockfp.readlines()
         return ret

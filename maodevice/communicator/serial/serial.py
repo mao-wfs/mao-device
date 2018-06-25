@@ -1,9 +1,9 @@
 # coding: utf-8
 import serial
-from . import communicator
+from .. import communicator
 
 
-class Rs232C(communicator.Communicator):
+class Serial(communicator.Communicator):
     """Provides serial communication based on 'Communicator'
 
     Note:
@@ -15,7 +15,7 @@ class Rs232C(communicator.Communicator):
         connection (bool): If True, it is connected.
         terminator (str): Termination character.
     """
-    method = 'RS-232C'
+    method = 'Serial'
 
     def __init__(
         self,
@@ -32,7 +32,7 @@ class Rs232C(communicator.Communicator):
         inter_byte_timeout=None,
         exclusive=None,
     ):
-        """Initialize 'Rs232C'.
+        """Initialize 'Serial'.
         
         Args:
             port (str): Device name.
@@ -143,14 +143,14 @@ class Rs232C(communicator.Communicator):
         ret = self.ser.read(size=byte)
         return ret
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
             This method if an override of the 'readlines' method of the base class.
 
         Return:
-            ret (bytes): A Message line to receive a device.
+            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
         """
-        ret = self.ser.readline()
+        ret = self.ser.readlines()
         return ret

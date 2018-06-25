@@ -1,6 +1,6 @@
 # coding: utf-8
 import telnetlib
-from . import communicator
+from .. import communicator
 
 
 class Telnet(communicator.Communicator):
@@ -74,6 +74,22 @@ class Telnet(communicator.Communicator):
         self.tn.write((msg + self.terminator).encode())
         return
 
+    def query(self, msg):
+        """Query a message to a device.
+
+        Note:
+            This method is an override of the 'query' method of the base class.
+
+        Args:
+            msg (str): Message to query a device.
+
+        Return:
+            ret (bytes): The answer to the query.
+        """
+        self.send(msg)
+        ret = self.readlines()
+        return ret
+
     # def recv(self, expected=1024)
     #     """Receive messages from a device.
     #
@@ -89,17 +105,18 @@ class Telnet(communicator.Communicator):
     #     ret = self.tn.read_until(byte, self.timeout)
     #     return
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
-            This method is an override of the 'readline' method of the base class.
+            This method if an override of the 'readlines' method of the base class.
 
         Return:
-            ret (bytes): A Message line to receive a device.
+            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
         """
         ret = self.tn.read_until(
             expected=self.terminator.encode(),
             timeout=self.timeout,
         )
+        ret = ret.splitlines()
         return ret

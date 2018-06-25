@@ -63,6 +63,19 @@ class Communicator(object):
         """
         pass
 
+    def query(self, msg):
+        """Query a message to a device.
+
+        Args:
+            msg (str): Message to query a device.
+
+        Return:
+            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
+        """
+        self.send(msg)
+        ret = self.readlines()
+        return ret
+
     def recv(self, byte):
         """Receive messages from a device.
 
@@ -71,8 +84,8 @@ class Communicator(object):
         """
         pass
 
-    def readline(self):
-        """Read a line of a device output.
+    def readlines(self):
+        """Read lines of a device output.
 
         Note:
             This method is what is override to the 'readline' method of child class.

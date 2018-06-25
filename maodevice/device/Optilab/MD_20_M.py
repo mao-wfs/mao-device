@@ -48,7 +48,7 @@ class Md20M(device.Device):
         """Set the voltage of the output DC voltage.
 
         Note:
-            The setting range is 0.01 ~ 9.99.
+            The setting range is 0.01 - 9.99.
 
         Args:
             vbias (float): The voltage of the output DC voltage.

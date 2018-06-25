@@ -1,3 +1,6 @@
 # coding: utf-8
 from . import communicator
-from . import device
+from .device import *
+from . import utils
+
+del device

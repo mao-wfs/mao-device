@@ -1,5 +1,6 @@
 # coding: utf-8
 from .. import device
+from ... import utils
 
 
 class Lta20M(device.Device):
@@ -26,12 +27,12 @@ class Lta20M(device.Device):
         super().__init__(com)
         self.com.set_terminator('\r\n')
 
+    @utils.decoder
     def show_status(self):
         """Show status of 'LTA-20-M'.
 
         Return:
             ret (str): Status of 'LTA-20-M'.
         """
-        self.com.send('READ')
-        ret = self.readlines()
+        ret = self.com.query('READ')
         return ret

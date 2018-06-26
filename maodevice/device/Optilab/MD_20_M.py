@@ -1,5 +1,6 @@
 # coding: utf-8
 from .. import device
+from ... import utils
 
 
 class Md20M(device.Device):
@@ -26,42 +27,7 @@ class Md20M(device.Device):
         super().__init__(com)
         self.com.set_terminator('\r\n')
 
-    def set_vadj(self, vadj):
-        """Set the voltage which controls the duty cycle.
-
-        Note:
-            The setting range is 0.01 - 4.99.
-
-        Args:
-            vadj (float): The voltage which controls the duty cycle.
-
-        Return:
-            None
-        """
-        if not 0.01 <= vadj <= 4.49:
-            raise ValueError('Set VADJ 0.01 - 4.99.')
-        self.com.send(f'SETADJ:{vadj:.3}')
-        self.com.recv()
-        return
-
-    def set_vbias(self, vbias):
-        """Set the voltage of the output DC voltage.
-
-        Note:
-            The setting range is 0.01 - 9.99.
-
-        Args:
-            vbias (float): The voltage of the output DC voltage.
-
-        Return:
-            None
-        """
-        if not 0.01 <= vbias <= 9.99:
-            raise ValueError('Set VBIAS 0.01 - 9.99.')
-        self.com.send(f'SETBIAS:{vbias:.3}')
-        self.com.recv()
-        return
-
+    @utils.filter('vgain', 1.00, 8.50)
     def set_vgain(self, vgain):
         """Set the voltage which controls the RF gain.
 
@@ -74,18 +40,56 @@ class Md20M(device.Device):
         Return:
             None
         """
-        if not 1.00 <= vgain <= 8.50:
-            raise ValueError('Set VGAIN 1.00 - 8.50.')
+        # if not 1.00 <= vgain <= 8.50:
+        #     raise ValueError('Set VGAIN 1.00 - 8.50.')
         self.com.send(f'SETGAIN:{vgain:.3}')
         self.com.recv()
         return
 
+    @utils.filter('vadj', 0.01, 4.99)
+    def set_vadj(self, vadj):
+        """Set the voltage which controls the duty cycle.
+
+        Note:
+            The setting range is 0.01 - 4.99.
+
+        Args:
+            vadj (float): The voltage which controls the duty cycle.
+
+        Return:
+            None
+        """
+        # if not 0.01 <= vadj <= 4.49:
+        #     raise ValueError('Set VADJ 0.01 - 4.99.')
+        self.com.send(f'SETADJ:{vadj:.3}')
+        self.com.recv()
+        return
+
+    @utils.filter('vbias', 0.01, 9.99)
+    def set_vbias(self, vbias):
+        """Set the voltage of the output DC voltage.
+
+        Note:
+            The setting range is 0.01 - 9.99.
+
+        Args:
+            vbias (float): The voltage of the output DC voltage.
+
+        Return:
+            None
+        """
+        # if not 0.01 <= vbias <= 9.99:
+        #     raise ValueError('Set VBIAS 0.01 - 9.99.')
+        self.com.send(f'SETBIAS:{vbias:.3}')
+        self.com.recv()
+        return
+
+    @utils.decoder
     def show_status(self):
         """Show the status of 'MD-20-M'.
 
         Return:
             ret (str): Status of 'MD-20-M'.
         """
-        self.com.send('READ')
-        ret = self.readlines()
+        ret = self.com.query('READ')
         return ret

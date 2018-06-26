@@ -1,5 +1,6 @@
 # coding: utf-8
 from .. import device
+from ... import utils
 
 
 class Pd30M(device.Device):
@@ -26,12 +27,12 @@ class Pd30M(device.Device):
         super().__init__(com)
         self.com.set_terminator('\r\n')
 
+    @utils.decoder
     def show_status(self):
         """Show status of 'PD-30-M'.
 
         Return:
             ret (str): Status of 'PD-30-M'.
         """
-        self.com.send('READP')
-        ret = self.readlines()
+        ret = self.com.query('READP')
         return ret

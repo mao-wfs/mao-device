@@ -1,6 +1,6 @@
 # coding: utf-8
-import math
 from .. import device
+from ... import utils
 
 
 class OctadS(device.Device):
@@ -22,7 +22,7 @@ class OctadS(device.Device):
         """Initialize 'OctadS'.
         
         Args:
-            com (Communicator): Communicator to control 'OCTAD-S'
+            com (communicator.Communicator): Communicator to control 'OCTAD-S'
 
         Example:
             Initialize and start VDIF transmission.
@@ -46,7 +46,8 @@ class OctadS(device.Device):
               'synchronize_with_external'.
 
         Args:
-            n (int): ADC number. (Allowed values: 1, 2)
+            n (int): ADC number.
+                Allowed value is 1 or 2.
 
         Return:
             None
@@ -58,10 +59,11 @@ class OctadS(device.Device):
         """Select whether to the bit distribution after sampling with ADC.
 
         Args:
-            n (int): ADC number. (Allowed values: 1, 2)
-            response (bool): (Default: False)
-                If True, output this data from 'Control Port' to TCP port 60000
-                every 1PPS.
+            n (int): ADC number.
+                Allowed value is 1 or 2.
+            response (bool): If True, output this data from 'Control Port'
+                to TCP port 60000 every 1PPS.
+                Defaults to False.
 
         Return:
             None
@@ -113,9 +115,11 @@ class OctadS(device.Device):
         """Select DBBC band from USB or LSB.
 
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
-            band (str): DBBC band. (Default: 'USB')
-                (Allowed values: 'USB', 'LSB')
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
+            band (str): DBBC band.
+                Allowed value is 'USB' or 'LSB'.
+                Default to 'USB'.
 
         Return:
             None
@@ -127,10 +131,11 @@ class OctadS(device.Device):
         """Select whether to output the bit distribution after DBBC output.
 
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
-            response (bool): (Default: False)
-                If True, output this data from 'Control Port' to TCP port 60000
-                every 1PPS.
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
+            response (bool): If True, output this data from 'Control Port'
+                to TCP port 60000 every 1PPS.
+                Defaults to False.
 
         Return:
             None
@@ -143,8 +148,11 @@ class OctadS(device.Device):
         """Select the digital filter's band combination.
         
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
-            あとで書く
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
+            band (?): あとで書く
+
+        Return: None
         """
         self.com.send(f'sel_filband{n}={band}')
         return
@@ -153,29 +161,29 @@ class OctadS(device.Device):
         """Select whether to output the date to add to sampling data.
 
         Args:
-            response (bool): (Default: False)
-                If True, output this date from 'Control Port' to TCP port 60000
-            every 1PPS.
+            response (bool): If True, output this date from 'Control Port'
+                to TCP port 60000 every 1PPS.
 
         Return:
             None
         """
         __output = 'on' if response else 'off'
-        self.com.send(f'sel_smpdatereq{n}={output}')
+        self.com.send(f'sel_smpdatereq={__output}')
         return
 
     def select_sampling_mode(self, mode, rate, bit):
         self.com.send(f'sel_smpmode={mode}:{rate}:{bit}')
         return
 
-    def set_10G_port_ip(sefl, n, ip):
+    def set_10G_port_ip(self, n, ip):
         """Set IP address of '10G port'.
 
         Note:
             You must restart after executing this method.
 
         Args:
-            n (int): ADC number. (Allowed values: 1, 2)
+            n (int): ADC number.
+                Allowed value is 1 or 2.
             ip (str): IP address of 10G port.
 
         Return:
@@ -184,41 +192,54 @@ class OctadS(device.Device):
         self.com.send(f'set_xgip{n}={ip}')
         return
 
+    @utils.filter('drange', 240.0, 270.0)
+    @utils.filter('offset', -128.0, 128.0)
     def set_adc_dynamic_range(self, n, drange, offset=0.):
         """Set dynamic range of ADC.
 
         Args:
-            n (int): ADC number. (Allowed values: 1, 2)
-            drange (float): Dynamic range of ADC. (Allowed values: 240.0 - 270.0)
+            n (int): ADC number.
+                Allowed value is 1 or 2.
+            drange (float): Dynamic range of ADC.
+                The setting range is 240.0 - 270.0.
             offset (float): Offset voltage of ADC dynamic range.
-                (Allowed values: -128.0 - 128.0)
-        """
-        if 240.0 <= drange <= 270.0:
-            raise ValueError('Set dynamic range 240.0 - 270.0.')
-        if -128.0 <= offset <= 128.0:
-            raise ValueError('Set offset voltage -128.0 - 128.0.')
-        self.com.send(f'set_adc{n}={drange:.1f}:{offset:.1f}')
-        return
-
-    def set_dbbc_nco_freq(self, n, nco_freq):
-        """Set NCO frequency of the DBBC.
-
-        Note:
-            Set NCO frequency in units of 1000Hz. Below 1000Hz is truncated.
-
-        Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
-            nco_freq (int): NCO frequency of the DBBC.
-                (Allowed values: 0 - 16,383,999,000)
+                The setting range is -128.0 - 128.0.
 
         Return:
             None
         """
-        if not 0 < nco_freq < 16383999000:
-            raise ValueError('Set NCO frequency 0 < nco_freq < 16,383,999,000.')
+        # if 240.0 <= drange <= 270.0:
+        #     raise ValueError('Set dynamic range 240.0 - 270.0.')
+        # if -128.0 <= offset <= 128.0:
+        #     raise ValueError('Set offset voltage -128.0 - 128.0.')
+        self.com.send(f'set_adc{n}={drange:.1f}:{offset:.1f}')
+        return
+
+    @utils.filter('nco_freq', 0, 16_383_999_000)
+    @utils.increments('nco_freq', 1_000)
+    def set_dbbc_nco_freq(self, n, nco_freq):
+        """Set NCO frequency of the DBBC.
+
+        Note:
+            Set NCO frequency in units of 1000Hz.
+            Below 1000Hz is truncated.
+
+        Args:
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
+            nco_freq (int): NCO frequency of the DBBC.
+                The setting range is 0 - 16,383,999,000.
+
+        Return:
+            None
+        """
+        # if not 0 < nco_freq < 16_383_999_000:
+        #     raise ValueError('Set NCO frequency 0 < nco_freq < 16,383,999,000.')
         self.com.send(f'set_dbbcnco{n}={nco_freq}')
         return
 
+    @utils.filter('gain', -40.0, 40.0)
+    @utils.increments('gain', 0.5)
     def set_dbbc_gain(self, n, gain):
         """Set DBBC gain of requantize part.
         
@@ -226,15 +247,16 @@ class OctadS(device.Device):
             Set DBBC gain in increments of 0.5 dB. 
 
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
             gain (float): DBBC gain of requantize part.
-                (Allowed vaulues: -40.0 - 40.0)
+                The setting range is -40.0 - 40.0.
 
         Return:
             None
         """
-        if not -40.0 < gain < 40.0:
-            raise ValueError('Set the gain -40.0 < gain < 40.0.')
+        # if not -40.0 < gain < 40.0:
+        #     raise ValueError('Set the gain -40.0 < gain < 40.0.')
 
         __gain_decimal = math.modf(gain)[0]
         if __gain_decimal != 0.0 and __gain_decimal != 0.5:
@@ -269,7 +291,8 @@ class OctadS(device.Device):
         """Set IP address of the destination of VDIF.
 
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
             ip (str): IP address of the destination of VDIF.
 
         Return:
@@ -278,11 +301,12 @@ class OctadS(device.Device):
         self.com.send(f'set_vdifdes{n}={ip}')
         return
 
-    def set_vdifdesport(self, n, port):
+    def set_vdif_des_port(self, n, port):
         """Set UDP port number of the destination of VDIF.
 
         Args:
-            n (int): DBBC number. (Allowed values: 1, 2, 3, 4)
+            n (int): DBBC number.
+                Allowed value is 1, 2, 3 or 4.
             port (int): UDP port number of the destination of VDIF.
 
         Return:
@@ -295,44 +319,41 @@ class OctadS(device.Device):
         """Select ON/OFF of VTP at VDIF transmission.
 
         Args:
-            vtp (bool): If True, VTP is ON. If False, VTP is OFF.
+            vtp (bool): If True, VTP is ON.
 
         Return:
             None
         """
-        if vtp:
-            __vtp == 'vtp'
-        else:
-            __vtp == 'none'
-        self.com.send(f'sel_vdifhead={vtp}')
+        __vtp = 'vtp' if vtp else 'none'
+        self.com.send(f'sel_vdifhead={__vtp}')
         return
 
+    @utils.decoder
     def show_alarm(self):
         """Show failures occured now or in the past.
 
         Return:
             ret (str): Strings indicating occured failures.
         """
-        self.com.send('show_alarm?')
-        ret = self.com.readline()
+        ret = self.com.query('show_alarm?')
         return ret
 
+    @utils.decoder
     def show_status(self):
         """Show malfunctions occured now or in the past.
 
         Return:
             ret (str): Strings indicating malfunctions.
         """
-        self.com.send('show_status?')
-        ret = self.com.readline()
+        ret = self.com.query('show_status?')
         return ret
 
     def start_vdif_transmission(self, port1='0000', port2='0000'):
         """Set and start VDIF transmission.
 
         Args:
-            port1 (str): 10G port1 threads 1-4.
-            port2 (str): 10G port2 threads 1-4.
+            port1 (str): 10G port1 threads 1 - 4.
+            port2 (str): 10G port2 threads 1 - 4.
 
         Return:
             None

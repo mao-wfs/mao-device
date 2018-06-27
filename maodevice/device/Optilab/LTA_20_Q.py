@@ -3,8 +3,8 @@ from ..device import Device
 from ... import utils
 
 
-class Pd30M(Device):
-    """Control 'PD-30-M'.
+class Lta20Q(Device):
+    """Control 'LTA-20-Q'.
 
     This is a child class of the base class 'Device'.
 
@@ -17,8 +17,8 @@ class Pd30M(Device):
         classification (str): Classification of the device.
     """
     manufacturer = 'Optilab'
-    product_name = 'PD-30-M'
-    classification = 'O/E Converter'
+    product_name = 'LTA-20-Q'
+    classification = 'E/O Converter'
 
     def __init__(self, com):
         super().__init__(com)
@@ -26,10 +26,10 @@ class Pd30M(Device):
 
     @utils.decoder
     def show_status(self):
-        """Show status of 'PD-30-M'.
+        """Show status of 'LTA-20-M'.
 
         Return:
-            ret (str): Status of 'PD-30-M'.
+            ret (str): Status of 'LTA-20-Q'.
         """
-        ret = self.com.query('READP')
+        ret = self.com.query('READ')
         return ret

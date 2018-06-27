@@ -1,14 +1,34 @@
 # coding: utf-8
 import socket
-from .. import communicator
+from ..communicator import Communicator
 
 
-class Socket(communicator.Communicator):
-    """Provides socket communication based on 'Communicator'.
+class Socket(Communicator):
+    """Communicate with the device via 'Socket'.
 
-    Note:
-        This class is an override of the base class 'Communicator'
-        for socket communication.
+    This is a child class of the base class 'Communicator'.
+
+    Args:
+        host (str): IP Address of a device.
+        port (int): Port of a device.
+        timeout (float): A read timeout values.
+            Defaults to 1.0.
+        family (socket.AddressFamily): A constant indicating
+            the address (and protocol) family.
+            Defaults to socket.AF_INET.
+        type (socket.SocketKind): A Constant indicating the socket type.
+            Defaults to socket.SOCK_STREAM.
+        proto (int): Protocol number.
+            If family=socket.AF_CAN, either socket.CAN_RAW or
+            socket.CAN_BCM should be specified.
+            Defaults to 0.
+        fileno (None or int): File descriptor.
+            If it is specified, the other arguments are ignored, causing
+            the socket with the specified file descriptor to return.
+            Unlike socket.fromfd(), fileno will return the same socket and
+            not a duplicate. This may help close a detached socket using
+            socket.close().
+            Defaults to None.
 
     Attributes:
         method (str): Communication method.
@@ -27,30 +47,6 @@ class Socket(communicator.Communicator):
         proto=0,
         fileno=None,
     ):
-        """Initialize 'Socket'.
-        
-        Args:
-            host (str): IP Address of a device.
-            port (int): Port of a device.
-            timeout (float): A read timeout values.
-                Defaults to 1.0.
-            family (socket.AddressFamily): A constant indicating the address
-                (and protocol) family.
-                Defaults to socket.AF_INET.
-            type (socket.SocketKind): A Constant indicating the socket type.
-                Defaults to socket.SOCK_STREAM.
-            proto (int): Protocol number.
-                If family=socket.AF_CAN, either socket.CAN_RAW or
-                socket.CAN_BCM should be specified.
-                Defaults to 0.
-            fileno (None or int): File descriptor.
-                If it is specified, the other arguments are ignored, causing
-                the socket with the specified file descriptor to return.
-                Unlike socket.fromfd(), fileno will return the same socket and
-                not a duplicate. This may help close a detached socket using
-                socket.close().
-                Defaults to None.
-        """
         self.host = host
         self.port = port
         self.timeout = timeout
@@ -60,10 +56,10 @@ class Socket(communicator.Communicator):
         self.fileno = fileno
 
     def open(self):
-        """Connect to a device via socket communication.
+        """Open the connection to the device.
 
         Note:
-            This method is an override of the 'open' method of the base class.
+            This method override the 'open' in the base class.
 
         Return:
             None
@@ -82,10 +78,10 @@ class Socket(communicator.Communicator):
         return
 
     def close(self):
-        """Close the connection.
+        """Close the connection to the device.
 
         Note:
-            This method is an override of the 'close' method of the base class.
+            This method override the 'close' in the base class.
 
         Return:
             None
@@ -96,13 +92,13 @@ class Socket(communicator.Communicator):
         return
 
     def send(self, msg):
-        """Send a message to a device.
+        """Send a message to the device.
 
         Note:
-            This method is an override of the 'send' method of the base class.
+            This method override the 'send' in the base class.
 
         Args:
-            msg (str): A Message to send a device.
+            msg (str): A Message to send the device.
 
         Return:
             None
@@ -112,28 +108,28 @@ class Socket(communicator.Communicator):
 
 
     def recv(self, byte=1024):
-        """Receive messages from a device.
+        """Receive the response of the device.
 
         Note:
-            This method is an override of the 'recv' method of the base class.
+            This method override the 'recv' in the base class.
 
         Args:
             byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (bytes): Byte string received from a device.
+            ret (bytes): The response of the device.
         """
         ret = self.sock.recv(bufsize=byte)
         return ret
 
     def readlines(self):
-        """Read lines of a device output.
+        """Receive the multiple rows response of the device.
 
         Note:
-            This method if an override of the 'readlines' method of the base class.
+            This method override the 'readlines' in the base class.
 
         Return:
-            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
+            ret (:obj:`list` of :obj:`bytes`): The response of the device.
         """
         ret = self.sockfp.readlines()
         return ret

@@ -1,14 +1,39 @@
 # coding: utf-8
 import serial
-from .. import communicator
+from ..communicator import Communicator
 
 
-class Serial(communicator.Communicator):
-    """Provides serial communication based on 'Communicator'
+class Serial(Communicator):
+    """Communicate with the device via 'Serial'.
 
-    Note:
-        This class is an override of the base class 'Communicator'
-        for serial communication.
+    This is a child class of the base class 'Communicator'.
+
+    Args:
+        port (str): Device name.
+        baudrate (int): Baud rate.
+            Defaults to 9600.
+        byteize (int): Number of data bits.
+            Defaults to serial.EIGHTBITS.
+        parity (str): Enable parity checking.
+            Defaults to serial.PARITY_NONE.
+        stopbits (float): Number of stop bits.
+            Defaults to serial.STOPBITS_ONE.
+        timeout (float): A read timeout values.
+            Defaults to 1.0.
+        xonxoff (bool): Enable software flow control.
+            Defaults to False.
+        rtscts (bool): Enable hardware (RTS/CTS) flow control.
+            Defaults to False.
+        dsrdtr (bool): Enable hardware (DSR/DTR) flow control.
+            Defaults to False.
+        write_timeout (float): Set a write timeout value.
+            Defaults to None.
+        inter_byte_timeout (float or None): Inter-character timeout.
+            Defaults to None (None to disable).
+        exclusive (bool): Set exclusive access mode (POSIX only).
+            A port cannot be opened in exclusive access mode
+            if it is already open in exclusive access mode.
+            Defaults to None.
 
     Attributes:
         method (str): Communication method.
@@ -32,35 +57,6 @@ class Serial(communicator.Communicator):
         inter_byte_timeout=None,
         exclusive=None,
     ):
-        """Initialize 'Serial'.
-        
-        Args:
-            port (str): Device name.
-            baudrate (int): Baud rate.
-                Defaults to 9600.
-            byteize (int): Number of data bits.
-                Defaults to serial.EIGHTBITS.
-            parity (str): Enable parity checking.
-                Defaults to serial.PARITY_NONE.
-            stopbits (float): Number of stop bits.
-                Defaults to serial.STOPBITS_ONE.
-            timeout (float): A read timeout values.
-                Defaults to 1.0.
-            xonxoff (bool): Enable software flow control.
-                Defaults to False.
-            rtscts (bool): Enable hardware (RTS/CTS) flow control.
-                Defaults to False.
-            dsrdtr (bool): Enable hardware (DSR/DTR) flow control.
-                Defaults to False.
-            write_timeout (float): Set a write timeout value.
-                Defaults to None.
-            inter_byte_timeout (float or None): Inter-character timeout.
-                Defaults to None (None to disable).
-            exclusive (bool): Set exclusive access mode (POSIX only).
-                A port cannot be opened in exclusive access mode
-                if it is already open in exclusive access mode.
-                Defaults to None.
-        """
         self.port = port
         self.baudrate = baudrate
         self.parity = parity
@@ -74,10 +70,10 @@ class Serial(communicator.Communicator):
         self.exclusive = exclusive
 
     def open(self):
-        """Connect to a device via serial communication.
+        """Open the connection to the device.
 
         Note:
-            This method is an override of the 'open' method of the base class.
+            This method override the 'open' in the base class.
 
         Return:
             None
@@ -100,10 +96,10 @@ class Serial(communicator.Communicator):
         return
 
     def close(self):
-        """Close the connection.
+        """Close the connection to the device.
 
         Note:
-            This method is an override of the 'close' method of the base class.
+            This method override the 'close' in the base class.
 
         Return:
             None
@@ -114,13 +110,13 @@ class Serial(communicator.Communicator):
         return
 
     def send(self, msg):
-        """Send a message to a device.
+        """Send a message to the device.
 
         Note:
-            This method is an override of the 'send' method of the base class.
+            This method override the 'send' in the base class.
 
         Args:
-            msg (str): Message to send a device.
+            msg (str): A Message to send the device.
 
         Return:
             None
@@ -129,28 +125,28 @@ class Serial(communicator.Communicator):
         return
 
     def recv(self, byte=1024):
-        """Receive messages from a device.
+        """Receive the response of the device.
 
         Note:
-            This method is an override of the 'recv' method of the base class.
+            This method override the 'recv' in the base class.
 
         Args:
             byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (bytes): A message to receive a device.
+            ret (bytes): The response of the device.
         """
         ret = self.ser.read(size=byte)
         return ret
 
     def readlines(self):
-        """Read lines of a device output.
+        """Receive the multiple rows response of the device.
 
         Note:
-            This method if an override of the 'readlines' method of the base class.
+            This method override the 'readlines' in the base class.
 
         Return:
-            ret (:obj:`list` of :obj:`bytes`): A message list to receive a device.
+            ret (:obj:`list` of :obj:`bytes`): The response of the device.
         """
         ret = self.ser.readlines()
         return ret

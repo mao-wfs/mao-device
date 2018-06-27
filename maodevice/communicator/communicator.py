@@ -5,8 +5,8 @@ class Communicator(object):
     This is the base class of device communicators.
 
     Note:
-        This class itself ist not used, but it is inherited by
-        child classes and uses.
+        This class itself is not used, but it is inherited by
+        child classes and used.
 
     Args:
         *args: Variable length argument list.

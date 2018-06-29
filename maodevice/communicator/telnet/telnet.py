@@ -54,7 +54,7 @@ class Telnet(Communicator):
         del(self.tn)
         self.connection = False
         return
-    
+
     def send(self, msg):
         """Send a message to the device.
 
@@ -72,13 +72,13 @@ class Telnet(Communicator):
 
     def recv(self, byte=1024):
         """Receive the response of the device.
-    
+
         Note:
             This method override the 'recv' in the base class.
-    
+
         Args:
             byte (int): Bytes to read. Defaults to 1024.
-    
+
         Return:
             ret (bytes): The response of the device.
         """

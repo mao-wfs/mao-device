@@ -1,24 +1,24 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 import telnetlib
 from ..communicator import Communicator
 
 
 class Telnet(Communicator):
-    """Communicate with the device via 'Telnet'
+    """Communicate with the device via 'Telnet'.
 
     This is a child class of the base class 'Communicator'.
 
     Args:
-        host (str): IP Address of a device
-        port (int): Port of a device
-        timeout (float): Set a read timeout values
+        host (str): IP Address of a device.
+        port (int): Port of a device.
+        timeout (float): Set a read timeout values.
             Defaults to 1.0.
 
     Attributes:
-        method (str): Communication method
-        connection (bool): Connection indicator
+        method (str): Communication method.
+        connection (bool): Connection indicator.
             If it is true, the connection has been established.
-        terminator (str): Termination character
+        terminator (str): Termination character.
     """
     method = 'Telnet'
 
@@ -28,7 +28,7 @@ class Telnet(Communicator):
         self.timeout = timeout
 
     def open(self):
-        """Open the connection to the device
+        """Open the connection to the device.
 
         Note:
             This method override the 'open' in the base class.
@@ -43,7 +43,7 @@ class Telnet(Communicator):
         return
 
     def close(self):
-        """Close the connection to the device
+        """Close the connection to the device.
 
         Note:
             This method override the 'close' in the base class.
@@ -57,13 +57,13 @@ class Telnet(Communicator):
         return
 
     def send(self, msg):
-        """Send a message to the device
+        """Send a message to the device.
 
         Note:
             This method override the 'send' in the base class.
 
         Args:
-            msg (str): Message to send the device
+            msg (str): Message to send the device.
 
         Return:
             None
@@ -72,29 +72,29 @@ class Telnet(Communicator):
         return
 
     def recv(self, byte=1024):
-        """Receive the response of the device
+        """Receive the response of the device.
 
         Note:
             This method override the 'recv' in the base class.
 
         Args:
-            byte (int): Bytes to read. Defaults to 1024
+            byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (bytes): The response of the device
+            ret (bytes): The response of the device.
         """
         # ret = self.tn.read_until(byte, self.timeout)
         # return
         pass
 
     def readlines(self):
-        """Receive the multiple rows response of the device
+        """Receive the multiple rows response of the device.
 
         Note:
             This method override the 'readlines' in the base class.
 
         Return:
-            ret (:obj:`list` of :obj:`bytes`): The response of the device
+            ret (:obj:`list` of :obj:`bytes`): The response of the device.
         """
         ret = self.tn.read_until(
             expected=self.terminator.encode(),

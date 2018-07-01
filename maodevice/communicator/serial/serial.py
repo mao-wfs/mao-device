@@ -1,45 +1,45 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 import serial
 from ..communicator import Communicator
 
 
 class Serial(Communicator):
-    """Communicate with the device via 'Serial'
+    """Communicate with the device via 'Serial'.
 
     This is a child class of the base class 'Communicator'.
 
     Args:
-        port (str): Device name
-        baudrate (int): Baud rate
+        port (str): Device name.
+        baudrate (int): Baud rate.
             Defaults to 9600.
-        byteize (int): Number of data bits
+        byteize (int): Number of data bits.
             Defaults to serial.EIGHTBITS.
-        parity (str): Enable parity checking
+        parity (str): Enable parity checking.
             Defaults to serial.PARITY_NONE.
-        stopbits (float): Number of stop bits
+        stopbits (float): Number of stop bits.
             Defaults to serial.STOPBITS_ONE.
-        timeout (float): A read timeout values
+        timeout (float): A read timeout values.
             Defaults to 1.0.
-        xonxoff (bool): Enable software flow control
+        xonxoff (bool): Enable software flow control.
             Defaults to False.
-        rtscts (bool): Enable hardware (RTS/CTS) flow control
+        rtscts (bool): Enable hardware (RTS/CTS) flow control.
             Defaults to False.
-        dsrdtr (bool): Enable hardware (DSR/DTR) flow control
+        dsrdtr (bool): Enable hardware (DSR/DTR) flow control.
             Defaults to False.
-        write_timeout (float): Set a write timeout value
+        write_timeout (float): Set a write timeout value.
             Defaults to None.
-        inter_byte_timeout (float or None): Inter-character timeout
+        inter_byte_timeout (float or None): Inter-character timeout.
             Defaults to None (None to disable).
-        exclusive (bool): Set exclusive access mode (POSIX only)
+        exclusive (bool): Set exclusive access mode (POSIX only).
             A port cannot be opened in exclusive access mode
             if it is already open in exclusive access mode.
             Defaults to None.
 
     Attributes:
-        method (str): Communication method
-        connection (bool): Connection indicator
+        method (str): Communication method.
+        connection (bool): Connection indicator.
             If it is true, the connection has been established.
-        terminator (str): Termination character
+        terminator (str): Termination character.
     """
     method = 'Serial'
 
@@ -72,7 +72,7 @@ class Serial(Communicator):
         self.exclusive = exclusive
 
     def open(self):
-        """Open the connection to the device
+        """Open the connection to the device.
 
         Note:
             This method override the 'open' in the base class.
@@ -99,7 +99,7 @@ class Serial(Communicator):
         return
 
     def close(self):
-        """Close the connection to the device
+        """Close the connection to the device.
 
         Note:
             This method override the 'close' in the base class.
@@ -113,13 +113,13 @@ class Serial(Communicator):
         return
 
     def send(self, msg):
-        """Send a message to the device
+        """Send a message to the device.
 
         Note:
             This method override the 'send' in the base class.
 
         Args:
-            msg (str): A Message to send the device
+            msg (str): A Message to send the device.
 
         Return:
             None
@@ -128,28 +128,28 @@ class Serial(Communicator):
         return
 
     def recv(self, byte=1024):
-        """Receive the response of the device
+        """Receive the response of the device.
 
         Note:
             This method override the 'recv' in the base class.
 
         Args:
-            byte (int): Bytes to read. Defaults to 1024
+            byte (int): Bytes to read. Defaults to 1024.
 
         Return:
-            ret (bytes): The response of the device
+            ret (bytes): The response of the device.
         """
         ret = self.ser.read(size=byte)
         return ret
 
     def readlines(self):
-        """Receive the multiple rows response of the device
+        """Receive the multiple rows response of the device.
 
         Note:
             This method override the 'readlines' in the base class.
 
         Return:
-            ret (:obj:`list` of :obj:`bytes`): The response of the device
+            ret (:obj:`list` of :obj:`bytes`): The response of the device.
         """
         ret = self.ser.readlines()
         return ret

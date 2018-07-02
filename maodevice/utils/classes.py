@@ -1,18 +1,15 @@
 # coding: utf-8
 from types import FunctionType
-from functools import wraps
 
 
 class ErrorHandler(object):
     """Error Handler of devices.
 
-    This is the base class for handling error of a device.
-    Various classes to handle error of devices are created inheriting this class.
+    This is the base class for handling errors of a device.
 
     Note:
-        - This class is used as metaclass.
-        - This class itself is not used, but it is used by inheriting in
-          a child class.
+        This class itself is not used, but it is inherited by
+        child classes and used.
     """
     def __new__(meta, classname, bases, classDict):
         """
@@ -25,12 +22,12 @@ class ErrorHandler(object):
         return object.__new__(meta, classname, bases, newClassDict)
 
     def _error_handler(self, method):
-        """Handle error of a device.
+        """Handle error of a device
 
         Note:
-            This method is used to override in child classes.
+            This method is overridden in the child class.
 
         Args:
-            method (function): A method to be wrapped.
+            method (function): A method to be wrapped
         """
         pass

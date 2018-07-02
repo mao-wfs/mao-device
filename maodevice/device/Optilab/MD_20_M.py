@@ -24,7 +24,7 @@ class Md20M(Device):
         super().__init__(com)
         self.com.set_terminator('\r\n')
 
-    @utils.filter('vgain', 1.00, 8.50)
+    @utils.filter('vgain', 1.00, 8.50, 0.01)
     def set_vgain(self, vgain):
         """Set the voltage which controls the RF gain.
 
@@ -41,7 +41,7 @@ class Md20M(Device):
         # self.com.recv()
         return
 
-    @utils.filter('vadj', 0.01, 4.99)
+    @utils.filter('vadj', 0.01, 4.99, 0.01)
     def set_vadj(self, vadj):
         """Set the voltage which controls the duty cycle.
 
@@ -58,7 +58,7 @@ class Md20M(Device):
         # self.com.recv()
         return
 
-    @utils.filter('vbias', 0.01, 9.99)
+    @utils.filter('vbias', 0.01, 9.99, 0.01)
     def set_vbias(self, vbias):
         """Set the voltage of the output DC voltage.
 

@@ -1,13 +1,13 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 __all__ = [
     'decoder',
     'filter',
-    'increments',
 ]
 
 from functools import wraps
-from inspect import Parameter, signature
-from warnings import warn
+from inspect import signature
+import numpy as np
+
 
 def decoder(func):
     """Decode bytes objects.
@@ -27,46 +27,47 @@ def decoder(func):
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
-        from warnings import warn
-
         ret = func(*args, **kwargs)
+
         if isinstance(ret, bytes):
             ret = ret.decode()
         elif isinstance(ret, list) and all(isinstance(elem, bytes) for elem in ret):
             ret = [elem.decode() for elem in ret]
         else:
-            warnings.warn('You should not use this decorator.')
+            raise TypeError(
+                'The return value is not `bytes` and `list` of `bytes`.'
+            )
 
         return ret
     return wrapper
 
 
 class Check(object):
-    """The base class to check the value of specified argument.
+    """Check the value of the specified argument.
 
-    This is the base class to check the value of specified argument.
-    Various classes to check it are created inheriting this class.
+    This is the base class to check the value of the specified argument.
 
     Note:
-        You do not use this class itself. You override this class
-        and create the child class for each decorator. 
-    """
-    def __init__(self, name):
-        """Initialize 'Check'.
+        This class itself is not used, but it is inherited by
+        child classes and uses.
 
-        Args:
-            name (str): Name of the specified argument.
-        """
-        self.name = name
+    Args:
+        arg_name (str): Name of the specified argument.
+    """
+    def __init__(self, arg_name):
+        self.arg_name = arg_name
 
     def __call__(self, func):
         """Function like a decorator.
 
         Note:
-            This method is overrided "__call__" to function as a decorator.
+            This method is overrided '__call__' to function as a decorator.
 
         Args:
-            func (function) A function to be wrapped.
+            func (function): A function to be wrapped.
+
+        Raises:
+            KeyError: If 'func' does not have the argument 'self.arg_name'.
 
         Return:
             wrapper (function): A wrapped function.
@@ -75,136 +76,83 @@ class Check(object):
 
         @wraps(func)
         def wrapper(*args, **kwargs):
-            params = sig.parameters
-            for i, (key, val) in enumerate(params.items()):
-                if not val.kind is Parameter.POSITIONAL_OR_KEYWORD:
-                    break
-                try:
-                    kwargs.update({key: args[i]})
-                except IndexError:
-                    kwargs.setdefault(key, val.default)
+            bound_args = sig.bind(*args, **kwargs)
 
-            if self.name in kwargs.keys():
-                self._check(kwargs)
+            if self.arg_name in bound_args.arguments.keys():
+                arg_val = bound_args.arguments[self.arg_name]
+                self._check(arg_val)
             else:
                 raise KeyError(
-                    f'"{func.__name__}" does not have the argument "{self.name}"'
+                    f"'{func.__name__}' does not have"
+                    f" the argument '{self.arg_name}'."
                 )
 
-            return func(**kwargs)
+            return func(*args, **kwargs)
         return wrapper
 
-    def _check(self, kwargs_):
-        """Check the value to set a device.
+    def _check(self, val):
+        """Check the specified value.
 
-        This method is the base method to check the value of specified
-        argument.
-        This method is used in "__call__" method.
+        This is the base method to check the specified value.
 
         Note:
-            You override this method in child class.
-        
+            This method is overridden in the child class.
+
         Args:
-            kwargs_ (dict): Arbitrary keyword arguments.
+            val (int or float or str): Value to check.
         """
         pass
 
 
 class filter(Check):
-    """Filter the setting value.
-
-    This class is based on 'Check'
-
-    Note:
-        This class is intended to be used as a decorator like follows.
-        >>> @filter('name', 0.01, 4.99)
-        >>> def func(name, *args, **kwargs):
-        >>>     # Do something.
-        >>>     return
-    """
-    def __init__(self, name, min_, max_):
-        """Initialize 'filter'.
-
-        Args:
-            name (str): Name of the specified argument.
-            min_ (int or float): Minimum value of setting to a device.
-            max_ (int or float): Maximum value of setting to a device.
-        """
-        super().__init__(name)
-        self.min = min_
-        self.max = max_
-
-    def _check(self, kwargs_):
-        """Check the value to set a device.
-
-        Note:
-            This method is overrided "_check" in the base class.
-
-        Args:
-            kwargs_ (dict): Arbitrary keyword arguments.
-
-        Return:
-            None
-        """
-        if not isinstance(kwargs_[self.name], (int, float)):
-            raise TypeError(f'"{self.name}" must be int or float.')
-
-        value = kwargs_[self.name]
-        if not self.min <= value <= self.max:
-            warn(
-                f'\n\tSet value: {value}' + \
-                f'\n\tYou should set "{self.name}" {self.min} - {self.max}.'
-            )
-            kwargs_[self.name] = self.min if value < self.min else self.max
-        return
-
-
-class increments(Check):
-    """Check and modify the increments of the value to set a device.
+    """Filter the value of the specified argument.
 
     This class is based on 'Check'.
 
     Note:
         This class is intended to be used as a decorator like follows.
-        >>> @increments('name', 0.5)
-        >>> def func(name, *args, **kwargs):
+        >>> @filter('arg_name', 0.01, 4.99, 0.01)
+        >>> def func(*args, **kwargs):
         >>>     # Do something.
         >>>     return
+
+    Args:
+        arg_name (str): Name of the specified value.
+        min_val (int or float): Minimum number of the range.
+        max_val (int or float): Maximum number of the range.
+        step (int or float): Step number.
     """
-    def __init__(self, name, inc):
-        """Initialize 'increments'.
+    def __init__(self, arg_name, min_val, max_val, step):
+        super().__init__(arg_name)
+        self.min_val = min_val
+        self.max_val = max_val
+        self.step = step
+
+    def _check(self, val):
+        """Check the specified value.
+
+        Note:
+            This method is override the `_check` in the base class.
 
         Args:
-            name (str): Name of the specified argument.
-            inc (int or float): The increments of the value to set a device.
+            val (int or float): Value to check.
+
+        Raises:
+            AssertionError: If 'val' is not the expected type and value.
+
+        Return:
+            None
         """
-        super().__init__(name)
-        self.inc = inc
+        assert isinstance(val, (int, float)), \
+            'The specified value is expected to be `int` or `float`.'
 
-    def _check(self, kwargs_):
-        """Check the value to set a device.
+        _specified_range = np.arange(
+            self.min_val,
+            self.max_val + self.step,
+            self.step,
+        )
+        assert val in _specified_range, \
+            'The specified value is expected to be in tha range of' \
+            f' {self.min_val} - {self.max_val} of the step {self.step}.'
 
-            Note:
-                This method is overrided "_check" in the base class.
-
-            Args:
-                kwargs_ (dict): Arbitrary keyword arguments.
-
-            Return:
-                None
-        """
-        if not isinstance(kwargs_[self.name], (int, float)):
-            raise TypeError(f'"{self.name}" must be int or float.')
-
-        value = kwargs_[self.name]
-        reminder = value % self.inc
-        if not reminder == 0:
-            warn(
-                f'\n\tSet value: {value}' + \
-                f'\n\tYou should set "{self.name}" in multiples of {self.inc}.'
-            )
-            if reminder <= self.inc/ 2:
-                kwargs_[self.name] = value - reminder
-            else:
-                kwargs_[self.name] = value - reminder + self.inc
         return

@@ -1,10 +1,10 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from .. import device
 
 
 class ScpiCommon(device.Device):
     """Common SCPI commands
-    
+
     This class is for handling common SCPI commands.
 
     Attribute:
@@ -46,8 +46,8 @@ class ScpiCommon(device.Device):
     def clear_status(self):
         """*CLS: Clear Status Command
 
-        The Clear Status command clears status data structures, and forces the 
-        device to the Operation Complete Command Idle State and the Operation 
+        The Clear Status command clears status data structures, and forces the
+        device to the Operation Complete Command Idle State and the Operation
         Complete Query Idle State.
 
         Return:

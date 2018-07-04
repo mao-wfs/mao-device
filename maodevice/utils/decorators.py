@@ -2,11 +2,12 @@
 __all__ = [
     'decoder',
     'filter',
+    'chooser',
 ]
 
+import decimal
 from functools import wraps
 from inspect import signature
-import numpy as np
 
 
 def decoder(func):
@@ -31,7 +32,9 @@ def decoder(func):
 
         if isinstance(ret, bytes):
             ret = ret.decode()
-        elif isinstance(ret, list) and all(isinstance(elem, bytes) for elem in ret):
+        elif isinstance(ret, list) and all(
+            isinstance(elem, bytes) for elem in ret
+        ):
             ret = [elem.decode() for elem in ret]
         else:
             raise TypeError(
@@ -42,75 +45,39 @@ def decoder(func):
     return wrapper
 
 
-class Check(object):
-    """Check the value of the specified argument.
-
-    This is the base class to check the value of the specified argument.
-
-    Note:
-        This class itself is not used, but it is inherited by
-        child classes and uses.
+def get_argument_value(arg_name, func, *func_args, **func_kwargs):
+    """Get the value of the specified argument from the function.
 
     Args:
         arg_name (str): Name of the specified argument.
+        func (function): Function with 'arg_name'.
+        *func_args: Variable length arguments of 'func'.
+        *func_kwargs: Arbitary keyword arguments of 'func'.
+
+    Return:
+        arg_val: Value of 'arg_name'.
+
+    Raises:
+        TypeError: If 'func' does not have the argument 'arg_name'.
     """
-    def __init__(self, arg_name):
-        self.arg_name = arg_name
+    sig = signature(func)
+    bound_args = sig.bind(*func_args, **func_kwargs)
 
-    def __call__(self, func):
-        """Function like a decorator.
+    if arg_name in bound_args.arguments.keys():
+        arg_val = bound_args.arguments[arg_name]
+    else:
+        raise TypeError(
+            f"'{func.__name__}' does not have the argument '{arg_name}'."
+        )
 
-        Note:
-            This method is overrided '__call__' to function as a decorator.
-
-        Args:
-            func (function): A function to be wrapped.
-
-        Raises:
-            KeyError: If 'func' does not have the argument 'self.arg_name'.
-
-        Return:
-            wrapper (function): A wrapped function.
-        """
-        sig = signature(func)
-
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            bound_args = sig.bind(*args, **kwargs)
-
-            if self.arg_name in bound_args.arguments.keys():
-                arg_val = bound_args.arguments[self.arg_name]
-                self._check(arg_val)
-            else:
-                raise KeyError(
-                    f"'{func.__name__}' does not have"
-                    f" the argument '{self.arg_name}'."
-                )
-
-            return func(*args, **kwargs)
-        return wrapper
-
-    def _check(self, val):
-        """Check the specified value.
-
-        This is the base method to check the specified value.
-
-        Note:
-            This method is overridden in the child class.
-
-        Args:
-            val (int or float or str): Value to check.
-        """
-        pass
+    return arg_val
 
 
-class filter(Check):
+def filter(arg_name, min_val, max_val, step):
     """Filter the value of the specified argument.
 
-    This class is based on 'Check'.
-
     Note:
-        This class is intended to be used as a decorator like follows.
+        Thie function is intended to used as a decorator like follows.
         >>> @filter('arg_name', 0.01, 4.99, 0.01)
         >>> def func(*args, **kwargs):
         >>>     # Do something.
@@ -121,38 +88,54 @@ class filter(Check):
         min_val (int or float): Minimum number of the range.
         max_val (int or float): Maximum number of the range.
         step (int or float): Step number.
+
+    Raises:
+        AssertionError: If the value of 'arg_name'
+            is not the expected type and value.
     """
-    def __init__(self, arg_name, min_val, max_val, step):
-        super().__init__(arg_name)
-        self.min_val = min_val
-        self.max_val = max_val
-        self.step = step
+    def _filter(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            arg_val = get_argument_value(arg_name, func, *args, **kwargs)
 
-    def _check(self, val):
-        """Check the specified value.
+            assert isinstance(arg_val, (int, float)), \
+                f"'{arg_name}' is expected to be `int` or `float`."
 
-        Note:
-            This method is override the `_check` in the base class.
+            assert min_val <= arg_val <= max_val, \
+                f"'{arg_name}' is expected to be in the range of" \
+                f" {min_val} - {max_val}."
 
-        Args:
-            val (int or float): Value to check.
+            assert not (
+                isinstance(arg_val, float) and isinstance(step, int)
+            ), \
+                f"'{arg_name}' is expected to be `int` if 'step' is `int`."
 
-        Raises:
-            AssertionError: If 'val' is not the expected type and value.
+            if isinstance(arg_val, int):
+                correct_step = arg_val % step is 0
+            else:
+                arg_val_ = decimal.Decimal(str(arg_val))
+                step_ = decimal.Decimal(str(step))
+                correct_step = (arg_val_ % step_).is_zero()
 
-        Return:
-            None
-        """
-        assert isinstance(val, (int, float)), \
-            'The specified value is expected to be `int` or `float`.'
+            assert correct_step, \
+                f"'{arg_name}' is expected to be a multiple of {step}."
 
-        _specified_range = np.arange(
-            self.min_val,
-            self.max_val + self.step,
-            self.step,
-        )
-        assert val in _specified_range, \
-            'The specified value is expected to be in tha range of' \
-            f' {self.min_val} - {self.max_val} of the step {self.step}.'
+            return func(*args, **kwargs)
+        return wrapper
+    return _filter
 
-        return
+
+def chooser(arg_name, choice_list):
+    """
+    """
+    def _chooser(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            arg_val = get_argument_value(arg_name, func, *args, **kwargs)
+
+            assert arg_val in choice_list, \
+                f"'{arg_name}' is expected to be in {choice_list}."
+
+            return func(*args, **kwargs)
+        return wrapper
+    return _chooser

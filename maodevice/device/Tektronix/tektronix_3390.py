@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from ..SCPI import scpi
 
 
@@ -24,7 +24,7 @@ class Tektronix3390(scpi.ScpiFamily):
 
         Args:
             func (str): Function of the signal.
-        
+
         Return:
             None
         """
@@ -37,28 +37,26 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             ret (str): Function of the signal.
         """
-        self.com.send(f'FUNC?')
-        ret = self.com.readline()
+        ret = self.com.query('FUNC?')
         return ret
 
     def set_frequency(self, freq, unit='Hz'):
         """Set frequency of the signal.
 
         Args:
-            freq (float): A frequency value.
-            unit (str): An unit of the frequency. (Default: 'MHz')
+            freq (float): Value of the frequency.
 
         Return:
             None
         """
-        __unit_converter = {
-            'uHz': 10** -6,
-            'mHz': 10** -3,
+        _unit_converter = {
+            'uHz': 10 ** -6,
+            'mHz': 10 ** -3,
             'Hz': 1,
-            'kHz': 10** 3,
-            'MHz': 10** 6,
+            'kHz': 10 ** 3,
+            'MHz': 10 ** 6,
         }
-        self.com.send(f'FREQ {freq* __unit_converter[unit]:.10f}')
+        self.com.send(f'FREQ {freq * _unit_converter[unit]:.10f}')
         return
 
     def query_frequency(self):
@@ -67,9 +65,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             ret (float): The frequency value in Hz.
         """
-        self.com.send('FREQ?')
-        ret = self.com.readline()
-        ret = float(ret)
+        ret = self.com.query('FREQ?')
         return ret
 
     def set_voltage(self, volt, unit='dBm'):
@@ -92,16 +88,14 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             ret (float): The voltage value in the specified unit.
         """
-        self.com.send('VOLT?')
-        ret = self.com.readline()
-        ret = float(ret)
+        ret = self.com.query('VOLT?')
         return ret
 
-    def set_offset_voltage(self, v_off):
+    def set_dc_offset_voltage(self, v_off):
         """Set DC offset voltage of the signal.
 
         Args:
-            voff (float): The DC offset voltage values.
+            v_off (float): The DC offset voltage values.
 
         Return:
             None
@@ -115,9 +109,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             ret (float): The DC offset voltage value.
         """
-        self.com.send('VOLT:OFFS?')
-        ret = self.com.readline()
-        ret = float(ret)
+        ret = self.com.query('VOLT:OFFS?')
         return ret
 
     def set_pluse_high_low_levels(self, v_hi, v_low):
@@ -156,8 +148,8 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        __polarity = 'NORM' if not invert else 'INV'
-        self.com.send(f'OUTP:POL {__polarity}')
+        _polarity = 'NORM' if not invert else 'INV'
+        self.com.send(f'OUTP:POL {_polarity}')
         return
 
     def query_waveform_polarity(self):
@@ -166,8 +158,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             ret (str): The waveform polarity.
         """
-        self.com.send(f'OUTP:POL?')
-        ret = self.com.readline()
+        ret = self.com.query('OUTP:POL?')
         return ret
 
     def set_termination(self, termination):

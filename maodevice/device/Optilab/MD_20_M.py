@@ -37,7 +37,7 @@ class Md20M(Device):
         Return:
             None
         """
-        self.com.send(f'SETGAIN:{vgain:.3}')
+        self.com.send(f'SETGAIN:{vgain}')
         # self.com.recv()
         return
 
@@ -54,7 +54,7 @@ class Md20M(Device):
         Return:
             None
         """
-        self.com.send(f'SETADJ:{vadj:.3}')
+        self.com.send(f'SETADJ:{vadj}')
         # self.com.recv()
         return
 
@@ -71,7 +71,7 @@ class Md20M(Device):
         Return:
             None
         """
-        self.com.send(f'SETBIAS:{vbias:.3}')
+        self.com.send(f'SETBIAS:{vbias}')
         # self.com.recv()
         return
 

@@ -3,7 +3,7 @@ import socket
 from ..communicator import Communicator
 
 
-class Socket(Communicator):
+class SocketCom(Communicator):
     """Communicate with the device via 'Socket'.
 
     This is a child class of the base class 'Communicator'.
@@ -106,7 +106,6 @@ class Socket(Communicator):
         """
         self.sock.send((msg + self.terminator).encode())
         return
-
 
     def recv(self, byte=1024):
         """Receive the response of the device.

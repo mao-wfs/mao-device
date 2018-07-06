@@ -3,7 +3,7 @@ import telnetlib
 from ..communicator import Communicator
 
 
-class Telnet(Communicator):
+class TelnetCom(Communicator):
     """Communicate with the device via 'Telnet'.
 
     This is a child class of the base class 'Communicator'.

@@ -3,7 +3,7 @@ import serial
 from ..communicator import Communicator
 
 
-class Serial(Communicator):
+class SerialCom(Communicator):
     """Communicate with the device via 'Serial'.
 
     This is a child class of the base class 'Communicator'.

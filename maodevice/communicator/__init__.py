@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from .serial import Serial
-from .socket import Socket
-from .telnet import Telnet
+from .serialcom import SerialCom
+from .socketcom import SocketCom
+from .telnetcom import TelnetCom
 
-del serial
-del socket
-del telnet
+del serialcom
+del socketcom
+del telnetcom
 del communicator

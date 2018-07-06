@@ -24,10 +24,10 @@ class Communicator(object):
     def __init__(self, *args):
         if len(args) is not 0:
             self.open(*args)
-            
+
     def set_terminator(self, term_char):
         """Set the termination character.
-        
+
         Args:
             term_char (str): Termination character.
 
@@ -55,7 +55,7 @@ class Communicator(object):
 
     def send(self, msg):
         """Send a message to the device.
-        
+
         Note:
             This method is overridden in the child class.
 

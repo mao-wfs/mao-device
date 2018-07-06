@@ -126,7 +126,22 @@ def filter(arg_name, min_val, max_val, step):
 
 
 def chooser(arg_name, choice_list):
-    """
+    """Check whether the value in the choices.
+
+    Note:
+        This function is intended to be used as a decorator like follows.
+        >>> @chooser('arg_name', some_choice_list):
+        >>> def func(*args, **kwargs):
+        >>>     # Do something.
+        >>>     return
+
+    Args:
+        arg_name (str): Name of the specified argument.
+        choice_list (list): List of choices.
+
+    Raises:
+        AssertionError: If the value of 'arg_name'
+            is not in the 'choice_list'.
     """
     def _chooser(func):
         @wraps(func)

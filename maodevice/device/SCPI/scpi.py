@@ -38,7 +38,7 @@ class ScpiCommon(Device):
             >>> scpi.AAD == scpi.accept_address
             True
             >>> # *CAL?: Calibration Query
-            >>> scpi.CALQ == scpi.calibrate_query
+            >>> scpi.CALQ == scpi.calibrate_query # ? -> Q
             True
 
         Args:

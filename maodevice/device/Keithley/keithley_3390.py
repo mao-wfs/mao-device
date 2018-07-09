@@ -1,24 +1,38 @@
 # -*- coding: utf-8 -*-
-from ..SCPI import scpi
+from ..SCPI import ScpiCommon
+from ... import utils
 
 
-class Tektronix3390(scpi.ScpiFamily):
-    """Control '3390'
+class Keithley3390(ScpiCommon):
+    """Control '3390-900-01'
 
     This class control the Function Generator '3390'.
-    This class is based on 'ScpiFamily'.
+    This class is based on 'ScpiCommon'.
 
     Attributes:
         manufacturer (str): Manufacturer of the device.
         product_name (str): Name of the device.
         classification (str): Classification of the device.
     """
-    manufacturer = 'Tektronix'
-    product_name = '3390'
+    manufacturer = 'Keithley'
+    product_name = '3390-900-01'
     classification = 'Function Generator'
+
     _scpi_enable = '*CLS *ESE *ESE? *ESR? *IDN? *LRN? *OPC *OPC? *PSC? *RCL' +\
                    '*RST *SAV *SRE *SRE? *STB? *TRG *TST? *WAI'
 
+    FUNCTIONS = ['SIN', 'SQU', 'RAMP', 'PULS', 'NOIS', 'DC', 'USER', 'PATT']
+    FUNCTIONS_FREQ = {
+        'SIN': {'MIN': 1.*10**-6, 'MAX': 50.*10**6, 'STEP': 0.1*10**-9},
+        'SQU': {'MIN': 1.*10**-6, 'MAX': 25.*10**6, 'STEP': 0.1*10**-9},
+        'RAMP': {'MIN': 1.*10**-6, 'MAX': 200.*10**3, 'STEP': 0.1*10**-9},
+        'PULS': {'MIN': 500.*10**-6, 'MAX': 10.*10**6, 'STEP': 0.1*10**-9},
+    }
+
+    def __init__(self, com):
+        super().__init__(com)
+
+    @utils.chooser('func', FUNCTIONS)
     def set_function(self, func):
         """Set function of the signal.
 
@@ -28,7 +42,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        self.com.send(f'FUNC {func}')
+        self.com.send(f"FUNC {func}")
         return
 
     def query_function(self):
@@ -40,7 +54,7 @@ class Tektronix3390(scpi.ScpiFamily):
         ret = self.com.query('FUNC?')
         return ret
 
-    def set_frequency(self, freq, unit='Hz'):
+    def set_frequency(self, freq):
         """Set frequency of the signal.
 
         Args:
@@ -49,14 +63,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        _unit_converter = {
-            'uHz': 10 ** -6,
-            'mHz': 10 ** -3,
-            'Hz': 1,
-            'kHz': 10 ** 3,
-            'MHz': 10 ** 6,
-        }
-        self.com.send(f'FREQ {freq * _unit_converter[unit]:.10f}')
+        self.com.send(f"FREQ {freq}")
         return
 
     def query_frequency(self):
@@ -78,8 +85,8 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        self.com.send(f'VOLT {volt:.10f}')
-        self.com.send(f'VOLT:UNIT {unit}')
+        self.com.send(f"VOLT {volt}")
+        self.com.send(f"VOLT:UNIT {unit}")
         return
 
     def query_voltage(self):
@@ -100,7 +107,7 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        self.com.send(f'VOLT:OFFS {v_off:.10f}')
+        self.com.send(f"VOLT:OFFS {v_off}")
         return
 
     def query_offset_voltage(self):
@@ -122,8 +129,8 @@ class Tektronix3390(scpi.ScpiFamily):
         Return:
             None
         """
-        self.com.send(f'VOLT:HIGH {v_hi:.10f}')
-        self.com.send(f'VOLT:LOW {v_low:.10f}')
+        self.com.send(f"VOLT:HIGH {v_hi}")
+        self.com.send(f"VOLT:LOW {v_low}")
         return
 
     def query_pulse_high_low_levels(self):
@@ -133,17 +140,18 @@ class Tektronix3390(scpi.ScpiFamily):
             ret (dict): Dictionary of Pulse high and low levels.
         """
         self.com.send('VOLT:HIGH?')
-        __v_hi = self.com.readline()
+        _v_hi = self.com.readline()
         self.com.send('VOLT:LOW?')
-        __v_low = self.com.readline()
-        ret = {'HIGH': float(__v_hi), 'LOW': float(__v_low)}
+        _v_low = self.com.readline()
+        ret = {'HIGH': float(_v_hi), 'LOW': float(_v_low)}
         return ret
 
     def set_waveform_polarity(self, invert=False):
-        """Set waveform polarity.
+        """Set the waveform polarity.
 
         Args:
-            invert (bool): If True, waveform polarity is specified inverted.
+            invert (bool): If it is True,
+                the waveform polarity is specified inverted.
 
         Return:
             None
@@ -161,6 +169,7 @@ class Tektronix3390(scpi.ScpiFamily):
         ret = self.com.query('OUTP:POL?')
         return ret
 
-    def set_termination(self, termination):
-        """aaa
+    def set_output_termination(self, termination):
+        """Set the output termination.
         """
+        pass

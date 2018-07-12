@@ -1,8 +1,8 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from types import FunctionType
 
 
-class ErrorHandler(object):
+class ErrorHandler(type):
     """Error Handler of devices.
 
     This is the base class for handling errors of a device.
@@ -11,18 +11,20 @@ class ErrorHandler(object):
         This class itself is not used, but it is inherited by
         child classes and used.
     """
-    def __new__(meta, classname, bases, classDict):
+    def __new__(meta, class_name, bases, class_dict):
         """
         """
-        newClassDict = {}
-        for attributeName, attribute in classDict.items():
+        new_class_dict = {}
+        for attribute_name, attribute in class_dict.items():
             if isinstance(attribute, FunctionType):
-                attribute = self._error_handler(attribute)
-            newClassDict[attributeName] = attribute
-        return object.__new__(meta, classname, bases, newClassDict)
+                if not attribute_name.startswith('__'):
+                    attribute = meta._error_handler(attribute)
+            new_class_dict[attribute_name] = attribute
+        return type.__new__(meta, class_name, bases, new_class_dict)
 
-    def _error_handler(self, method):
-        """Handle error of a device
+    @classmethod
+    def _error_handler(cls, method):
+        """Handle error of a device.
 
         Note:
             This method is overridden in the child class.

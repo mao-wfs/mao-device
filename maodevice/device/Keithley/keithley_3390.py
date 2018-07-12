@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from ..SCPI import ScpiCommon
+from ..SCPI import ScpiFamily
 from ... import utils
 
 
-class Keithley3390(ScpiCommon):
+class Keithley3390(ScpiFamily):
     """Control '3390-900-01'
 
-    This class control the Function Generator '3390'.
+    This class control the Function Generator '3390_900_01'.
     This class is based on 'ScpiCommon'.
 
     Attributes:
@@ -18,15 +18,42 @@ class Keithley3390(ScpiCommon):
     product_name = '3390-900-01'
     classification = 'Function Generator'
 
-    _scpi_enable = '*CLS *ESE *ESE? *ESR? *IDN? *LRN? *OPC *OPC? *PSC? *RCL' +\
-                   '*RST *SAV *SRE *SRE? *STB? *TRG *TST? *WAI'
+    _scpi_enable = (
+        '*CLS', '*ESE', '*ESE?', '*ESR?', '*IDN?', '*LRN?', '*OPC', '*OPC?',
+        '*PSC', '*PSC?', '*RCL', '*RST', '*SAV', '*SRE', '*SRE?', '*STB?',
+        '*TRG', '*TST?', '*WAI',
+    )
 
-    FUNCTIONS = ['SIN', 'SQU', 'RAMP', 'PULS', 'NOIS', 'DC', 'USER', 'PATT']
-    FUNCTIONS_FREQ = {
-        'SIN': {'MIN': 1.*10**-6, 'MAX': 50.*10**6, 'STEP': 0.1*10**-9},
-        'SQU': {'MIN': 1.*10**-6, 'MAX': 25.*10**6, 'STEP': 0.1*10**-9},
-        'RAMP': {'MIN': 1.*10**-6, 'MAX': 200.*10**3, 'STEP': 0.1*10**-9},
-        'PULS': {'MIN': 500.*10**-6, 'MAX': 10.*10**6, 'STEP': 0.1*10**-9},
+    FUNCTIONS_DICT = {
+        'SIN': {
+            'freq': {'min': 1.*10**-6, 'max': 50.*10**6, 'step': 0.1*10**-9},
+            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+        },
+        'SQU': {
+            'freq': {'min': 1.*10**-6, 'max': 25.*10**6, 'step': 0.1*10**-9},
+            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'dcycle': {'min': 0, 'max': 100},
+        },
+        'RAMP': {
+            'freq': {'MIN': 1.*10**-6, 'MAX': 200.*10**3, 'STEP': 0.1*10**-9},
+            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'symmetry': {'min': 0, 'max': 100},
+        },
+        'NOIS': {
+            'freq': {'min': 1.},
+        },
+        'PULS': {
+            'freq': {'min': 500.*10**-6, 'max': 10.*10**6, 'step': 0.1*10**-9},
+            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
+            'symmetry': {'min': 0, 'max': 100},
+        },
+        'DC': 'aaa',
+        'USER': 'aaa',
+        'PATT': 'aaa',
     }
 
     def __init__(self, com):
@@ -169,7 +196,44 @@ class Keithley3390(ScpiCommon):
         ret = self.com.query('OUTP:POL?')
         return ret
 
-    def set_output_termination(self, termination):
+    def set_output_termination(self, ohms):
         """Set the output termination.
         """
-        pass
+        self.com.send(f"OUTP:LOAD {ohms}")
+        return
+
+    def enable_output(self):
+        """Enables the RF output.
+
+        Return:
+            None
+        """
+        self.com.send('OUTP ON')
+        return
+
+    def disable_output(self):
+        """Disable the RF output.
+
+        Return:
+            None
+        """
+        self.com.send('OUTP OFF')
+        return
+
+    def enable_synchronize(self):
+        """Enable synchronization.
+
+        Return:
+            None
+        """
+        self.com.send('OUTP:SYNC ON')
+        return
+
+    def disable_synchronize(self):
+        """Disable synchronization.
+
+        Return:
+            None
+        """
+        self.com.send('OUTP:SYNC OFF')
+        return

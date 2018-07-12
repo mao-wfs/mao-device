@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from ..device import Device
+from ... import utils
 
 
 class ScpiCommon(Device):
@@ -30,6 +31,28 @@ class ScpiCommon(Device):
         '*TRG': 'trigger',
         '*TST?': '*self_test',
         '*WAI': 'wait_to_continue',
+    }
+
+    STANDARD_EVENT_REGISTER_DICT = {
+        'Operation Complete': 0x01,
+        'Unused 1': 0x02,
+        'Query Error': 0x04,
+        'Device Error': 0x08,
+        'Execution Error': 0x10,
+        'Command Error': 0x20,
+        'Unused 2': 0x40,
+        'Power On': 0x80,
+    }
+
+    STATUS_BYTE_REGISTER_DICT = {
+        'Unused 1': 0x01,
+        'Unused 2': 0x02,
+        'Error Queue': 0x04,
+        'Questionable Data Register': 0x08,
+        'Output Buffer': 0x10,
+        'Standard Event Register': 0x20,
+        'Status Byte Register': 0x40,
+        'Unused 3': 0x80,
     }
 
     def clear_status(self):
@@ -79,8 +102,8 @@ class ScpiCommon(Device):
             Bit 4 and bit 5 of the enable register are on.
             >>> s.standard_event_status_enable(4, 5)
         """
-        d_sum = self._decimal_sum_of_bits(bits)
-        self.com.send(f"*ESE {d_sum}")
+        or_bit = utils.or_of_bits(bits)
+        self.com.send(f"*ESE {or_bit}")
         return
 
     def standard_event_status_enable_query(self):
@@ -93,7 +116,7 @@ class ScpiCommon(Device):
             None
 
         Return:
-            ret (:obj:`list` of :obj:`int`): Standard event status
+            ret (:obj:`list` of :obj:`str`): Standard event status
                 enable register.
 
         Example:
@@ -102,7 +125,7 @@ class ScpiCommon(Device):
             [1, 3, 5]
         """
         ret = self.com.query('*ESE?')
-        ret = self._extract_bits(ret)
+        ret = utils.extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
         return ret
 
     def standard_event_status_register_query(self):
@@ -114,7 +137,7 @@ class ScpiCommon(Device):
             None
 
         Return:
-            ret (:obj:`list` of :obj:`int`): Standard event status
+            ret (:obj:`list` of :obj:`str`): Standard event status
                 register.
 
         Example:
@@ -123,7 +146,7 @@ class ScpiCommon(Device):
             [3, 4]
         """
         ret = self.com.query("*ESR?")
-        ret = self._extract_bits(ret)
+        ret = utils.extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
         return ret
 
     def identification_query(self):
@@ -269,8 +292,8 @@ class ScpiCommon(Device):
             bits (:obj:`tuple` of :obj:`int`): Standard event register
                 bits to be turned on.
         """
-        d_sum = self._decimal_sum_of_bits(bits)
-        self.com.send(f"*SRE {d_sum}")
+        or_bit = self.or_of_bits(bits)
+        self.com.send(f"*SRE {or_bit}")
         return
 
     def service_request_enable_query(self):
@@ -283,11 +306,10 @@ class ScpiCommon(Device):
             None
 
         Return:
-            ret (:obj:`list` of :obj:`int`): Standard event status
-                enable register.
+            ret (:obj:`list` of :obj:`str`): Status byte register.
         """
         ret = self.com.query('*SRE?')
-        ret = self._extract_bits(ret)
+        ret = utils.extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
     def read_status_byte_query(self):
@@ -303,7 +325,7 @@ class ScpiCommon(Device):
                 to be turned on.
         """
         ret = self.com.query('*STB?')
-        ret = self._extract_bits(ret)
+        ret = utils.extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
     def trigger(self):
@@ -350,46 +372,6 @@ class ScpiCommon(Device):
         """
         self.com.send('*WAI')
         return
-
-    def _decimal_sum_of_bits(self, *bits):
-        """Sum of decimal bits.
-
-        Note:
-            This method is for internal use.
-
-        Args:
-            *bits (:obj:`tuple` of :obj:`int`): Bit for adding.
-
-        Return:
-            d_sum (int): Decimal sum of bits.
-
-        Example:
-            >>> s._decimal_sum_of_bits(1, 3, 5)
-            42 # 0b00101010
-        """
-        d_sum = sum(2**i for i in bits)
-        return d_sum
-
-    def _extract_bits(self, d_sum):
-        """Extract digits (bits) which is 1 in binary number.
-
-        Note:
-            This method is for internal use.
-
-        Args:
-            d_sum (int): Decimal sum of bits.
-
-        Return:
-            bits (:obj:`list` of :obj:`int`): Digits (bits) which is 1
-                in binary number.
-
-        Example:
-            >>> s._extract_bits(42)
-            [1, 3, 5]
-        """
-        bits = f"{d_sum:08b}"
-        bits = [i for i, x in enumerate(reversed(bits)) if x == '1']
-        return bits
 
 
 class ScpiFamily(Device):

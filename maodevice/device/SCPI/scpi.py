@@ -29,7 +29,7 @@ class ScpiCommon(Device):
         '*SRE?': 'service_request_enable_query',
         '*STB?': 'read_status_byte_query',
         '*TRG': 'trigger',
-        '*TST?': '*self_test',
+        '*TST?': 'self_test',
         '*WAI': 'wait_to_continue',
     }
 

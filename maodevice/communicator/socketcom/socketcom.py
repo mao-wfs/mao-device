@@ -88,7 +88,7 @@ class SocketCom(Communicator):
             None
         """
         self.sock.close()
-        del(self.sock)
+        # del(self.sock)
         self.connection = False
         return
 
@@ -107,19 +107,19 @@ class SocketCom(Communicator):
         self.sock.send((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=1024):
+    def recv(self, byte=4096):
         """Receive the response of the device.
 
         Note:
             This method override the 'recv' in the base class.
 
         Args:
-            byte (int): Bytes to read. Defaults to 1024.
+            byte (int): Bytes to read. Defaults to 4096.
 
         Return:
             ret (bytes): The response of the device.
         """
-        ret = self.sock.recv(bufsize=byte)
+        ret = self.sock.recv(byte)
         return ret
 
     def readlines(self):

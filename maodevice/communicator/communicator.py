@@ -64,17 +64,17 @@ class Communicator(object):
         """
         pass
 
-    def query(self, msg):
+    def query(self, msg, byte=4096):
         """Query a message to the device.
 
         Args:
             msg (str): A message to query the device.
 
         Return:
-            ret (:obj:`list` of :obj:`bytes`): The response of the device.
+            ret (bytes): The response of the device.
         """
         self.send(msg)
-        ret = self.readlines()
+        ret = self.recv(byte)
         return ret
 
     def recv(self, byte):

@@ -18,6 +18,7 @@ class ScpiCommon(Device):
         '*ESE?': 'standard_event_status_enable_query',
         '*ESR?': 'standard_event_status_register_query',
         '*IDN?': 'identification_query',
+        '*LRN?': 'learn_device_setup_query',
         '*OPC': 'operation_complete',
         '*OPC?': 'operation_complete_query',
         '*PSC': 'power_on_status_clear',
@@ -164,6 +165,20 @@ class ScpiCommon(Device):
             ret (str): String that identify the device.
         """
         ret = self.com.query("*IDN?")
+        return ret
+
+    def learn_device_setup_query(self):
+        """LRN? Learn Device Setup query
+
+        This query returns instrument settings by binary block data
+        (same as Save/Recall state file contents) with "SYSTem:SET"
+        prefix.
+        The returned data is the same as the contents of state file
+        which can be saved by the SCPI.MMEMory.STORe.STATe. Therefore,
+        the returned data contents is changed according to the setting
+        of SCPI.MMEMory.STORe.STYPe.
+        """
+        ret = self.com.query("*LRN?")
         return ret
 
     def operation_complete(self):
@@ -355,7 +370,7 @@ class ScpiCommon(Device):
         Return:
             ret (int): 0 (Passed) or 1 (Failed).
         """
-        ret = self.com.query('*TST?')
+        ret = self.com.send('*TST?')
         return ret
 
     def wait_to_continue(self):
@@ -417,7 +432,7 @@ class ScpiFamily(Device):
             add_items = scpi_dict.items()
         else:
             add_items = [
-                [enable, scpi_dict[enable]] for enable in self.scpi_enable
+                [enable, scpi_dict[enable]] for enable in self._scpi_enable
             ]
 
         for cmd, verbose_cmd in add_items:

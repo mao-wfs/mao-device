@@ -22,13 +22,9 @@ class OctadS(Device):
     classification = 'Correlator'
 
     CORRELATION_MODE = {
-        'a1': 0x01,
-        'a2': 0x02,
-        'a12': 0x03,
-        'x12': 0x10,
-        'x12_a1': 0x11,
-        'x12_a2': 0x12,
-        'x12_a12': 0x13,
+        'AUTO1': 0x01,
+        'AUTO2': 0x02,
+        'CROSS1-2': 0x10,
     }
 
     def __init__(self, com):
@@ -325,11 +321,7 @@ class OctadS(Device):
         self.com.send(f'set_dlyoffset{n}={offset}')
         return
 
-    def start_correlation(
-            self,
-            time,
-            mode=CORRELATION_MODE['x12_a12'],
-    ):
+    def start_correlation(self, time, *mode):
         """Start correlation.
         """
         pass

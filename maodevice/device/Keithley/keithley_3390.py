@@ -58,8 +58,8 @@ class Keithley3390(ScpiFamily):
 
     def __init__(self, com):
         super().__init__(com)
+        self.com.set_terminator('\n')
 
-    @utils.chooser('func', FUNCTIONS)
     def set_function(self, func):
         """Set function of the signal.
 
@@ -70,6 +70,7 @@ class Keithley3390(ScpiFamily):
             None
         """
         self.com.send(f"FUNC {func}")
+        self.func = func
         return
 
     def query_function(self):

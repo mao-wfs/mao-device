@@ -307,7 +307,7 @@ class ScpiCommon(Device):
             bits (:obj:`tuple` of :obj:`int`): Standard event register
                 bits to be turned on.
         """
-        or_bit = self.or_of_bits(bits)
+        or_bit = utils.or_of_bits(bits)
         self.com.send(f"*SRE {or_bit}")
         return
 

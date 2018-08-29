@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import serial
 from ..communicator import Communicator
+from typing import Union
 
 
 class SerialCom(Communicator):
@@ -26,7 +27,7 @@ class SerialCom(Communicator):
             Defaults to False.
         dsrdtr (bool): Enable hardware (DSR/DTR) flow control.
             Defaults to False.
-        write_timeout (float): Set a write timeout value.
+        write_timeout (float or None): Set a write timeout value.
             Defaults to None.
         inter_byte_timeout (float or None): Inter-character timeout.
             Defaults to None (None to disable).
@@ -45,19 +46,19 @@ class SerialCom(Communicator):
 
     def __init__(
             self,
-            port,
-            baudrate=9600,
-            bytesize=serial.EIGHTBITS,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
-            timeout=1.,
-            xonxoff=False,
-            rtscts=False,
-            dsrdtr=False,
-            write_timeout=None,
-            inter_byte_timeout=None,
-            exclusive=None,
-    ):
+            port: str,
+            baudrate: int=9600,
+            bytesize: int=serial.EIGHTBITS,
+            parity: str=serial.PARITY_NONE,
+            stopbits: float=serial.STOPBITS_ONE,
+            timeout: float=1.,
+            xonxoff: bool=False,
+            rtscts: bool=False,
+            dsrdtr: bool=False,
+            write_timeout: Union[float, None]=None,
+            inter_byte_timeout: Union[float, None]=None,
+            exclusive: bool=None,
+    ) -> None:
         self.port = port
         self.baudrate = baudrate
         self.bytesize = bytesize
@@ -71,7 +72,7 @@ class SerialCom(Communicator):
         self.inter_byte_timeout = inter_byte_timeout
         self.exclusive = exclusive
 
-    def open(self):
+    def open(self) -> None:
         """Open the connection to the device.
 
         Note:
@@ -98,7 +99,7 @@ class SerialCom(Communicator):
             self.connection = True
         return
 
-    def close(self):
+    def close(self) -> None:
         """Close the connection to the device.
 
         Note:
@@ -112,7 +113,7 @@ class SerialCom(Communicator):
         self.connection = False
         return
 
-    def send(self, msg):
+    def send(self, msg: str) -> None:
         """Send a message to the device.
 
         Note:
@@ -127,7 +128,7 @@ class SerialCom(Communicator):
         self.ser.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=1024):
+    def recv(self, byte: int=1024) -> bytes:
         """Receive the response of the device.
 
         Note:

@@ -11,8 +11,8 @@ class TelnetCom(Communicator):
     Args:
         host (str): IP Address of a device.
         port (int): Port of a device.
-        timeout (float): Set a read timeout values.
-            Defaults to 1.0.
+        timeout (int): Set a read timeout values.
+            Defaults to 1.
 
     Attributes:
         method (str): Communication method.
@@ -22,12 +22,12 @@ class TelnetCom(Communicator):
     """
     method = 'Telnet'
 
-    def __init__(self, host, port, timeout=1.):
+    def __init__(self, host: str, port: int, timeout: int=1) -> None:
         self.host = host
         self.port = port
         self.timeout = timeout
 
-    def open(self):
+    def open(self) -> None:
         """Open the connection to the device.
 
         Note:
@@ -42,7 +42,7 @@ class TelnetCom(Communicator):
             self.connection = True
         return
 
-    def close(self):
+    def close(self) -> None:
         """Close the connection to the device.
 
         Note:
@@ -56,7 +56,7 @@ class TelnetCom(Communicator):
         self.connection = False
         return
 
-    def send(self, msg):
+    def send(self, msg: str) -> None:
         """Send a message to the device.
 
         Note:
@@ -71,7 +71,7 @@ class TelnetCom(Communicator):
         self.tn.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=1024):
+    def recv(self, byte: int=1024) -> bytes:
         """Receive the response of the device.
 
         Note:

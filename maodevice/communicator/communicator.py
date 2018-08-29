@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class Communicator(object):
+class Communicator:
     """Communicate with a device.
 
     This is the base class of device communicators.
@@ -17,15 +17,15 @@ class Communicator(object):
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = 'communicator_base_class'
-    connection = False
-    terminator = '\n'
+    method: str = 'communicator_base_class'
+    connection: bool = False
+    terminator: str = '\n'
 
-    def __init__(self, *args):
-        if len(args) is not 0:
+    def __init__(self, *args) -> None:
+        if len(args) != 0:
             self.open(*args)
 
-    def set_terminator(self, term_char):
+    def set_terminator(self, term_char: str) -> None:
         """Set the termination character.
 
         Args:
@@ -53,7 +53,7 @@ class Communicator(object):
         """
         pass
 
-    def send(self, msg):
+    def send(self, msg: str):
         """Send a message to the device.
 
         Note:
@@ -64,7 +64,7 @@ class Communicator(object):
         """
         pass
 
-    def query(self, msg, byte=4096):
+    def query(self, msg: str, byte: int=4096):
         """Query a message to the device.
 
         Args:
@@ -77,7 +77,7 @@ class Communicator(object):
         ret = self.recv(byte)
         return ret
 
-    def recv(self, byte):
+    def recv(self, byte: int):
         """Receive the response of the device.
 
         Note:

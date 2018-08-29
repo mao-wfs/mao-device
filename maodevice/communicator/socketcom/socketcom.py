@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import socket
 from ..communicator import Communicator
+from typing import Union
 
 
 class SocketCom(Communicator):
@@ -40,14 +41,14 @@ class SocketCom(Communicator):
 
     def __init__(
             self,
-            host,
-            port,
-            timeout=1.,
-            family=socket.AF_INET,
-            type=socket.SOCK_STREAM,
-            proto=0,
-            fileno=None,
-    ):
+            host: str,
+            port: int,
+            timeout: float=1.,
+            family: socket.AddressFamily=socket.AF_INET,
+            type: socket.SocketKind=socket.SOCK_STREAM,
+            proto: int=0,
+            fileno: Union[None, int]=None,
+    ) -> None:
         self.host = host
         self.port = port
         self.timeout = timeout
@@ -56,7 +57,7 @@ class SocketCom(Communicator):
         self.proto = proto
         self.fileno = fileno
 
-    def open(self):
+    def open(self) -> None:
         """Open the connection to the device.
 
         Note:
@@ -78,7 +79,7 @@ class SocketCom(Communicator):
             self.connection = True
         return
 
-    def close(self):
+    def close(self) -> None:
         """Close the connection to the device.
 
         Note:
@@ -88,11 +89,11 @@ class SocketCom(Communicator):
             None
         """
         self.sock.close()
-        # del(self.sock)
+        del(self.sock)
         self.connection = False
         return
 
-    def send(self, msg):
+    def send(self, msg: str) -> None:
         """Send a message to the device.
 
         Note:
@@ -107,7 +108,7 @@ class SocketCom(Communicator):
         self.sock.send((msg + self.terminator).encode())
         return
 
-    def recv(self, byte=4096):
+    def recv(self, byte: int=4096) -> bytes:
         """Receive the response of the device.
 
         Note:

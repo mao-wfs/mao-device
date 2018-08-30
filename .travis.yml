@@ -1,13 +1,21 @@
+sudo: false
+
+dist: xenial
+
 language: python
+
 python:
   - 3.7
-dist:
-  - xenial
-sudo: true
+
 before_install:
   - pip install codecov
+
 install:
   - pip install pyserial
-script: python -m unittest discover
+
+script:
+  - python -m unittest discover
+  # - coverage run tests.py
+
 after_success:
-  codecov
+  - codecov

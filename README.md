@@ -1,12 +1,12 @@
 # maodevice
 
-[![Travis](https://img.shields.io/travis/mao-wfs/maodevice/master.svg?label=Travis%20CI)](https://travis-ci.org/mao-wfs/maodevice)
+[![Build Status](https://travis-ci.org/mao-wfs/maodevice.svg?branch=master)](https://travis-ci.org/mao-wfs/maodevice)
 
 **maodevice** is the `python3.7` package to control MAO devices.
 
 
 ## Installation
-```console
+```sh
 pip install git+https://github.com/mao-wfs/maodevice
 ```
 

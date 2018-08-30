@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-class Communicator:
+class BaseCommunicator(object):
     """Communicate with a device.
 
     This is the base class of device communicators.
 
     Note:
-        This class itself is not used, but it is inherited by
+        This class itself is not used, but it is inherited b
         child classes and used.
 
     Args:
@@ -17,15 +17,15 @@ class Communicator:
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method: str = 'communicator_base_class'
-    connection: bool = False
-    terminator: str = '\n'
+    method = ""
+    connectionl = False
+    terminator = "\n"
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args):
         if len(args) != 0:
-            self.open(*args)
+            self.open()
 
-    def set_terminator(self, term_char: str) -> None:
+    def set_terminator(self, term_char):
         """Set the termination character.
 
         Args:
@@ -53,18 +53,18 @@ class Communicator:
         """
         pass
 
-    def send(self, msg: str):
+    def send(self, msg):
         """Send a message to the device.
 
         Note:
             This method is overridden in the child class.
 
         Args:
-            msg (str): A Message to send the device.
+            msg (str): A message to send the device.
         """
         pass
 
-    def query(self, msg: str, byte: int=4096):
+    def query(self, msg, byte=4096):
         """Query a message to the device.
 
         Args:
@@ -77,7 +77,7 @@ class Communicator:
         ret = self.recv(byte)
         return ret
 
-    def recv(self, byte: int):
+    def recv(self, byte):
         """Receive the response of the device.
 
         Note:
@@ -95,3 +95,54 @@ class Communicator:
             This method is overridden in the child class.
         """
         pass
+
+
+class BaseDeviceHandler(object):
+    """Control a device.
+
+    This is the base class of device handler.
+
+    Note:
+        This class itself is not used, but it is inherited by
+        child classes and used.
+
+    Args:
+        com (maodevice.communicator):
+            Communicator instance to control the device.
+
+    Attributes:
+        manufacturer (str): Manufacturer of the device.
+        product_name (str): Name of the device.
+        classification (str): Classification of the device.
+        _shortcut_command (dict): Dictionary of methods and its shortcuts.
+    """
+    manufacturer = ""
+    product_name = ""
+    classification = ""
+
+    def __init__(self, com):
+        self.com = com
+        self.open()
+
+    def open(self):
+        """Open the connection to the device.
+
+        Note:
+            This method uses the one of 'com'.
+
+        Return:
+            None
+        """
+        self.com.open()
+        return
+
+    def close(self):
+        """Close the connection to the device.
+
+        Note:
+            This method uses the one of 'com'.
+
+        Return:
+            None
+        """
+        self.com.close()

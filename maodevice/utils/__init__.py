@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from .classes import ErrorHandler
-from .decorators import *
-from .functions import *
+from .decorator import *
+from .misc import *
 
-del classes
-del decorators
-del functions
+del decorator
+del misc

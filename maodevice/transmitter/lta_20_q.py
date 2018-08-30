@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
-from ..device import Device
-from ... import utils
+from maodevice.core import BaseDeviceHandler
+from maodevice.utils import decoder
 
 
-class Lta20Q(Device):
+class Lta20Q(BaseDeviceHandler):
     """Control 'LTA-20-Q'.
 
-    This is a child class of the base class 'Device'.
+    The LTA-20-Q modular transmitters are a wideband RF-over-fiber
+    transmitter modules designed for antenna remoting and broadband
+    RF transmission applications using single mode optical fiber.
+
+    Note:
+        This class is based on 'maodevice.core.BaseDeviceHandler'.
 
     Args:
-        com: Communicator instance to control the device.
+        com (maodevice.communicator)
+            Communicator instance to control the device.
 
     Attributes:
         manufacturer (str): Manufacturer of the device.
@@ -24,12 +30,12 @@ class Lta20Q(Device):
         super().__init__(com)
         self.com.set_terminator('\r\n')
 
-    @utils.decoder
+    @decoder
     def show_status(self):
         """Show status of 'LTA-20-M'.
 
         Return:
             ret (bytes): Status of 'LTA-20-Q'.
         """
-        ret = self.com.query('READ')
+        ret = self.com.query("READ", byte=1024)
         return ret

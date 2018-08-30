@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import socket
-from ..communicator import Communicator
-from typing import Union
+from maodevice.core import BaseCommunicator
 
 
-class SocketCom(Communicator):
+class SocketCom(BaseCommunicator):
     """Communicate with the device via 'Socket'.
 
-    This is a child class of the base class 'Communicator'.
+    This is a child class of the base class 'maodevice.core.BaseCommunicator'.
 
     Args:
         host (str): IP Address of a device.
@@ -37,18 +36,18 @@ class SocketCom(Communicator):
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = 'Socket'
+    method = "Socket"
 
     def __init__(
             self,
-            host: str,
-            port: int,
-            timeout: float=1.,
-            family: socket.AddressFamily=socket.AF_INET,
-            type: socket.SocketKind=socket.SOCK_STREAM,
-            proto: int=0,
-            fileno: Union[None, int]=None,
-    ) -> None:
+            host,
+            port,
+            timeout=1.,
+            family=socket.AF_INET,
+            type=socket.SOCK_STREAM,
+            proto=0,
+            fileno=None,
+    ):
         self.host = host
         self.port = port
         self.timeout = timeout
@@ -57,7 +56,7 @@ class SocketCom(Communicator):
         self.proto = proto
         self.fileno = fileno
 
-    def open(self) -> None:
+    def open(self):
         """Open the connection to the device.
 
         Note:
@@ -75,11 +74,10 @@ class SocketCom(Communicator):
             )
             self.sock.settimeout(self.timeout)
             self.sock.connect((self.host, self.port))
-            self.sockfp = self.sock.makefile()
             self.connection = True
         return
 
-    def close(self) -> None:
+    def close(self):
         """Close the connection to the device.
 
         Note:
@@ -93,14 +91,14 @@ class SocketCom(Communicator):
         self.connection = False
         return
 
-    def send(self, msg: str) -> None:
+    def send(self, msg):
         """Send a message to the device.
 
         Note:
             This method override the 'send' in the base class.
 
         Args:
-            msg (str): A Message to send the device.
+            msg (str): A message to send the device.
 
         Return:
             None
@@ -108,7 +106,7 @@ class SocketCom(Communicator):
         self.sock.send((msg + self.terminator).encode())
         return
 
-    def recv(self, byte: int=4096) -> bytes:
+    def recv(self, byte=4096):
         """Receive the response of the device.
 
         Note:
@@ -121,16 +119,4 @@ class SocketCom(Communicator):
             ret (bytes): The response of the device.
         """
         ret = self.sock.recv(byte)
-        return ret
-
-    def readlines(self):
-        """Receive the multiple rows response of the device.
-
-        Note:
-            This method override the 'readlines' in the base class.
-
-        Return:
-            ret (:obj:`list` of :obj:`bytes`): The response of the device.
-        """
-        ret = self.sockfp.readlines()
         return ret

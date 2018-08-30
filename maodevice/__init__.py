@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from . import communicator
-from .device import *
+from . import core
+from . import correlator
+from . import scpi
+from . import transmitter
 from . import utils
-
-del device

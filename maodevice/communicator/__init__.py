@@ -6,4 +6,3 @@ from .telnetcom import TelnetCom
 del serialcom
 del socketcom
 del telnetcom
-del communicator

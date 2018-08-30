@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(
-    name='maoDevice',
+    name='mao-device',
     version='0.1',
     description='Python3.7 package to control MAO devices.',
     url='https://github.com/mao-wfs/mao-device',

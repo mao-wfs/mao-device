@@ -1,5 +1,5 @@
-# maoDevice
-**maoDevice** is the `python3.6` package to control MAO devices.
+# mao-device
+**mao-device** is the `python3.7` package to control MAO devices.
 
 
 ## Overview

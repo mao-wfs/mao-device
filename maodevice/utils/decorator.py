@@ -63,7 +63,7 @@ def decoder(func):
         assert isinstance(ret, bytes), \
             "The return value is expected to be `bytes`."
 
-        ret.decode()
+        ret = ret.decode()
         return ret
     return wrapper
 

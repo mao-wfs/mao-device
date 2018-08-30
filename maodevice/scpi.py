@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
-from ..device import Device
-from ... import utils
+__all__ = [
+    'ScpiHandler',
+]
+
+from maodevice.core import BaseDeviceHandler
+from maodevice.utils import extract_bits, or_of_bits
 
 
-class ScpiCommon(Device):
+class ScpiCommands(BaseDeviceHandler):
     """IEEE-488.2 common commands.
 
     This class is for handling IEEE-488.2 common commands.
-    This class is based on 'Device'.
 
     Attribute:
-        scpi_dict (dict): Dictionary of IEEE-488.2 common commands.
+        SCPI_DICT (dict): Dictionary of IEEE-488.2 common commands.
+        STANDARD_EVENT_REGISTER_DICT (dict)
+        STATUS_BYTE_REGISTER_DICT (dict)
     """
-    scpi_dict = {
+    SCPI_DICT = {
         '*CLS': 'clear_status',
         '*ESE': 'standard_event_status_enable',
         '*ESE?': 'standard_event_status_enable_query',
@@ -103,7 +108,7 @@ class ScpiCommon(Device):
             Bit 4 and bit 5 of the enable register are on.
             >>> s.standard_event_status_enable(4, 5)
         """
-        or_bit = utils.or_of_bits(bits)
+        or_bit = or_of_bits(bits)
         self.com.send(f"*ESE {or_bit}")
         return
 
@@ -126,7 +131,7 @@ class ScpiCommon(Device):
             [1, 3, 5]
         """
         ret = self.com.query('*ESE?')
-        ret = utils.extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
+        ret = extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
         return ret
 
     def standard_event_status_register_query(self):
@@ -147,7 +152,7 @@ class ScpiCommon(Device):
             [3, 4]
         """
         ret = self.com.query("*ESR?")
-        ret = utils.extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
+        ret = extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
         return ret
 
     def identification_query(self):
@@ -307,7 +312,7 @@ class ScpiCommon(Device):
             bits (:obj:`tuple` of :obj:`int`): Standard event register
                 bits to be turned on.
         """
-        or_bit = utils.or_of_bits(bits)
+        or_bit = or_of_bits(bits)
         self.com.send(f"*SRE {or_bit}")
         return
 
@@ -324,7 +329,7 @@ class ScpiCommon(Device):
             ret (:obj:`list` of :obj:`str`): Status byte register.
         """
         ret = self.com.query('*SRE?')
-        ret = utils.extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
+        ret = extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
     def read_status_byte_query(self):
@@ -340,7 +345,7 @@ class ScpiCommon(Device):
                 to be turned on.
         """
         ret = self.com.query('*STB?')
-        ret = utils.extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
+        ret = extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
     def trigger(self):
@@ -389,33 +394,31 @@ class ScpiCommon(Device):
         return
 
 
-class ScpiFamily(Device):
-    """Handle IEEE-488.2 common commands
-
-    This class is based on 'Device'.
+class ScpiHandler(BaseDeviceHandler):
+    """Handle IEEE-488.2 common commands.
 
     Note:
         If you limit IEEE-488.2 common commands, write it as follows
         before instantiation.
 
         - When you use only *CLS and *RST
-        >>> _scpi_enable = ('*CLS', '*RST')
+        >>> scpi_enable = ('*CLS', '*RST')
 
         - When you use all IEEE-488.2 common commands.
-        >>> _scpi_enable = 'ALL'
+        >>> scpi_enable = 'ALL'
 
     Args:
         com: Communicator instance to control the device.
 
     Attribute:
-        _scpi_enable (str or :obj:`list` of :obj:`str`):
+        scpi_enable (str or :obj:`list` of :obj:`str`):
             IEEE-488.2 common commands to use.
     """
-    _scpi_enable = 'ALL'
+    scpi_enable = 'ALL'
 
     def __init__(self, com):
         super().__init__(com)
-        self._scpi = ScpiCommon(com)
+        self._scpi = ScpiCommands(com)
         self._add_scpi_methods()
 
     def _add_scpi_methods(self):
@@ -428,11 +431,11 @@ class ScpiFamily(Device):
             None
         """
         scpi_dict = self._scpi.scpi_dict
-        if self._scpi_enable == 'ALL':
+        if self.scpi_enable == 'ALL':
             add_items = scpi_dict.items()
         else:
             add_items = [
-                [enable, scpi_dict[enable]] for enable in self._scpi_enable
+                [enable, scpi_dict[enable]] for enable in self.scpi_enable
             ]
 
         for cmd, verbose_cmd in add_items:

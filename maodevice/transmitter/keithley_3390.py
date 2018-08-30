@@ -1,28 +1,30 @@
 # -*- coding: utf-8 -*-
-from ..SCPI import ScpiFamily
-from ... import utils
+from maodevice.scpi import ScpiHandler
+from maodevice.utils import chooser, decoder, limitter
 
 
-class Keithley3390(ScpiFamily):
-    """Control '3390-900-01'
+class Keithley3390(ScpiHandler):
+    """Control 'Model 3390 Arbitrary Waveform Generator'.
 
-    This class control the Function Generator '3390_900_01'.
-    This class is based on 'ScpiCommon'.
+    Model 3390 Arbitrary Waveform generator
+
+    Note:
+        This class is based on 'maodevice.scpi.ScpiHandler'.
 
     Attributes:
         manufacturer (str): Manufacturer of the device.
         product_name (str): Name of the device.
         classification (str): Classification of the device.
     """
-    manufacturer = 'Keithley'
-    product_name = '3390-900-01'
-    classification = 'Function Generator'
+    manufacturer = "Keithley"
+    product_name = "Model 3390 Arbitrary Waveform Generator"
+    classification = "Function generator"
 
-    _scpi_enable = (
-        '*CLS', '*ESE', '*ESE?', '*ESR?', '*IDN?', '*LRN?', '*OPC', '*OPC?',
-        '*PSC', '*PSC?', '*RCL', '*RST', '*SAV', '*SRE', '*SRE?', '*STB?',
-        '*TRG', '*TST?', '*WAI',
-    )
+    scpi_enable = [
+        "*CLS", "*ESE", "*ESE?", "*ESR?", "*IDN?", "*LRN?", "*OPC", "*OPC?",
+        "*PSC", "*PSC?", "*RCL", "*RST", "*SAV", "*SRE", "*SRE?", "*STB?",
+        "*TRG", "*TST?", "*WAI",
+    ]
 
     FUNCTIONS_DICT = {
         'SIN': {
@@ -58,7 +60,7 @@ class Keithley3390(ScpiFamily):
 
     def __init__(self, com):
         super().__init__(com)
-        self.com.set_terminator('\n')
+        self.com.set_terminator("\n")
 
     def set_function(self, func):
         """Set function of the signal.

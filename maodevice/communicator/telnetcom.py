@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 import telnetlib
-from ..communicator import Communicator
+from maodevice.core import BaseCommunicator
 
 
-class TelnetCom(Communicator):
+class TelnetCom(BaseCommunicator):
     """Communicate with the device via 'Telnet'.
 
-    This is a child class of the base class 'Communicator'.
+    This is a child class of the base class 'maodevice.core.BaseCommunicator.'
 
     Args:
         host (str): IP Address of a device.
         port (int): Port of a device.
-        timeout (int): Set a read timeout values.
-            Defaults to 1.
+        timeout (int): Set a read timeout values. Defaults to 1.
 
     Attributes:
         method (str): Communication method.
@@ -20,14 +19,14 @@ class TelnetCom(Communicator):
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = 'Telnet'
+    method = "Telnet"
 
-    def __init__(self, host: str, port: int, timeout: int=1) -> None:
+    def __init__(self, host, port, timeout=1):
         self.host = host
         self.port = port
         self.timeout = timeout
 
-    def open(self) -> None:
+    def open(self):
         """Open the connection to the device.
 
         Note:
@@ -42,7 +41,7 @@ class TelnetCom(Communicator):
             self.connection = True
         return
 
-    def close(self) -> None:
+    def close(self):
         """Close the connection to the device.
 
         Note:
@@ -56,14 +55,14 @@ class TelnetCom(Communicator):
         self.connection = False
         return
 
-    def send(self, msg: str) -> None:
+    def send(self, msg):
         """Send a message to the device.
 
         Note:
             This method override the 'send' in the base class.
 
         Args:
-            msg (str): Message to send the device.
+            msg (str): A message to send the device.
 
         Return:
             None
@@ -71,27 +70,22 @@ class TelnetCom(Communicator):
         self.tn.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte: int=1024) -> bytes:
+    def recv(self, byte=4096):
         """Receive the response of the device.
 
         Note:
             This method override the 'recv' in the base class.
 
         Args:
-            byte (int): Bytes to read. Defaults to 1024.
+            byte (int): Bytes to read. Defaults to 4096.
 
         Return:
             ret (bytes): The response of the device.
         """
-        # ret = self.tn.read_until(byte, self.timeout)
-        # return
         pass
 
     def readlines(self):
         """Receive the multiple rows response of the device.
-
-        Note:
-            This method override the 'readlines' in the base class.
 
         Return:
             ret (:obj:`list` of :obj:`bytes`): The response of the device.

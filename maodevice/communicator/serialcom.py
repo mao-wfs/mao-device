@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import serial
-from ..communicator import Communicator
-from typing import Union
+from maodevice.core import BaseCommunicator
 
 
-class SerialCom(Communicator):
+class SerialCom(BaseCommunicator):
     """Communicate with the device via 'Serial'.
 
-    This is a child class of the base class 'Communicator'.
+    This is a child class of the base class 'maodevice.core.BaseCommunicator'.
 
     Args:
         port (str): Device name.
@@ -42,23 +41,23 @@ class SerialCom(Communicator):
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = 'Serial'
+    method = "Serial"
 
     def __init__(
             self,
-            port: str,
-            baudrate: int=9600,
-            bytesize: int=serial.EIGHTBITS,
-            parity: str=serial.PARITY_NONE,
-            stopbits: float=serial.STOPBITS_ONE,
-            timeout: float=1.,
-            xonxoff: bool=False,
-            rtscts: bool=False,
-            dsrdtr: bool=False,
-            write_timeout: Union[float, None]=None,
-            inter_byte_timeout: Union[float, None]=None,
-            exclusive: bool=None,
-    ) -> None:
+            port,
+            baudrate=9600,
+            bytesize=serial.EIGHTBITS,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            timeout=1.,
+            xonxoff=False,
+            rtscts=False,
+            dsrdtr=False,
+            write_timeout=None,
+            inter_byte_timeout=None,
+            exclusive=None,
+    ):
         self.port = port
         self.baudrate = baudrate
         self.bytesize = bytesize
@@ -72,7 +71,7 @@ class SerialCom(Communicator):
         self.inter_byte_timeout = inter_byte_timeout
         self.exclusive = exclusive
 
-    def open(self) -> None:
+    def open(self):
         """Open the connection to the device.
 
         Note:
@@ -99,28 +98,14 @@ class SerialCom(Communicator):
             self.connection = True
         return
 
-    def close(self) -> None:
-        """Close the connection to the device.
-
-        Note:
-            This method override the 'close' in the base class.
-
-        Return:
-            None
-        """
-        self.ser.close()
-        del(self.ser)
-        self.connection = False
-        return
-
-    def send(self, msg: str) -> None:
+    def send(self, msg):
         """Send a message to the device.
 
         Note:
             This method override the 'send' in the base class.
 
         Args:
-            msg (str): A Message to send the device.
+            msg (str): A message to send the device.
 
         Return:
             None
@@ -128,29 +113,17 @@ class SerialCom(Communicator):
         self.ser.write((msg + self.terminator).encode())
         return
 
-    def recv(self, byte: int=1024) -> bytes:
+    def recv(self, byte=4096):
         """Receive the response of the device.
 
         Note:
             This method override the 'recv' in the base class.
 
         Args:
-            byte (int): Bytes to read. Defaults to 1024.
+            byte (int): Bytes to read. Defaults to 4096.
 
         Return:
             ret (bytes): The response of the device.
         """
         ret = self.ser.read(size=byte)
-        return ret
-
-    def readlines(self):
-        """Receive the multiple rows response of the device.
-
-        Note:
-            This method override the 'readlines' in the base class.
-
-        Return:
-            ret (:obj:`list` of :obj:`bytes`): The response of the device.
-        """
-        ret = self.ser.readlines()
         return ret

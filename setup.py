@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup
+from setuptools import find_packages, setup
+
+with open("README.md") as f:
+    readme = f.read()
+
+with open("LICENSE") as f:
+    license = f.read()
 
 setup(
-    name='maoDevice',
-    version='0.1',
-    description='Python3.7 package to control MAO devices.',
-    url='https://github.com/mao-wfs/mao-device',
-    author='Tetsutaro Ueda',
-    author_email='tueda1207@gmail.com',
-    packages=['maodevice'],
-    install_requires=['pyserial>=3.4'],
-    classifiers=['Programing Language :: Python :: 3.7'],
+    name="maodevice",
+    version="0.0.1",
+    description="Python 3.7 package to control MAO devices",
+    long_description=readme,
+    author="Tetsutaro Ueda",
+    author_email="tueda1207@gmail.com",
+    url="https://github.com/mao-wfs/mao-device",
+    license=license,
+    packages=find_packages(exclude=("docs", "tests")),
+    install_requires=["pyserial>=3.4"],
 )

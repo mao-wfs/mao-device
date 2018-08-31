@@ -1,5 +1,5 @@
 .. maodevice documentation master file, created by
-   sphinx-quickstart on Fri Aug 31 18:23:25 2018.
+   sphinx-quickstart on Fri Aug 31 18:51:29 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

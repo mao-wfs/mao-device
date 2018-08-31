@@ -1,0 +1,214 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>maodevice.communicator.socketcom &#8212; maodevice 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for maodevice.communicator.socketcom</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">maodevice.core</span> <span class="k">import</span> <span class="n">BaseCommunicator</span>
+
+
+<div class="viewcode-block" id="SocketCom"><a class="viewcode-back" href="../../../apis/maodevice.communicator.html#maodevice.communicator.socketcom.SocketCom">[docs]</a><span class="k">class</span> <span class="nc">SocketCom</span><span class="p">(</span><span class="n">BaseCommunicator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Communicate with the device via &#39;Socket&#39;.</span>
+
+<span class="sd">    This is a child class of the base class &#39;maodevice.core.BaseCommunicator&#39;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        host (str): IP Address of a device.</span>
+<span class="sd">        port (int): Port of a device.</span>
+<span class="sd">        timeout (float): A read timeout values.</span>
+<span class="sd">            Defaults to 1.0.</span>
+<span class="sd">        family (socket.AddressFamily): A constant indicating</span>
+<span class="sd">            the address (and protocol) family.</span>
+<span class="sd">            Defaults to socket.AF_INET.</span>
+<span class="sd">        type (socket.SocketKind): A Constant indicating the socket type.</span>
+<span class="sd">            Defaults to socket.SOCK_STREAM.</span>
+<span class="sd">        proto (int): Protocol number.</span>
+<span class="sd">            If family=socket.AF_CAN, either socket.CAN_RAW or</span>
+<span class="sd">            socket.CAN_BCM should be specified.</span>
+<span class="sd">            Defaults to 0.</span>
+<span class="sd">        fileno (None or int): File descriptor.</span>
+<span class="sd">            If it is specified, the other arguments are ignored, causing</span>
+<span class="sd">            the socket with the specified file descriptor to return.</span>
+<span class="sd">            Unlike socket.fromfd(), fileno will return the same socket and</span>
+<span class="sd">            not a duplicate. This may help close a detached socket using</span>
+<span class="sd">            socket.close().</span>
+<span class="sd">            Defaults to None.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        method (str): Communication method.</span>
+<span class="sd">        connection (bool): Connection indicator.</span>
+<span class="sd">            If it is true, the connection has been established.</span>
+<span class="sd">        terminator (str): Termination character.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;Socket&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">host</span><span class="p">,</span>
+            <span class="n">port</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+            <span class="n">family</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span>
+            <span class="n">proto</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">fileno</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">family</span> <span class="o">=</span> <span class="n">family</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proto</span> <span class="o">=</span> <span class="n">proto</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileno</span> <span class="o">=</span> <span class="n">fileno</span>
+
+<div class="viewcode-block" id="SocketCom.open"><a class="viewcode-back" href="../../../apis/maodevice.communicator.html#maodevice.communicator.socketcom.SocketCom.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Open the connection to the device.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method override the &#39;open&#39; in the base class.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">proto</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fileno</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="SocketCom.close"><a class="viewcode-back" href="../../../apis/maodevice.communicator.html#maodevice.communicator.socketcom.SocketCom.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Close the connection to the device.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method override the &#39;close&#39; in the base class.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">del</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="SocketCom.send"><a class="viewcode-back" href="../../../apis/maodevice.communicator.html#maodevice.communicator.socketcom.SocketCom.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Send a message to the device.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method override the &#39;send&#39; in the base class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (str): A message to send the device.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="n">msg</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminator</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="SocketCom.recv"><a class="viewcode-back" href="../../../apis/maodevice.communicator.html#maodevice.communicator.socketcom.SocketCom.recv">[docs]</a>    <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">byte</span><span class="o">=</span><span class="mi">4096</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receive the response of the device.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method override the &#39;recv&#39; in the base class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            byte (int): Bytes to read. Defaults to 4096.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): The response of the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">maodevice</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Project MAO Contributors.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

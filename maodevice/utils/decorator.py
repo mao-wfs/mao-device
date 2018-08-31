@@ -13,8 +13,8 @@ from inspect import signature
 def chooser(arg_name, choice_list):
     """Check whether the value in the choices.
 
-    Note:
-        This function is intended to be used as a decorator like follows.
+    This function is intended to be used as a decorator like follows::
+
         >>> @chooser('arg_name', some_choice_list):
         >>> def func(*args, **kwargs):
         >>>     # do something
@@ -43,8 +43,7 @@ def chooser(arg_name, choice_list):
 def decoder(func):
     """Decode bytes objects.
 
-    Note:
-        This function is intended to be used as a decorator like follows.
+    This function is intended to be used as a decorator like follows::
         >>> @decoder
         >>> def func(*args, **kwargs):
         >>>     # do something
@@ -99,8 +98,8 @@ def get_arg_value(arg_name, func, *func_args, **func_kwargs):
 def limitter(arg_name, min_val, max_val, step):
     """Limit the value of the specified argument.
 
-    Note:
-        This function is intended to be used as a decorator like follows.
+    This function is intended to be used as a decorator like follows::
+
         >>> @limitter('arg_name', 0.01, 4.99, 0.01)
         >>> def func(*args, **kwargs):
         >>>     # do something

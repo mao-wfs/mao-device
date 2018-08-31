@@ -25,10 +25,8 @@ def extract_bits(bit, bit_dict):
         >>> extract_bits(0b101, sample_dict)
         ['S1', 'S3']
     """
-    assert isinstance(bit, int), "bit: expected to be `int`."
-
     assert all(isinstance(val, int) for val in bit_dict.values()), \
-        "All elements of 'bit_dict' must be `int`."
+        "bit_dict: all elements are expected to be 'int'"
 
     valid_bit = [
         key for key, val in bit_dict.items() if not bit & val == 0
@@ -55,7 +53,7 @@ def or_of_bits(*bits):
     """
     assert len(*bits) > 1, "More than one argument required."
     assert all(isinstance(bit, int) for bit in bits), \
-        "All elements of the given argument must be `int`."
+        "bits: all elements are expected to be 'int'"
 
     or_bit = 0
     for bit in bits:

@@ -14,7 +14,7 @@ install:
   - pip install pyserial
 
 script:
-  - python -m unittest discover tests
+  - python -m unittest discover tests/*
   - nosetests -v --with-coverage
 
 after_success:

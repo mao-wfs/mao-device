@@ -51,7 +51,7 @@ def or_of_bits(*bits):
         >>> or_of_bits(0x01, 0x10)
         17 # 0b10001, 0x11
     """
-    assert len(*bits) > 1, "More than one argument required."
+    assert len(bits) > 1, "more than one argument required"
     assert all(isinstance(bit, int) for bit in bits), \
         "bits: all elements are expected to be 'int'"
 

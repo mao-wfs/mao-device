@@ -76,3 +76,7 @@ class TestMisc(unittest.TestCase):
             "bits: all elements are expected to be 'int'",
             e.exception.args[0],
         )
+
+
+if __name__ == "__main__":
+    unittest.main()

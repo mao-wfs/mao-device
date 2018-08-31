@@ -42,7 +42,7 @@ class TestMisc(unittest.TestCase):
         with self.assertRaises(AttributeError) as e:
             misc.extract_bits(0b001, foo)
         self.assertEqual(
-            "'str' object has no attribute 'items'",
+            "'str' object has no attribute 'values'",
             e.exception.args[0],
         )
 
@@ -50,18 +50,17 @@ class TestMisc(unittest.TestCase):
             misc.extract_bits(0b001, incorrect_dict)
         self.assertEqual(
             "bit_dict: all elements are expected to be 'int'",
-            e.exceptions.args[0],
+            e.exception.args[0],
         )
 
-    def test_of_of_bits(self):
+    def test_or_of_bits(self):
         """Test method of of_of_bits
         """
 
         # Test whether the expected value can be obtained
         self.assertEqual(21, misc.or_of_bits(1, 4, 16))
         self.assertEqual(0b10010, misc.or_of_bits(0b00010, 0b10000))
-        self.assertEqual(0x11, 0x01, 0x10)
-
+        self.assertEqual(0x11, misc.or_of_bits(0x01, 0x10))
         # Test exceptions
         with self.assertRaises(AssertionError) as e:
             misc.or_of_bits(4)
@@ -76,7 +75,7 @@ class TestMisc(unittest.TestCase):
             "bits: all elements are expected to be 'int'",
             e.exception.args[0],
         )
-
-
-if __name__ == "__main__":
-    unittest.main()
+#
+#
+# if __name__ == "__main__":
+#     unittest.main()

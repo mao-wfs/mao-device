@@ -8,14 +8,14 @@ python:
   - 3.7
 
 before_install:
-  - pip install codecov
+  - pip install codecov coverage
 
 install:
   - pip install pyserial
 
 script:
   - python -m unittest discover
-  # - coverage run tests.py
+  - nosetests -v --with-coverage
 
 after_success:
   - codecov

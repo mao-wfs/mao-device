@@ -9,9 +9,7 @@ pyserial = "*"
 [dev-packages]
 flake8 = "*"
 jedi = "*"
-mypy = "*"
 neovim = "*"
-sphinx = "*"
 sphinx-rtd-theme = "*"
 
 [requires]

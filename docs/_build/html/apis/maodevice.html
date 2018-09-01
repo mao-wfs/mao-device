@@ -182,7 +182,7 @@
 <li class="toctree-l1"><a class="reference internal" href="maodevice.utils.html">maodevice.utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#module-maodevice.utils.classes">maodevice.utils.classes module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#module-maodevice.utils.decorator">maodevice.utils.decorator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#maodevice-utils-decorator-module">maodevice.utils.decorator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#module-maodevice.utils.misc">maodevice.utils.misc module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maodevice.utils.html#module-maodevice.utils">Module contents</a></li>
 </ul>
@@ -450,6 +450,440 @@ child classes and used.</p>
 <div class="section" id="module-maodevice.scpi">
 <span id="maodevice-scpi-module"></span><h2>maodevice.scpi module<a class="headerlink" href="#module-maodevice.scpi" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
+<dt id="maodevice.scpi.ScpiCommands">
+<em class="property">class </em><code class="descclassname">maodevice.scpi.</code><code class="descname">ScpiCommands</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
+<p>IEEE-488.2 common commands.</p>
+<p>This class is for handling IEEE-488.2 common commands.</p>
+<dl class="docutils">
+<dt>Attribute:</dt>
+<dd>SCPI_DICT (dict): Dictionary of IEEE-488.2 common commands.
+STANDARD_EVENT_REGISTER_DICT (dict)
+STATUS_BYTE_REGISTER_DICT (dict)</dd>
+</dl>
+<dl class="attribute">
+<dt id="maodevice.scpi.ScpiCommands.SCPI_DICT">
+<code class="descname">SCPI_DICT</code><em class="property"> = {'*CLS': 'clear_status', '*ESE': 'standard_event_status_enable', '*ESE?': 'standard_event_status_enable_query', '*ESR?': 'standard_event_status_register_query', '*IDN?': 'identification_query', '*LRN?': 'learn_device_setup_query', '*OPC': 'operation_complete', '*OPC?': 'operation_complete_query', '*PSC': 'power_on_status_clear', '*PSC?': 'power_on_status_clear_query', '*RCL': 'recall', '*RST': 'reset', '*SAV': 'save', '*SRE': 'service_request_enable', '*SRE?': 'service_request_enable_query', '*STB?': 'read_status_byte_query', '*TRG': 'trigger', '*TST?': 'self_test', '*WAI': 'wait_to_continue'}</em><a class="headerlink" href="#maodevice.scpi.ScpiCommands.SCPI_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.scpi.ScpiCommands.STANDARD_EVENT_REGISTER_DICT">
+<code class="descname">STANDARD_EVENT_REGISTER_DICT</code><em class="property"> = {'Command Error': 32, 'Device Error': 8, 'Execution Error': 16, 'Operation Complete': 1, 'Power On': 128, 'Query Error': 4, 'Unused 1': 2, 'Unused 2': 64}</em><a class="headerlink" href="#maodevice.scpi.ScpiCommands.STANDARD_EVENT_REGISTER_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.scpi.ScpiCommands.STATUS_BYTE_REGISTER_DICT">
+<code class="descname">STATUS_BYTE_REGISTER_DICT</code><em class="property"> = {'Error Queue': 4, 'Output Buffer': 16, 'Questionable Data Register': 8, 'Standard Event Register': 32, 'Status Byte Register': 64, 'Unused 1': 1, 'Unused 2': 2, 'Unused 3': 128}</em><a class="headerlink" href="#maodevice.scpi.ScpiCommands.STATUS_BYTE_REGISTER_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.clear_status">
+<code class="descname">clear_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.clear_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.clear_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id1"><span class="problematic" id="id2">*</span></a>CLS: Clear Status</p>
+<p>This commands clear the status byte, the data questionable
+event register, the standard event status register, the
+standard operation status register, and any other registers
+that are summarized in the byte.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">clear_status</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.identification_query">
+<code class="descname">identification_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.identification_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.identification_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>IDN? Idntification query</p>
+<p>This query outputs an identifying string to the GPIB. The response
+for the signal generator will be a storing that shows the actual
+model number, serial number and firmware revision will be
+substituted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">String that identify the device.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.learn_device_setup_query">
+<code class="descname">learn_device_setup_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.learn_device_setup_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.learn_device_setup_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>LRN? Learn Device Setup query</p>
+<p>This query returns instrument settings by binary block data
+(same as Save/Recall state file contents) with “SYSTem:SET”
+prefix.
+The returned data is the same as the contents of state file
+which can be saved by the SCPI.MMEMory.STORe.STATe. Therefore,
+the returned data contents is changed according to the setting
+of SCPI.MMEMory.STORe.STYPe.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.operation_complete">
+<code class="descname">operation_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.operation_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.operation_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id3"><span class="problematic" id="id4">*</span></a>OPC: Operation Complete</p>
+<p>This command sets bit 0 in the standard event status register
+when all pending operations have finished.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.operation_complete_query">
+<code class="descname">operation_complete_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.operation_complete_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.operation_complete_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id5"><span class="problematic" id="id6">*</span></a>OPC?: Operation Complete query</p>
+<p>This queries bit 0 in the standard event status register. The
+signal generator will return an ASCII ‘1’ when all pending
+operations have finished.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ASCII ‘1’.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.power_on_status_clear">
+<code class="descname">power_on_status_clear</code><span class="sig-paren">(</span><em>status</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.power_on_status_clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.power_on_status_clear" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id7"><span class="problematic" id="id8">*</span></a>PSC: Power on Status Clear</p>
+<p>This command turns on / off clearing of the specific enable
+register at power on.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>status</strong> (<em>int</em>) – 1 is on, 0 is off.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.power_on_status_clear_query">
+<code class="descname">power_on_status_clear_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.power_on_status_clear_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.power_on_status_clear_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id9"><span class="problematic" id="id10">*</span></a>PSC?: Power on Status Clear query</p>
+<p>This command queries the power on status clear setting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">On (1) or Off (0).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.read_status_byte_query">
+<code class="descname">read_status_byte_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.read_status_byte_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.read_status_byte_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id11"><span class="problematic" id="id12">*</span></a>STB?: Read Status Byte query</p>
+<p>This queries the status byte. This is a non-destructive read.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Status byte register bits</dt>
+<dd>to be turned on.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.recall">
+<code class="descname">recall</code><span class="sig-paren">(</span><em>mem_loc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.recall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.recall" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id13"><span class="problematic" id="id14">*</span></a>RCL: Recall</p>
+<p>This command recall the complete instrument setting from memory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mem_loc</strong> (<em>int</em>) – Memory location.
+Allowed values are 0, 1, 2, 3 or 4.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id15"><span class="problematic" id="id16">*</span></a>RST: Reset</p>
+<p>This command resets the instrument to a factory pre-defined
+condition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>mem_loc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.save" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id17"><span class="problematic" id="id18">*</span></a>SAV: Save</p>
+<p>This command save the complete instrument setting to memory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mem_loc</strong> (<em>int</em>) – Memory location.
+Allowed values are 0, 1, 2, 3 or 4.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.self_test">
+<code class="descname">self_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.self_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.self_test" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id19"><span class="problematic" id="id20">*</span></a>TST?: Self-Test query</p>
+<p>This query returns the result of the power-up selftest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">0 (Passed) or 1 (Failed).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.service_request_enable">
+<code class="descname">service_request_enable</code><span class="sig-paren">(</span><em>*bits</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.service_request_enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.service_request_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id21"><span class="problematic" id="id22">*</span></a>SRE: Service Request Enable</p>
+<p>This command sets the value of the service request enable
+register.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The status byte register is described below.
+- 0 (1): Unused
+- 1 (2): Unused
+- 2 (4): Error Queue
+- 3 (8): Questionable Data Register
+- 4 (16): Output Buffer
+- 5 (32): Standard Event Register
+- 6 (64): Status Byte Register
+- 7 (128): Unused</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bits</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Standard event register
+bits to be turned on.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.service_request_enable_query">
+<code class="descname">service_request_enable_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.service_request_enable_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.service_request_enable_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id23"><span class="problematic" id="id24">*</span></a>SRE?: Service Request Enable query</p>
+<p>This queries the value of the service request enable
+register.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Status byte register.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.standard_event_status_enable">
+<code class="descname">standard_event_status_enable</code><span class="sig-paren">(</span><em>*bits</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.standard_event_status_enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.standard_event_status_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id25"><span class="problematic" id="id26">*</span></a>ESE: Standard Event Status Enable</p>
+<p>This command sets the standard event status enable register.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The standard event register is described below.
+- 0 (1): Operation Complete
+- 1 (2): Unused
+- 2 (4): Query Error
+- 3 (8): Device Error
+- 4 (16): Execution Error
+- 5 (32): Command Error
+- 6 (64): Unused
+- 7 (128): Power On</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bits</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Standard event register
+bits to be turned on.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>Bit 4 and bit 5 of the enable register are on.
+&gt;&gt;&gt; s.standard_event_status_enable(4, 5)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.standard_event_status_enable_query">
+<code class="descname">standard_event_status_enable_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.standard_event_status_enable_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.standard_event_status_enable_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id27"><span class="problematic" id="id28">*</span></a>ESE?: Standard Event Status Enable query</p>
+<p>This queries the status of standard event status enable
+register. This is a destructive read.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Standard event status</dt>
+<dd>enable register.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>When bit 1, bit 3, bit 5 are enable.
+&gt;&gt;&gt; s.standard_event_status_enable_query()
+[1, 3, 5]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.standard_event_status_register_query">
+<code class="descname">standard_event_status_register_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.standard_event_status_register_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.standard_event_status_register_query" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id29"><span class="problematic" id="id30">*</span></a>ESR?: Standard Event Status Register query</p>
+<p>This queries the value of the standard event status register.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Standard event status</dt>
+<dd>register.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>When bit 3 and bit 4 are going.
+&gt;&gt;&gt; s.standard_event_status_register_query()
+[3, 4]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.trigger">
+<code class="descname">trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.trigger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id31"><span class="problematic" id="id32">*</span></a>TRG: Trigger</p>
+<p>This command triggers the device if, and only if, Bus
+Triggering is the type of trigger event selected. Otherwise,
+<a href="#id33"><span class="problematic" id="id34">*</span></a>TRG is ignored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.scpi.ScpiCommands.wait_to_continue">
+<code class="descname">wait_to_continue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiCommands.wait_to_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiCommands.wait_to_continue" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id35"><span class="problematic" id="id36">*</span></a>WAI: Wait-to-Continue</p>
+<p>This command causes the instrument to wait until all pending
+commands are completed, before executing any other commands.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="maodevice.scpi.ScpiHandler">
 <em class="property">class </em><code class="descclassname">maodevice.scpi.</code><code class="descname">ScpiHandler</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/scpi.html#ScpiHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.scpi.ScpiHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
@@ -459,15 +893,9 @@ child classes and used.</p>
 <p>If you limit IEEE-488.2 common commands, write it as follows
 before instantiation.</p>
 <ul class="simple">
-<li>When you use only <a href="#id1"><span class="problematic" id="id2">*</span></a>CLS and <a href="#id3"><span class="problematic" id="id4">*</span></a>RST</li>
+<li>When you use only <a href="#id37"><span class="problematic" id="id38">*</span></a>CLS and <a href="#id39"><span class="problematic" id="id40">*</span></a>RST</li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scpi_enable</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;*CLS&#39;</span><span class="p">,</span> <span class="s1">&#39;*RST&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li>When you use all IEEE-488.2 common commands.</li>
-</ul>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scpi_enable</span> <span class="o">=</span> <span class="s1">&#39;ALL&#39;</span>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scpi_enable</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*CLS&#39;</span><span class="p">,</span> <span class="s1">&#39;*RST&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -475,21 +903,21 @@ before instantiation.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>com</strong> – Communicator instance to control the device.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>com</strong> (<em>maodevice.communicator</em>) – Communicator instance to control the device.</td>
 </tr>
 </tbody>
 </table>
 <dl class="docutils">
 <dt>Attribute:</dt>
 <dd><dl class="first last docutils">
-<dt>scpi_enable (str or <code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>):</dt>
+<dt>scpi_enable (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>):</dt>
 <dd>IEEE-488.2 common commands to use.</dd>
 </dl>
 </dd>
 </dl>
 <dl class="attribute">
 <dt id="maodevice.scpi.ScpiHandler.scpi_enable">
-<code class="descname">scpi_enable</code><em class="property"> = 'ALL'</em><a class="headerlink" href="#maodevice.scpi.ScpiHandler.scpi_enable" title="Permalink to this definition">¶</a></dt>
+<code class="descname">scpi_enable</code><em class="property"> = ['*CLS', '*ESE', '*ESE?', '*ESR?', '*IDN?', '*LRN?', '*OPC', '*OPC?', '*PSC', '*PSC?', '*RCL', '*RST', '*SAV', '*SRE', '*SRE?', '*STB?', '*TRG', '*TST?', '*WAI']</em><a class="headerlink" href="#maodevice.scpi.ScpiHandler.scpi_enable" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -12,10 +12,10 @@ maodevice.utils.classes module
     :undoc-members:
     :show-inheritance:
 
-maodevice.utils.decorator module
---------------------------------
+maodevice.utils.decorators module
+---------------------------------
 
-.. automodule:: maodevice.utils.decorator
+.. automodule:: maodevice.utils.decorators
     :members:
     :undoc-members:
     :show-inheritance:

@@ -15,7 +15,7 @@ install:
 
 script:
   - python -m unittest discover tests/*
-  - coverage run tests/utils/test_misc.py
+  - coverage run --source=maodevice setup.py test
 
 after_success:
   - codecov

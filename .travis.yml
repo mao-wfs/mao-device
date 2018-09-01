@@ -15,7 +15,7 @@ install:
 
 script:
   - python -m unittest discover tests/*
-  - coverage run tests/*/*.py
+  - coverage run tests/utils/test_misc.py
 
 after_success:
   - codecov

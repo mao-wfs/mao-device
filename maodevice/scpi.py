@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-__all__ = [
-    'ScpiHandler',
-]
-
 from maodevice.core import BaseDeviceHandler
-from maodevice.utils import extract_bits, or_of_bits
+from maodevice.utils.misc import extract_bits, or_of_bits
 
 
 class ScpiCommands(BaseDeviceHandler):
@@ -402,19 +398,21 @@ class ScpiHandler(BaseDeviceHandler):
         before instantiation.
 
         - When you use only *CLS and *RST
-        >>> scpi_enable = ('*CLS', '*RST')
-
-        - When you use all IEEE-488.2 common commands.
-        >>> scpi_enable = 'ALL'
+        >>> scpi_enable = ['*CLS', '*RST']
 
     Args:
-        com: Communicator instance to control the device.
+        com (maodevice.communicator):
+            Communicator instance to control the device.
 
     Attribute:
-        scpi_enable (str or :obj:`list` of :obj:`str`):
+        scpi_enable (:obj:`list` of :obj:`str`):
             IEEE-488.2 common commands to use.
     """
-    scpi_enable = 'ALL'
+    scpi_enable = [
+        "*CLS", "*ESE", "*ESE?", "*ESR?", "*IDN?", "*LRN?", "*OPC", "*OPC?",
+        "*PSC", "*PSC?", "*RCL", "*RST", "*SAV", "*SRE", "*SRE?", "*STB?",
+        "*TRG", "*TST?", "*WAI",
+    ]
 
     def __init__(self, com):
         super().__init__(com)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseDeviceHandler
-from maodevice.utils import chooser, decoder, limitter
+from maodevice.utils.decorators import chooser, decoder, limitter
 
 
 class OctadS(BaseDeviceHandler):

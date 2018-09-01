@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseDeviceHandler
-from maodevice.utils import decoder, limitter
+from maodevice.utils.decorators import decoder, limitter
 
 
 class Md20M(BaseDeviceHandler):

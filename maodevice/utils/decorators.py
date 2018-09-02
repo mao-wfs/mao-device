@@ -15,7 +15,7 @@ def chooser(arg_name, choice_list):
 
     This function is intended to be used as a decorator like follows::
 
-        >>> @chooser('arg_name', some_choice_list):
+        >>> @chooser("arg_name", some_choice_list):
         >>> def func(*args, **kwargs):
         >>>     # do something
         >>>     return
@@ -85,8 +85,8 @@ def get_arg_value(arg_name, func, *func_args, **func_kwargs):
     sig = signature(func)
     bound_args = sig.bind(*func_args, **func_kwargs)
 
-    if arg_name in bound_args.keys():
-        arg_val = bound_args.argument[arg_name]
+    if arg_name in bound_args.arguments:
+        arg_val = bound_args.arguments[arg_name]
     else:
         raise TypeError(
             f"{func.__name__}: does not have the argument '{arg_name}'."

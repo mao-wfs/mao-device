@@ -114,7 +114,6 @@ class BaseDeviceHandler(object):
         manufacturer (str): Manufacturer of the device.
         product_name (str): Name of the device.
         classification (str): Classification of the device.
-        _shortcut_command (dict): Dictionary of methods and its shortcuts.
     """
     manufacturer = ""
     product_name = ""

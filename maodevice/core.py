@@ -18,7 +18,7 @@ class BaseCommunicator(object):
         terminator (str): Termination character.
     """
     method = ""
-    connectionl = False
+    connection = False
     terminator = "\n"
 
     def __init__(self, *args):

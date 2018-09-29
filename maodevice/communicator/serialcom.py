@@ -98,6 +98,20 @@ class SerialCom(BaseCommunicator):
             self.connection = True
         return
 
+    def close(self):
+        """Close the connection to the device.
+
+        Note:
+            This method is override the 'close' in the base class.
+
+        Return:
+            None
+        """
+        self.ser.close()
+        del(self.ser)
+        self.connection = False
+        return
+
     def send(self, msg):
         """Send a message to the device.
 

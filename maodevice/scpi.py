@@ -70,9 +70,6 @@ class ScpiCommands(BaseDeviceHandler):
 
         Return:
             None
-
-        Example:
-            >>> s.clear_status()
         """
         self.com.send('*CLS')
         return
@@ -102,7 +99,7 @@ class ScpiCommands(BaseDeviceHandler):
 
         Example:
             Bit 4 and bit 5 of the enable register are on.
-            >>> s.standard_event_status_enable(4, 5)
+            >>> standard_event_status_enable(4, 5)
         """
         or_bit = or_of_bits(bits)
         self.com.send(f"*ESE {or_bit}")
@@ -123,7 +120,7 @@ class ScpiCommands(BaseDeviceHandler):
 
         Example:
             When bit 1, bit 3, bit 5 are enable.
-            >>> s.standard_event_status_enable_query()
+            >>> standard_event_status_enable_query()
             [1, 3, 5]
         """
         ret = self.com.query('*ESE?')
@@ -144,7 +141,7 @@ class ScpiCommands(BaseDeviceHandler):
 
         Example:
             When bit 3 and bit 4 are going.
-            >>> s.standard_event_status_register_query()
+            >>> standard_event_status_register_query()
             [3, 4]
         """
         ret = self.com.query("*ESR?")
@@ -178,6 +175,12 @@ class ScpiCommands(BaseDeviceHandler):
         which can be saved by the SCPI.MMEMory.STORe.STATe. Therefore,
         the returned data contents is changed according to the setting
         of SCPI.MMEMory.STORe.STYPe.
+
+        Args:
+            None
+
+        Return:
+            ret (str): Instruments settings by binary block data
         """
         ret = self.com.query("*LRN?")
         return ret

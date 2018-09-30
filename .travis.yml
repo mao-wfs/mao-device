@@ -8,13 +8,12 @@ python:
   - 3.7
 
 before_install:
-  - pip install codecov pytest-cov
+  - pip install codecov pytest-cov pipenv
 
 install:
-  - pip install -r requirements.txt
+  - pipenv install --system
 
 script:
-  - pytest
   - pytest --cov=./
 
 after_success:

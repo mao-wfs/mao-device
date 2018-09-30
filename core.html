@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>maodevice.core module &mdash; maodevice 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="maodevice.communicator module" href="communicator.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> maodevice
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">maodevice.core module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Communicator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="communicator.html">maodevice.communicator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Devices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="devices/transmitter.html">maodevice.transmitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devices/correlator.html">maodevice.correlator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SCPI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scpi.html">maodevice.scpi module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utils</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">maodevice.utils package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">maodevice</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>maodevice.core module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-maodevice.core">
+<span id="maodevice-core-module"></span><h1>maodevice.core module<a class="headerlink" href="#module-maodevice.core" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="maodevice.core.BaseCommunicator">
+<em class="property">class </em><code class="descclassname">maodevice.core.</code><code class="descname">BaseCommunicator</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Communicate with a device.</p>
+<p>This is the base class of device communicators.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class itself is not used, but it is inherited b
+child classes and used.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> – Variable length argument list.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="maodevice.core.BaseCommunicator.method">
+<code class="descname">method</code><a class="headerlink" href="#maodevice.core.BaseCommunicator.method" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Communication method.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.core.BaseCommunicator.connection">
+<code class="descname">connection</code><a class="headerlink" href="#maodevice.core.BaseCommunicator.connection" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – Connection indicator.
+If it is true, the connection has been established.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.core.BaseCommunicator.terminator">
+<code class="descname">terminator</code><a class="headerlink" href="#maodevice.core.BaseCommunicator.terminator" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Termination character.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection to the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method is overridden in the child class.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">connection</code><em class="property"> = False</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">method</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.open">
+<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the connection to the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method is overridden in the child class.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>msg</em>, <em>byte=4096</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query a message to the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) – A message to query the device.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The response of the device.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.readlines">
+<code class="descname">readlines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.readlines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.readlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive the multiple rows response of the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method is overridden in the child class.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.recv">
+<code class="descname">recv</code><span class="sig-paren">(</span><em>byte</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.recv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive the response of the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method is overridden in the child class.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<em>int</em>) – Bytes to read.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a message to the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method is overridden in the child class.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) – A message to send the device.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseCommunicator.set_terminator">
+<code class="descname">set_terminator</code><span class="sig-paren">(</span><em>term_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.set_terminator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.set_terminator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the termination character.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>term_char</strong> (<em>str</em>) – Termination character.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">terminator</code><em class="property"> = '\n'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="maodevice.core.BaseDeviceHandler">
+<em class="property">class </em><code class="descclassname">maodevice.core.</code><code class="descname">BaseDeviceHandler</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseDeviceHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseDeviceHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Control a device.</p>
+<p>This is the base class of device handler.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class itself is not used, but it is inherited by
+child classes and used.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>com</strong> (<em>maodevice.communicator</em>) – Communicator instance to control the device.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="maodevice.core.BaseDeviceHandler.manufacturer">
+<code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.manufacturer" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Manufacturer of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.core.BaseDeviceHandler.product_name">
+<code class="descname">product_name</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.product_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Name of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.core.BaseDeviceHandler.classification">
+<code class="descname">classification</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.classification" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Classification of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">classification</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseDeviceHandler.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseDeviceHandler.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection to the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method uses the one of ‘com’.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">manufacturer</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.core.BaseDeviceHandler.open">
+<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseDeviceHandler.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the connection to the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method uses the one of ‘com’.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">product_name</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="communicator.html" class="btn btn-neutral float-right" title="maodevice.communicator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Project MAO Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

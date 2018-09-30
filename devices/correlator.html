@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>maodevice.correlator module &mdash; maodevice 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="maodevice.scpi module" href="../scpi.html" />
+    <link rel="prev" title="maodevice.transmitter module" href="transmitter.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> maodevice
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">maodevice.core module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Communicator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../communicator.html">maodevice.communicator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Devices</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="transmitter.html">maodevice.transmitter module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">maodevice.correlator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SCPI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../scpi.html">maodevice.scpi module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utils</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">maodevice.utils package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">maodevice</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>maodevice.correlator module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devices/correlator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="maodevice-correlator-module">
+<h1>maodevice.correlator module<a class="headerlink" href="#maodevice-correlator-module" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="maodevice.correlator.OctadS">
+<em class="property">class </em><code class="descclassname">maodevice.correlator.</code><code class="descname">OctadS</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../core.html#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
+<p>Control ‘OCTAD-S’.</p>
+<p>The OCTAD-S is the FPGA-based correlator.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class is based on ‘maodevice.core.BaseDeviceHandler’.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>com</strong> (<em>maodevice.communicator</em>) – Communicator instance to control the device.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="maodevice.correlator.OctadS.manufacturer">
+<code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.correlator.OctadS.manufacturer" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Manufacturer of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.correlator.OctadS.product_name">
+<code class="descname">product_name</code><a class="headerlink" href="#maodevice.correlator.OctadS.product_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Name of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.correlator.OctadS.classification">
+<code class="descname">classification</code><a class="headerlink" href="#maodevice.correlator.OctadS.classification" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Classification of the device.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.correlator.OctadS.CORRELATION_MODE">
+<code class="descname">CORRELATION_MODE</code><em class="property"> = {'Auto1': 1, 'Auto2': 2, 'Cross1-2': 16}</em><a class="headerlink" href="#maodevice.correlator.OctadS.CORRELATION_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.calibrate_de_multiplexer">
+<code class="descname">calibrate_de_multiplexer</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.calibrate_de_multiplexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.calibrate_de_multiplexer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calibrate the data transfer from the ADC to the FPGA.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>Execute this method only when ‘show_status’ shows
+‘DBBC_module_adc_de-multiplexer_bit-alignment_error’.</li>
+<li>This method may take up to several minutes to complete.</li>
+<li>You must execute ‘synchronize_with_external’
+after executing this method.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – ADC number.
+Allowed values are 1 or 2.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="maodevice.correlator.OctadS.classfication">
+<code class="descname">classfication</code><em class="property"> = 'Correlator'</em><a class="headerlink" href="#maodevice.correlator.OctadS.classfication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">manufacturer</code><em class="property"> = 'Elecs'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">product_name</code><em class="property"> = 'OCTAD-S'</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.restart">
+<code class="descname">restart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.restart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restart ‘OCTAD-S’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.select_correlation_scaling">
+<code class="descname">select_correlation_scaling</code><span class="sig-paren">(</span><em>n</em>, <em>scale=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.select_correlation_scaling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.select_correlation_scaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set scaling of X (Correlation) part.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The mean of thread ID are as follows.
+1. Auto-correlation of channel 1
+2. Auto-correlation of channel 2
+5. Cross-correlation of channels 1 and 2</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
+Allowed values are 1, 2 or 5.</li>
+<li><strong>scale</strong> (<em>int</em>) – Scaling of X (Correlation) part.
+Set within the range of 0 - 31.
+Defaults to 0.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.select_integration_time">
+<code class="descname">select_integration_time</code><span class="sig-paren">(</span><em>integ_time=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.select_integration_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.select_integration_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select integration time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>integ_time</strong> (<em>int</em>) – Integration time.
+Allowed values are 5 or 10 (msec).
+Defaults to 5.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.select_repeat_response">
+<code class="descname">select_repeat_response</code><span class="sig-paren">(</span><em>is_repeat=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.select_repeat_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.select_repeat_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select whether to output the repeat message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>is_repeat</strong> (<em>bool</em>) – Response indicator.
+If it is true, output the repeat message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.select_requantization_scaling">
+<code class="descname">select_requantization_scaling</code><span class="sig-paren">(</span><em>n</em>, <em>scale=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.select_requantization_scaling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.select_requantization_scaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set scaling of Y (Requantization) part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – ADC number.
+Allowed values are 1 or 2.</li>
+<li><strong>scale</strong> (<em>int</em>) – Scaling of Y (Requantization) part.
+Set within the range of 0 - 31.
+Defaults to 0.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_adc_delay_offset">
+<code class="descname">set_adc_delay_offset</code><span class="sig-paren">(</span><em>n</em>, <em>offset=16384</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_adc_delay_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_adc_delay_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the delay offset of ADC.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – ADC number.
+Allowed values are 1 or 2.</li>
+<li><strong>offset</strong> (<em>int</em>) – Delay offset of ADC.
+You must set within the range of 0 - 32767.
+Defaults to 16384.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_adc_dynamic_range">
+<code class="descname">set_adc_dynamic_range</code><span class="sig-paren">(</span><em>n</em>, <em>d_range=256.0</em>, <em>offset=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_adc_dynamic_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_adc_dynamic_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set dynamic range of ADC.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Do not change the dynamic range as much as possible.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – ADC number.
+Allowed values are 1 or 2.</li>
+<li><strong>d_range</strong> (<em>float</em>) – Dynamic range of ADC.
+Set within the range of 240.0 - 270.0.
+Defaults to 256.0.</li>
+<li><strong>offset</strong> (<em>float</em>) – Offset voltage of ADC dynamic range.
+Set within the range of -128.0 - 128.0.
+Defaults to 0.0.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_control_port_ip">
+<code class="descname">set_control_port_ip</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_control_port_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_control_port_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set IP address of the control port.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You must restart after executing thie method.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of the control port.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_control_port_subnet_mask">
+<code class="descname">set_control_port_subnet_mask</code><span class="sig-paren">(</span><em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_control_port_subnet_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_control_port_subnet_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set subnet mask of the control port.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>You must restart after executing this method.</li>
+<li>The subnet mask of the 10G port is the same as this one.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask</strong> (<em>str</em>) – Subnet mask of the control port.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_date">
+<code class="descname">set_date</code><span class="sig-paren">(</span><em>year</em>, <em>doy</em>, <em>hour</em>, <em>minute</em>, <em>second</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the date to add to sampling data.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>You must execute this method after the method
+‘synchronize_with_external’.</li>
+<li>You do not need to execute this method
+if you use a NTP server.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>year</strong> (<em>int</em>) – Year.</li>
+<li><strong>doy</strong> (<em>int</em>) – Day of the year.</li>
+<li><strong>hour</strong> (<em>int</em>) – Hour.</li>
+<li><strong>minute</strong> (<em>int</em>) – Minute.</li>
+<li><strong>second</strong> (<em>int</em>) – Second.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_gigabit_ethernet_ip">
+<code class="descname">set_gigabit_ethernet_ip</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_gigabit_ethernet_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_gigabit_ethernet_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set IP address of the Gigabit ethernet.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You must restart after executing this method.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of the Gigabit ethernet.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_mask_time_of_integration">
+<code class="descname">set_mask_time_of_integration</code><span class="sig-paren">(</span><em>mask_time=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_mask_time_of_integration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_mask_time_of_integration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time to mask integration.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You set this time by FFT segment unit.
+(e.g. 2000 FFT segment is 2 ms)</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask_time</strong> (<em>int</em>) – Time to mask integration.
+You must set within the range of 0 - 2000.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_ntp_ip">
+<code class="descname">set_ntp_ip</code><span class="sig-paren">(</span><em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_ntp_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_ntp_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set IP address of a NTP server.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>You must restart or execute ‘synchronize_with_external’
+after execution of this method.</li>
+<li>You set the IP address ‘0.0.0.0’ to disable the SNTP function.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of a NTP server.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_vdif_destination_ip">
+<code class="descname">set_vdif_destination_ip</code><span class="sig-paren">(</span><em>n</em>, <em>ip</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_vdif_destination_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_vdif_destination_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the destination IP address of VDIF.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The mean of thread ID are as follows.
+1. Auto-correlation of channel 1
+2. Auto-correlation of channel 2
+5. Cross-correlation of channels 1 and 2</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
+Allowed values are 1, 2 or 5.</li>
+<li><strong>ip</strong> (<em>str</em>) – Destination IP address of VDIF.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_vdif_destination_port">
+<code class="descname">set_vdif_destination_port</code><span class="sig-paren">(</span><em>n</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_vdif_destination_port"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_vdif_destination_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the destination UDP port of VDIF.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The mean of thread ID are as follows.
+1. Auto-correlation of channel 1
+2. Auto-correlation of channel 2
+5. Cross-correlation of channels 1 and 2</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
+Allowed values are 1, 2 or 5.</li>
+<li><strong>port</strong> (<em>int</em>) – Destination UDP port of VDIF.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.set_window_function">
+<code class="descname">set_window_function</code><span class="sig-paren">(</span><em>win_func='none'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.set_window_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.set_window_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the window function of FFT.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can choose window functions as follows.
+- None
+- Hamming
+- Hanning
+- Blackman</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>win_func</strong> (<em>str</em>) – Window function of FFT.
+Select one of ‘nont’, ‘hamming’, ‘hanning’ or ‘blackman’.
+Defaults to ‘none’.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_1pps_gap">
+<code class="descname">show_1pps_gap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_1pps_gap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_1pps_gap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the gap between internal 1PPS and external one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The 1PPS gap (ns).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_adc_sampling_bit">
+<code class="descname">show_adc_sampling_bit</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_adc_sampling_bit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_adc_sampling_bit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the bit distribution after sampling with ADC.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – ADC number.
+Allowed values are 1 or 2.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bit distribution.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_fpga_power">
+<code class="descname">show_fpga_power</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_fpga_power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_fpga_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the power supply voltage measured by FPGA.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – Module number.
+If n = 1 to 4, it corresponds to DSP module &lt;n&gt;, and
+when n = 5 it corresponds to output module.
+Allowed values are 1, 2, 3, 4 or 5.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Power supply voltage.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_status">
+<code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show malfunctions occured now or in the past.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since it is READ &amp; CLEAR, alarms that occured in the past
+are displayed only once. Regarding the current ongoing
+alram, no matter how many times this command is issued,
+the alarm will be displayed.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status string.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_system">
+<code class="descname">show_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_system"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show various information of ‘OCTAD-S’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Information of ‘OCTAD-S’.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.show_temperature">
+<code class="descname">show_temperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.show_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.show_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show FPGA junction temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">FPGA junction temperature.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.start_correlation">
+<code class="descname">start_correlation</code><span class="sig-paren">(</span><em>time</em>, <em>*mode</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.start_correlation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.start_correlation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start correlation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.stop_correlation">
+<code class="descname">stop_correlation</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.stop_correlation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.stop_correlation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop correlation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="maodevice.correlator.OctadS.synchronize_with_external">
+<code class="descname">synchronize_with_external</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/correlator/octad_s.html#OctadS.synchronize_with_external"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.correlator.OctadS.synchronize_with_external" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronize the device to an external synchronization signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scpi.html" class="btn btn-neutral float-right" title="maodevice.scpi module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="transmitter.html" class="btn btn-neutral" title="maodevice.transmitter module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Project MAO Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

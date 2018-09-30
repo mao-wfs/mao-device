@@ -18,12 +18,24 @@ class BaseCommunicator(object):
         terminator (str): Termination character.
     """
     method = ""
-    connectionl = False
+    connection = False
     terminator = "\n"
 
     def __init__(self, *args):
         if len(args) != 0:
             self.open()
+
+    def __del__(self):
+        """Destructor -- close the connection.
+
+        Args:
+            None
+
+        Return:
+            None
+        """
+        self.close()
+        return
 
     def set_terminator(self, term_char):
         """Set the termination character.
@@ -114,7 +126,6 @@ class BaseDeviceHandler(object):
         manufacturer (str): Manufacturer of the device.
         product_name (str): Name of the device.
         classification (str): Classification of the device.
-        _shortcut_command (dict): Dictionary of methods and its shortcuts.
     """
     manufacturer = ""
     product_name = ""

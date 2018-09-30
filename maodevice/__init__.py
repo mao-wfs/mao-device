@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from . import communicator
 from . import core
-from . import correlator
+from .correlator import *
 from . import scpi
-from . import transmitter
+from .transmitter import *
 from . import utils
+
+del correlator
+del transmitter

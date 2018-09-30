@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseDeviceHandler
-from maodevice.utils import decoder
+from maodevice.utils.decorators import decoder
 
 
 class Lta20Q(BaseDeviceHandler):

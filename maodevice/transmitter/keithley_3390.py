@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.scpi import ScpiHandler
-from maodevice.utils import chooser, decoder, limitter
+from maodevice.utils.decorators import chooser, decoder, limitter
 
 
 class Keithley3390(ScpiHandler):

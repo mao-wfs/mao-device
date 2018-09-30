@@ -13,7 +13,7 @@ setup(
     description="Python 3.7 package to control MAO devices",
     long_description=readme,
     author="Project MAO Contributors",
-    author_email="tetsu3191@a.phys.nagoya-u.ac.jp",
+    author_email="tueda1207@gmail.com",
     url="https://github.com/mao-wfs/maodevice",
     license=license,
     packages=find_packages(exclude=("docs", "tests")),

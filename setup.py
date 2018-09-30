@@ -9,7 +9,7 @@ with open("LICENSE") as f:
 
 setup(
     name="maodevice",
-    version="0.0.1",
+    version="1.0",
     description="Python 3.7 package to control MAO devices",
     long_description=readme,
     author="Project MAO Contributors",

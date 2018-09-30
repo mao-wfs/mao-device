@@ -58,7 +58,7 @@ class ScpiCommands(BaseDeviceHandler):
     }
 
     def clear_status(self):
-        """*CLS: Clear Status
+        """CLS: Clear Status
 
         This commands clear the status byte, the data questionable
         event register, the standard event status register, the
@@ -75,7 +75,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def standard_event_status_enable(self, *bits):
-        """*ESE: Standard Event Status Enable
+        """ESE: Standard Event Status Enable
 
         This command sets the standard event status enable register.
 
@@ -106,7 +106,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def standard_event_status_enable_query(self):
-        """*ESE?: Standard Event Status Enable query
+        """ESE?: Standard Event Status Enable query
 
         This queries the status of standard event status enable
         register. This is a destructive read.
@@ -128,7 +128,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def standard_event_status_register_query(self):
-        """*ESR?: Standard Event Status Register query
+        """ESR?: Standard Event Status Register query
 
         This queries the value of the standard event status register.
 
@@ -186,7 +186,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def operation_complete(self):
-        """*OPC: Operation Complete
+        """OPC: Operation Complete
 
         This command sets bit 0 in the standard event status register
         when all pending operations have finished.
@@ -201,7 +201,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def operation_complete_query(self):
-        """*OPC?: Operation Complete query
+        """OPC?: Operation Complete query
 
         This queries bit 0 in the standard event status register. The
         signal generator will return an ASCII '1' when all pending
@@ -217,7 +217,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def power_on_status_clear(self, status):
-        """*PSC: Power on Status Clear
+        """PSC: Power on Status Clear
 
         This command turns on / off clearing of the specific enable
         register at power on.
@@ -232,7 +232,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def power_on_status_clear_query(self):
-        """*PSC?: Power on Status Clear query
+        """PSC?: Power on Status Clear query
 
         This command queries the power on status clear setting.
 
@@ -246,7 +246,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def recall(self, mem_loc):
-        """*RCL: Recall
+        """RCL: Recall
 
         This command recall the complete instrument setting from memory.
 
@@ -261,7 +261,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def reset(self):
-        """*RST: Reset
+        """RST: Reset
 
         This command resets the instrument to a factory pre-defined
         condition.
@@ -276,7 +276,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def save(self, mem_loc):
-        """*SAV: Save
+        """SAV: Save
 
         This command save the complete instrument setting to memory.
 
@@ -291,7 +291,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def service_request_enable(self, *bits):
-        """*SRE: Service Request Enable
+        """SRE: Service Request Enable
 
         This command sets the value of the service request enable
         register.
@@ -316,7 +316,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def service_request_enable_query(self):
-        """*SRE?: Service Request Enable query
+        """SRE?: Service Request Enable query
 
         This queries the value of the service request enable
         register.
@@ -332,7 +332,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def read_status_byte_query(self):
-        """*STB?: Read Status Byte query
+        """STB?: Read Status Byte query
 
         This queries the status byte. This is a non-destructive read.
 
@@ -348,11 +348,11 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def trigger(self):
-        """*TRG: Trigger
+        """TRG: Trigger
 
         This command triggers the device if, and only if, Bus
         Triggering is the type of trigger event selected. Otherwise,
-        *TRG is ignored.
+        TRG is ignored.
 
         Args:
             None
@@ -364,7 +364,7 @@ class ScpiCommands(BaseDeviceHandler):
         return
 
     def self_test(self):
-        """*TST?: Self-Test query
+        """TST?: Self-Test query
 
         This query returns the result of the power-up selftest.
 
@@ -378,7 +378,7 @@ class ScpiCommands(BaseDeviceHandler):
         return ret
 
     def wait_to_continue(self):
-        """*WAI: Wait-to-Continue
+        """WAI: Wait-to-Continue
 
         This command causes the instrument to wait until all pending
         commands are completed, before executing any other commands.
@@ -399,9 +399,9 @@ class ScpiHandler(BaseDeviceHandler):
     Note:
         If you limit IEEE-488.2 common commands, write it as follows
         before instantiation.
+        When you use only CLS and RST,::
 
-        - When you use only *CLS and *RST
-        >>> scpi_enable = ['*CLS', '*RST']
+            >>> scpi_enable = ['*CLS', '*RST']
 
     Args:
         com (maodevice.communicator):

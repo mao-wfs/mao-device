@@ -229,7 +229,7 @@ after executing this method.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – ADC number.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – ADC number.
 Allowed values are 1 or 2.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
@@ -283,9 +283,9 @@ Allowed values are 1 or 2.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Thread ID.
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
 Allowed values are 1, 2 or 5.</li>
-<li><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Scaling of X (Correlation) part.
+<li><strong>scale</strong> (<em>int</em>) – Scaling of X (Correlation) part.
 Set within the range of 0 - 31.
 Defaults to 0.</li>
 </ul>
@@ -306,7 +306,7 @@ Defaults to 0.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>integ_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Integration time.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>integ_time</strong> (<em>int</em>) – Integration time.
 Allowed values are 5 or 10 (msec).
 Defaults to 5.</td>
 </tr>
@@ -324,7 +324,7 @@ Defaults to 5.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>is_repeat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Response indicator.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>is_repeat</strong> (<em>bool</em>) – Response indicator.
 If it is true, output the repeat message.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
@@ -342,9 +342,9 @@ If it is true, output the repeat message.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – ADC number.
+<li><strong>n</strong> (<em>int</em>) – ADC number.
 Allowed values are 1 or 2.</li>
-<li><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Scaling of Y (Requantization) part.
+<li><strong>scale</strong> (<em>int</em>) – Scaling of Y (Requantization) part.
 Set within the range of 0 - 31.
 Defaults to 0.</li>
 </ul>
@@ -366,9 +366,9 @@ Defaults to 0.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – ADC number.
+<li><strong>n</strong> (<em>int</em>) – ADC number.
 Allowed values are 1 or 2.</li>
-<li><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Delay offset of ADC.
+<li><strong>offset</strong> (<em>int</em>) – Delay offset of ADC.
 You must set within the range of 0 - 32767.
 Defaults to 16384.</li>
 </ul>
@@ -394,12 +394,12 @@ Defaults to 16384.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – ADC number.
+<li><strong>n</strong> (<em>int</em>) – ADC number.
 Allowed values are 1 or 2.</li>
-<li><strong>d_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Dynamic range of ADC.
+<li><strong>d_range</strong> (<em>float</em>) – Dynamic range of ADC.
 Set within the range of 240.0 - 270.0.
 Defaults to 256.0.</li>
-<li><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Offset voltage of ADC dynamic range.
+<li><strong>offset</strong> (<em>float</em>) – Offset voltage of ADC dynamic range.
 Set within the range of -128.0 - 128.0.
 Defaults to 0.0.</li>
 </ul>
@@ -424,7 +424,7 @@ Defaults to 0.0.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – IP address of the control port.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of the control port.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -445,7 +445,7 @@ Defaults to 0.0.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Subnet mask of the control port.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask</strong> (<em>str</em>) – Subnet mask of the control port.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -469,11 +469,11 @@ if you use a NTP server.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>year</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Year.</li>
-<li><strong>doy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Day of the year.</li>
-<li><strong>hour</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Hour.</li>
-<li><strong>minute</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Minute.</li>
-<li><strong>second</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Second.</li>
+<li><strong>year</strong> (<em>int</em>) – Year.</li>
+<li><strong>doy</strong> (<em>int</em>) – Day of the year.</li>
+<li><strong>hour</strong> (<em>int</em>) – Hour.</li>
+<li><strong>minute</strong> (<em>int</em>) – Minute.</li>
+<li><strong>second</strong> (<em>int</em>) – Second.</li>
 </ul>
 </td>
 </tr>
@@ -496,7 +496,7 @@ if you use a NTP server.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – IP address of the Gigabit ethernet.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of the Gigabit ethernet.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -517,7 +517,7 @@ if you use a NTP server.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Time to mask integration.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask_time</strong> (<em>int</em>) – Time to mask integration.
 You must set within the range of 0 - 2000.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
@@ -540,7 +540,7 @@ after execution of this method.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – IP address of a NTP server.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ip</strong> (<em>str</em>) – IP address of a NTP server.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -564,9 +564,9 @@ after execution of this method.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Thread ID.
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
 Allowed values are 1, 2 or 5.</li>
-<li><strong>ip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Destination IP address of VDIF.</li>
+<li><strong>ip</strong> (<em>str</em>) – Destination IP address of VDIF.</li>
 </ul>
 </td>
 </tr>
@@ -593,9 +593,9 @@ Allowed values are 1, 2 or 5.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Thread ID.
+<li><strong>n</strong> (<em>int</em>) – Thread ID.
 Allowed values are 1, 2 or 5.</li>
-<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Destination UDP port of VDIF.</li>
+<li><strong>port</strong> (<em>int</em>) – Destination UDP port of VDIF.</li>
 </ul>
 </td>
 </tr>
@@ -622,7 +622,7 @@ Allowed values are 1, 2 or 5.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>win_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Window function of FFT.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>win_func</strong> (<em>str</em>) – Window function of FFT.
 Select one of ‘nont’, ‘hamming’, ‘hanning’ or ‘blackman’.
 Defaults to ‘none’.</td>
 </tr>
@@ -642,7 +642,7 @@ Defaults to ‘none’.</td>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The 1PPS gap (ns).</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -656,12 +656,12 @@ Defaults to ‘none’.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – ADC number.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – ADC number.
 Allowed values are 1 or 2.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bit distribution.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -675,14 +675,14 @@ Allowed values are 1 or 2.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Module number.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – Module number.
 If n = 1 to 4, it corresponds to DSP module &lt;n&gt;, and
 when n = 5 it corresponds to output module.
 Allowed values are 1, 2, 3, 4 or 5.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Power supply voltage.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -705,7 +705,7 @@ the alarm will be displayed.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status string.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -721,7 +721,7 @@ the alarm will be displayed.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Information of ‘OCTAD-S’.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -737,7 +737,7 @@ the alarm will be displayed.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">FPGA junction temperature.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>

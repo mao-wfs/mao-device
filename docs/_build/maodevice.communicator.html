@@ -185,28 +185,28 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Device name.</li>
-<li><strong>baudrate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Baud rate.
+<li><strong>port</strong> (<em>str</em>) – Device name.</li>
+<li><strong>baudrate</strong> (<em>int</em>) – Baud rate.
 Defaults to 9600.</li>
-<li><strong>byteize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of data bits.
+<li><strong>byteize</strong> (<em>int</em>) – Number of data bits.
 Defaults to serial.EIGHTBITS.</li>
-<li><strong>parity</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Enable parity checking.
+<li><strong>parity</strong> (<em>str</em>) – Enable parity checking.
 Defaults to serial.PARITY_NONE.</li>
-<li><strong>stopbits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Number of stop bits.
+<li><strong>stopbits</strong> (<em>float</em>) – Number of stop bits.
 Defaults to serial.STOPBITS_ONE.</li>
-<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – A read timeout values.
+<li><strong>timeout</strong> (<em>float</em>) – A read timeout values.
 Defaults to 1.0.</li>
-<li><strong>xonxoff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Enable software flow control.
+<li><strong>xonxoff</strong> (<em>bool</em>) – Enable software flow control.
 Defaults to False.</li>
-<li><strong>rtscts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Enable hardware (RTS/CTS) flow control.
+<li><strong>rtscts</strong> (<em>bool</em>) – Enable hardware (RTS/CTS) flow control.
 Defaults to False.</li>
-<li><strong>dsrdtr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Enable hardware (DSR/DTR) flow control.
+<li><strong>dsrdtr</strong> (<em>bool</em>) – Enable hardware (DSR/DTR) flow control.
 Defaults to False.</li>
-<li><strong>write_timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – Set a write timeout value.
+<li><strong>write_timeout</strong> (<em>float</em><em> or </em><em>None</em>) – Set a write timeout value.
 Defaults to None.</li>
-<li><strong>inter_byte_timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a>) – Inter-character timeout.
+<li><strong>inter_byte_timeout</strong> (<em>float</em><em> or </em><em>None</em>) – Inter-character timeout.
 Defaults to None (None to disable).</li>
-<li><strong>exclusive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Set exclusive access mode (POSIX only).
+<li><strong>exclusive</strong> (<em>bool</em>) – Set exclusive access mode (POSIX only).
 A port cannot be opened in exclusive access mode
 if it is already open in exclusive access mode.
 Defaults to None.</li>
@@ -287,11 +287,11 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Bytes to read. Defaults to 4096.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<em>int</em>) – Bytes to read. Defaults to 4096.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The response of the device.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -309,7 +309,7 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A message to send the device.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) – A message to send the device.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -333,20 +333,20 @@ If it is true, the connection has been established.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – IP Address of a device.</li>
-<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Port of a device.</li>
-<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – A read timeout values.
+<li><strong>host</strong> (<em>str</em>) – IP Address of a device.</li>
+<li><strong>port</strong> (<em>int</em>) – Port of a device.</li>
+<li><strong>timeout</strong> (<em>float</em>) – A read timeout values.
 Defaults to 1.0.</li>
 <li><strong>family</strong> (<em>socket.AddressFamily</em>) – A constant indicating
 the address (and protocol) family.
 Defaults to socket.AF_INET.</li>
 <li><strong>type</strong> (<em>socket.SocketKind</em>) – A Constant indicating the socket type.
 Defaults to socket.SOCK_STREAM.</li>
-<li><strong>proto</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Protocol number.
+<li><strong>proto</strong> (<em>int</em>) – Protocol number.
 If family=socket.AF_CAN, either socket.CAN_RAW or
 socket.CAN_BCM should be specified.
 Defaults to 0.</li>
-<li><strong>fileno</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – File descriptor.
+<li><strong>fileno</strong> (<em>None</em><em> or </em><em>int</em>) – File descriptor.
 If it is specified, the other arguments are ignored, causing
 the socket with the specified file descriptor to return.
 Unlike socket.fromfd(), fileno will return the same socket and
@@ -430,11 +430,11 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Bytes to read. Defaults to 4096.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<em>int</em>) – Bytes to read. Defaults to 4096.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The response of the device.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -452,7 +452,7 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A message to send the device.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) – A message to send the device.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
@@ -476,9 +476,9 @@ If it is true, the connection has been established.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – IP Address of a device.</li>
-<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Port of a device.</li>
-<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Set a read timeout values. Defaults to 1.</li>
+<li><strong>host</strong> (<em>str</em>) – IP Address of a device.</li>
+<li><strong>port</strong> (<em>int</em>) – Port of a device.</li>
+<li><strong>timeout</strong> (<em>int</em>) – Set a read timeout values. Defaults to 1.</li>
 </ul>
 </td>
 </tr>
@@ -554,7 +554,7 @@ If it is true, the connection has been established.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The response of the device.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></a>)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>)</td>
 </tr>
 </tbody>
 </table>
@@ -572,11 +572,11 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Bytes to read. Defaults to 4096.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>byte</strong> (<em>int</em>) – Bytes to read. Defaults to 4096.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The response of the device.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -594,7 +594,7 @@ If it is true, the connection has been established.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A message to send the device.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) – A message to send the device.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>

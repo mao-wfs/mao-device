@@ -79,25 +79,21 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="maodevice.html">maodevice package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="maodevice.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="maodevice.communicator.html">maodevice.communicator package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="maodevice.correlator.html">maodevice.correlator package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="maodevice.transmitter.html">maodevice.transmitter package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">maodevice.utils package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-maodevice.utils.classes">maodevice.utils.classes module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-maodevice.utils.decorators">maodevice.utils.decorators module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-maodevice.utils.misc">maodevice.utils.misc module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-maodevice.utils">Module contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">maodevice</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="maodevice.html">maodevice package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="maodevice.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="maodevice.communicator.html">maodevice.communicator package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maodevice.correlator.html">maodevice.correlator package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maodevice.transmitter.html">maodevice.transmitter package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">maodevice.utils package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="maodevice.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maodevice.html#module-maodevice.core">maodevice.core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maodevice.html#module-maodevice.scpi">maodevice.scpi module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maodevice.html#module-maodevice">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="maodevice.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maodevice.html#module-maodevice.core">maodevice.core module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maodevice.html#module-maodevice.scpi">maodevice.scpi module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="maodevice.html#module-maodevice">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -145,6 +141,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="modules.html">maodevice</a> &raquo;</li>
+        
           <li><a href="maodevice.html">maodevice package</a> &raquo;</li>
         
       <li>maodevice.utils package</li>
@@ -176,7 +174,7 @@
 <dl class="class">
 <dt id="maodevice.utils.classes.ErrorHandler">
 <em class="property">class </em><code class="descclassname">maodevice.utils.classes.</code><code class="descname">ErrorHandler</code><a class="reference internal" href="_modules/maodevice/utils/classes.html#ErrorHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.utils.classes.ErrorHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
 <p>Error Handler of devices.</p>
 <p>This is the base class for handling errors of a device.</p>
 <div class="admonition note">
@@ -205,12 +203,12 @@ child classes and used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>arg_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the specified argument.</li>
-<li><strong>choice_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of choices.</li>
+<li><strong>arg_name</strong> (<em>str</em>) – Name of the specified argument.</li>
+<li><strong>choice_list</strong> (<em>list</em>) – List of choices.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code></a> – If the value of ‘arg_name’ is not in the ‘choice_list’.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of ‘arg_name’ is not in the ‘choice_list’.</p>
 </td>
 </tr>
 </tbody>
@@ -261,14 +259,14 @@ child classes and used.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>arg_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the specified value.</li>
-<li><strong>min_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Minimum number of the range.</li>
-<li><strong>max_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum number of the range.</li>
-<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Step number.</li>
+<li><strong>arg_name</strong> (<em>str</em>) – Name of the specified value.</li>
+<li><strong>min_val</strong> (<em>int</em><em> or </em><em>float</em>) – Minimum number of the range.</li>
+<li><strong>max_val</strong> (<em>int</em><em> or </em><em>float</em>) – Maximum number of the range.</li>
+<li><strong>step</strong> (<em>int</em><em> or </em><em>float</em>) – Step number.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code></a> – If the value of ‘arg_name’
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of ‘arg_name’
 is not expected type and value.</p>
 </td>
 </tr>
@@ -288,8 +286,8 @@ is not expected type and value.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>bit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Bit to check.</li>
-<li><strong>bit_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Correspondance dict of bit and status.</li>
+<li><strong>bit</strong> (<em>int</em>) – Bit to check.</li>
+<li><strong>bit_dict</strong> (<em>dict</em>) – Correspondance dict of bit and status.</li>
 </ul>
 </td>
 </tr>
@@ -301,7 +299,7 @@ is not expected type and value.</p>
 </p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">valid_bit (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">valid_bit (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</p>
 </td>
 </tr>
 </tbody>
@@ -326,11 +324,11 @@ is not expected type and value.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*bits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Bits for OR. More than one argument required.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*bits</strong> (<em>int</em>) – Bits for OR. More than one argument required.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">OR of the given bits.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">or_bit (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">or_bit (int)</td>
 </tr>
 </tbody>
 </table>

@@ -1,22 +1,41 @@
-.. maodevice documentation master file, created by
-   sphinx-quickstart on Sat Sep 29 20:33:20 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+maodevice
+=========
 
-Welcome to maodevice's documentation!
-=====================================
+`maodevice` is the Python3.7 package to control MAO devices.
 
 .. toctree::
+   :caption: Getting started
    :maxdepth: 2
-   :caption: Contents:
 
-   modules
+   installation
 
+.. toctree::
+   :caption: Core
+   :maxdepth: 2
 
+   core
 
-Indices and tables
-==================
+.. toctree::
+   :caption: Communicator
+   :maxdepth: 2
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   communicator
+
+.. toctree::
+   :caption: Devices
+   :maxdepth: 2
+
+   devices/transmitter
+   devices/correlator
+
+.. toctree::
+   :caption: SCPI
+   :maxdepth: 2
+
+   scpi
+
+.. toctree::
+   :caption: Utils
+   :maxdepth: 2
+
+   utils

@@ -20,11 +20,9 @@ class Keithley3390(ScpiHandler):
     product_name = "Model 3390 Arbitrary Waveform Generator"
     classification = "Function generator"
 
-    scpi_enable = [
-        "*CLS", "*ESE", "*ESE?", "*ESR?", "*IDN?", "*LRN?", "*OPC", "*OPC?",
-        "*PSC", "*PSC?", "*RCL", "*RST", "*SAV", "*SRE", "*SRE?", "*STB?",
-        "*TRG", "*TST?", "*WAI",
-    ]
+    scpi_enable = ["*CLS", "*ESE", "*ESE?", "*ESR?", "*IDN?", "*LRN?",
+                   "*OPC", "*OPC?", "*PSC", "*PSC?", "*RCL", "*RST",
+                   "*SAV", "*SRE", "*SRE?", "*STB?", "*TRG", "*TST?", "*WAI"]
 
     FUNCTIONS_DICT = {
         'SIN': {

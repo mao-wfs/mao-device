@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 __all__ = [
-    'chooser',
-    'decoder',
-    'limitter',
+    "chooser",
+    "decoder",
+    "limitter",
 ]
 
 import decimal
@@ -25,7 +25,7 @@ def chooser(arg_name, choice_list):
         choice_list (list): List of choices.
 
     Raises:
-        AssertionError: If the value of 'arg_name' is not in the 'choice_list'.
+        AssertionError: If the value of "arg_name" is not in the "choice_list".
     """
     def _chooser(func):
         @wraps(func)
@@ -44,6 +44,7 @@ def decoder(func):
     """Decode bytes objects.
 
     This function is intended to be used as a decorator like follows::
+
         >>> @decoder
         >>> def func(*args, **kwargs):
         >>>     # do something
@@ -72,15 +73,15 @@ def get_arg_value(arg_name, func, *func_args, **func_kwargs):
 
     Args:
         arg_name (str): Name of the specified argument.
-        func (function): Function with 'arg_name'.
-        *func_args: Variable lengh arguments of 'func'.
-        *func_kwargs: Arbitary keyword arguments of 'func'.
+        func (function): Function with "arg_name".
+        *func_args: Variable lengh arguments of "func".
+        *func_kwargs: Arbitary keyword arguments of "func".
 
     Return:
-        arg_val: Value of 'arg_name'.
+        arg_val: Value of "arg_name".
 
     Raises:
-        TypeError: If 'func' does not have the argument 'arg_name'.
+        TypeError: If "func" does not have the argument "arg_name".
     """
     sig = signature(func)
     bound_args = sig.bind(*func_args, **func_kwargs)
@@ -100,7 +101,7 @@ def limitter(arg_name, min_val, max_val, step):
 
     This function is intended to be used as a decorator like follows::
 
-        >>> @limitter('arg_name', 0.01, 4.99, 0.01)
+        >>> @limitter("arg_name", 0.01, 4.99, 0.01)
         >>> def func(*args, **kwargs):
         >>>     # do something
         >>>     return
@@ -112,7 +113,7 @@ def limitter(arg_name, min_val, max_val, step):
         step (int or float): Step number.
 
     Raises:
-        AssertionError: If the value of 'arg_name'
+        AssertionError: If the value of "arg_name"
             is not expected type and value.
     """
     def _limitter(func):

@@ -4,9 +4,9 @@ from maodevice.core import BaseCommunicator
 
 
 class SerialCom(BaseCommunicator):
-    """Communicate with the device via 'Serial'.
+    """Communicate with the device via "Serial".
 
-    This is a child class of the base class 'maodevice.core.BaseCommunicator'.
+    This is a child class of the base class "maodevice.core.BaseCommunicator".
 
     Args:
         port (str): Device name.
@@ -75,7 +75,7 @@ class SerialCom(BaseCommunicator):
         """Open the connection to the device.
 
         Note:
-            This method override the 'open' in the base class.
+            This method override the "open" in the base class.
 
         Return:
             None
@@ -102,7 +102,7 @@ class SerialCom(BaseCommunicator):
         """Close the connection to the device.
 
         Note:
-            This method is override the 'close' in the base class.
+            This method is override the "close" in the base class.
 
         Return:
             None
@@ -116,7 +116,7 @@ class SerialCom(BaseCommunicator):
         """Send a message to the device.
 
         Note:
-            This method override the 'send' in the base class.
+            This method override the "send" in the base class.
 
         Args:
             msg (str): A message to send the device.
@@ -131,7 +131,7 @@ class SerialCom(BaseCommunicator):
         """Receive the response of the device.
 
         Note:
-            This method override the 'recv' in the base class.
+            This method override the "recv" in the base class.
 
         Args:
             byte (int): Bytes to read. Defaults to 4096.

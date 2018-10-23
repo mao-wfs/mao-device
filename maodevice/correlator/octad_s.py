@@ -4,12 +4,12 @@ from maodevice.utils.decorators import chooser, decoder, limitter
 
 
 class OctadS(BaseDeviceHandler):
-    """Control 'OCTAD-S'.
+    """Control "OCTAD-S".
 
     The OCTAD-S is the FPGA-based correlator.
 
     Note:
-        This class is based on 'maodevice.core.BaseDeviceHandler'.
+        This class is based on "maodevice.core.BaseDeviceHandler".
 
     Args:
         com (maodevice.communicator):
@@ -39,10 +39,10 @@ class OctadS(BaseDeviceHandler):
         """Calibrate the data transfer from the ADC to the FPGA.
 
         Notes:
-            - Execute this method only when 'show_status' shows
-              'DBBC_module_adc_de-multiplexer_bit-alignment_error'.
+            - Execute this method only when "show_status" shows
+              "DBBC_module_adc_de-multiplexer_bit-alignment_error".
             - This method may take up to several minutes to complete.
-            - You must execute 'synchronize_with_external'
+            - You must execute "synchronize_with_external"
               after executing this method.
 
         Args:
@@ -56,7 +56,7 @@ class OctadS(BaseDeviceHandler):
         return
 
     def restart(self):
-        """Restart 'OCTAD-S'.
+        """Restart "OCTAD-S".
 
         Return:
             None
@@ -214,7 +214,7 @@ class OctadS(BaseDeviceHandler):
 
         Notes:
             - You must execute this method after the method
-              'synchronize_with_external'.
+              "synchronize_with_external".
             - You do not need to execute this method
               if you use a NTP server.
 
@@ -270,9 +270,9 @@ class OctadS(BaseDeviceHandler):
         """Set IP address of a NTP server.
 
         Notes:
-            - You must restart or execute 'synchronize_with_external'
+            - You must restart or execute "synchronize_with_external"
               after execution of this method.
-            - You set the IP address '0.0.0.0' to disable the SNTP function.
+            - You set the IP address "0.0.0.0" to disable the SNTP function.
 
         Args:
             ip (str): IP address of a NTP server.
@@ -338,8 +338,8 @@ class OctadS(BaseDeviceHandler):
 
         Args:
             win_func (str): Window function of FFT.
-                Select one of 'nont', 'hamming', 'hanning' or 'blackman'.
-                Defaults to 'none'.
+                Select one of "nont", "hamming", "hanning" or "blackman".
+                Defaults to "none".
 
         Return:
             None
@@ -407,10 +407,10 @@ class OctadS(BaseDeviceHandler):
 
     @decoder
     def show_system(self):
-        """Show various information of 'OCTAD-S'.
+        """Show various information of "OCTAD-S".
 
         Return:
-            ret (bytes): Information of 'OCTAD-S'.
+            ret (bytes): Information of "OCTAD-S".
         """
         ret = self.com.query("show_system?")
         return ret

@@ -4,14 +4,14 @@ from maodevice.utils.decorators import decoder
 
 
 class Pd30M(BaseDeviceHandler):
-    """Control 'PD-30-M'.
+    """Control "PD-30-M".
 
     The PD-30-M is a 30 GHz bandwidth PIN receiver photodiode module
     designed for RF over fiber, antenna remoting, and broadband RF
     transmission applications using single mode optical.
 
     Note:
-        This class is based on 'maodevice.core.BaseDeviceHandler'.
+        This class is based on "maodevice.core.BaseDeviceHandler".
 
     Args:
         com: (maodevice.communicator)
@@ -28,14 +28,14 @@ class Pd30M(BaseDeviceHandler):
 
     def __init__(self, com):
         super().__init__(com)
-        self.com.set_terminator('\r\n')
+        self.com.set_terminator("\r\n")
 
     @decoder
     def show_status(self):
-        """Show status of 'PD-30-M'.
+        """Show status of "PD-30-M".
 
         Return:
-            ret (bytes): Status of 'PD-30-M'
+            ret (bytes): Status of "PD-30-M"
         """
         ret = self.com.query("READP")
         return ret

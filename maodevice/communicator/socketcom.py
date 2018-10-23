@@ -4,9 +4,9 @@ from maodevice.core import BaseCommunicator
 
 
 class SocketCom(BaseCommunicator):
-    """Communicate with the device via 'Socket'.
+    """Communicate with the device via "Socket".
 
-    This is a child class of the base class 'maodevice.core.BaseCommunicator'.
+    This is a child class of the base class "maodevice.core.BaseCommunicator".
 
     Args:
         host (str): IP Address of a device.
@@ -60,7 +60,7 @@ class SocketCom(BaseCommunicator):
         """Open the connection to the device.
 
         Note:
-            This method override the 'open' in the base class.
+            This method override the "open" in the base class.
 
         Return:
             None
@@ -81,7 +81,7 @@ class SocketCom(BaseCommunicator):
         """Close the connection to the device.
 
         Note:
-            This method override the 'close' in the base class.
+            This method override the "close" in the base class.
 
         Return:
             None
@@ -95,7 +95,7 @@ class SocketCom(BaseCommunicator):
         """Send a message to the device.
 
         Note:
-            This method override the 'send' in the base class.
+            This method override the "send" in the base class.
 
         Args:
             msg (str): A message to send the device.
@@ -110,7 +110,7 @@ class SocketCom(BaseCommunicator):
         """Receive the response of the device.
 
         Note:
-            This method override the 'recv' in the base class.
+            This method override the "recv" in the base class.
 
         Args:
             byte (int): Bytes to read. Defaults to 4096.

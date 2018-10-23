@@ -14,47 +14,47 @@ class ScpiCommands(BaseDeviceHandler):
         STATUS_BYTE_REGISTER_DICT (dict)
     """
     SCPI_DICT = {
-        '*CLS': 'clear_status',
-        '*ESE': 'standard_event_status_enable',
-        '*ESE?': 'standard_event_status_enable_query',
-        '*ESR?': 'standard_event_status_register_query',
-        '*IDN?': 'identification_query',
-        '*LRN?': 'learn_device_setup_query',
-        '*OPC': 'operation_complete',
-        '*OPC?': 'operation_complete_query',
-        '*PSC': 'power_on_status_clear',
-        '*PSC?': 'power_on_status_clear_query',
-        '*RCL': 'recall',
-        '*RST': 'reset',
-        '*SAV': 'save',
-        '*SRE': 'service_request_enable',
-        '*SRE?': 'service_request_enable_query',
-        '*STB?': 'read_status_byte_query',
-        '*TRG': 'trigger',
-        '*TST?': 'self_test',
-        '*WAI': 'wait_to_continue',
+        "*CLS": "clear_status",
+        "*ESE": "standard_event_status_enable",
+        "*ESE?": "standard_event_status_enable_query",
+        "*ESR?": "standard_event_status_register_query",
+        "*IDN?": "identification_query",
+        "*LRN?": "learn_device_setup_query",
+        "*OPC": "operation_complete",
+        "*OPC?": "operation_complete_query",
+        "*PSC": "power_on_status_clear",
+        "*PSC?": "power_on_status_clear_query",
+        "*RCL": "recall",
+        "*RST": "reset",
+        "*SAV": "save",
+        "*SRE": "service_request_enable",
+        "*SRE?": "service_request_enable_query",
+        "*STB?": "read_status_byte_query",
+        "*TRG": "trigger",
+        "*TST?": "self_test",
+        "*WAI": "wait_to_continue",
     }
 
     STANDARD_EVENT_REGISTER_DICT = {
-        'Operation Complete': 0x01,
-        'Unused 1': 0x02,
-        'Query Error': 0x04,
-        'Device Error': 0x08,
-        'Execution Error': 0x10,
-        'Command Error': 0x20,
-        'Unused 2': 0x40,
-        'Power On': 0x80,
+        "Operation Complete": 0x01,
+        "Unused 1": 0x02,
+        "Query Error": 0x04,
+        "Device Error": 0x08,
+        "Execution Error": 0x10,
+        "Command Error": 0x20,
+        "Unused 2": 0x40,
+        "Power On": 0x80,
     }
 
     STATUS_BYTE_REGISTER_DICT = {
-        'Unused 1': 0x01,
-        'Unused 2': 0x02,
-        'Error Queue': 0x04,
-        'Questionable Data Register': 0x08,
-        'Output Buffer': 0x10,
-        'Standard Event Register': 0x20,
-        'Status Byte Register': 0x40,
-        'Unused 3': 0x80,
+        "Unused 1": 0x01,
+        "Unused 2": 0x02,
+        "Error Queue": 0x04,
+        "Questionable Data Register": 0x08,
+        "Output Buffer": 0x10,
+        "Standard Event Register": 0x20,
+        "Status Byte Register": 0x40,
+        "Unused 3": 0x80,
     }
 
     def clear_status(self):
@@ -71,7 +71,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             None
         """
-        self.com.send('*CLS')
+        self.com.send("*CLS")
         return
 
     def standard_event_status_enable(self, *bits):
@@ -98,8 +98,9 @@ class ScpiCommands(BaseDeviceHandler):
             None
 
         Example:
-            Bit 4 and bit 5 of the enable register are on.
-            >>> standard_event_status_enable(4, 5)
+            Bit 4 and bit 5 of the enable register are on::
+
+                >>> standard_event_status_enable(4, 5)
         """
         or_bit = or_of_bits(bits)
         self.com.send(f"*ESE {or_bit}")
@@ -119,11 +120,12 @@ class ScpiCommands(BaseDeviceHandler):
                 enable register.
 
         Example:
-            When bit 1, bit 3, bit 5 are enable.
-            >>> standard_event_status_enable_query()
-            [1, 3, 5]
+            When bit 1, bit 3, bit 5 are enable::
+
+                >>> standard_event_status_enable_query()
+                [1, 3, 5]
         """
-        ret = self.com.query('*ESE?')
+        ret = self.com.query("*ESE?")
         ret = extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
         return ret
 
@@ -140,9 +142,10 @@ class ScpiCommands(BaseDeviceHandler):
                 register.
 
         Example:
-            When bit 3 and bit 4 are going.
-            >>> standard_event_status_register_query()
-            [3, 4]
+            When bit 3 and bit 4 are going::
+
+                >>> standard_event_status_register_query()
+                [3, 4]
         """
         ret = self.com.query("*ESR?")
         ret = extract_bits(ret, self.STANDARD_EVENT_REGISTER_DICT)
@@ -197,23 +200,23 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             None
         """
-        self.com.send('*OPC')
+        self.com.send("*OPC")
         return
 
     def operation_complete_query(self):
         """OPC?: Operation Complete query
 
         This queries bit 0 in the standard event status register. The
-        signal generator will return an ASCII '1' when all pending
+        signal generator will return an ASCII "1" when all pending
         operations have finished.
 
         Args:
             None
 
         Return:
-            ret (str): ASCII '1'.
+            ret (str): ASCII "1".
         """
-        ret = self.com.query('*OPC?')
+        ret = self.com.query("*OPC?")
         return ret
 
     def power_on_status_clear(self, status):
@@ -242,7 +245,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             ret (int): On (1) or Off (0).
         """
-        ret = self.com.query('*PSC?')
+        ret = self.com.query("*PSC?")
         return ret
 
     def recall(self, mem_loc):
@@ -272,7 +275,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             None
         """
-        self.com.send('*RST')
+        self.com.send("*RST")
         return
 
     def save(self, mem_loc):
@@ -327,7 +330,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             ret (:obj:`list` of :obj:`str`): Status byte register.
         """
-        ret = self.com.query('*SRE?')
+        ret = self.com.query("*SRE?")
         ret = extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
@@ -343,7 +346,7 @@ class ScpiCommands(BaseDeviceHandler):
             ret (:obj:`list` of :obj:`int`): Status byte register bits
                 to be turned on.
         """
-        ret = self.com.query('*STB?')
+        ret = self.com.query("*STB?")
         ret = extract_bits(ret, self.STATUS_BYTE_REGISTER_DICT)
         return ret
 
@@ -360,7 +363,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             None
         """
-        self.com.send('*TRG')
+        self.com.send("*TRG")
         return
 
     def self_test(self):
@@ -374,7 +377,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             ret (int): 0 (Passed) or 1 (Failed).
         """
-        ret = self.com.send('*TST?')
+        ret = self.com.send("*TST?")
         return ret
 
     def wait_to_continue(self):
@@ -389,7 +392,7 @@ class ScpiCommands(BaseDeviceHandler):
         Return:
             None
         """
-        self.com.send('*WAI')
+        self.com.send("*WAI")
         return
 
 
@@ -401,7 +404,7 @@ class ScpiHandler(BaseDeviceHandler):
         before instantiation.
         When you use only CLS and RST,::
 
-            >>> scpi_enable = ['*CLS', '*RST']
+            >>> scpi_enable = ["*CLS", "*RST"]
 
     Args:
         com (maodevice.communicator):
@@ -431,8 +434,8 @@ class ScpiHandler(BaseDeviceHandler):
         Return:
             None
         """
-        scpi_dict = self._scpi.scpi_dict
-        if self.scpi_enable == 'ALL':
+        scpi_dict = self._scpi.SCPI_DICT
+        if self.scpi_enable == "ALL":
             add_items = scpi_dict.items()
         else:
             add_items = [
@@ -444,7 +447,7 @@ class ScpiHandler(BaseDeviceHandler):
                 verbose_cmd,
                 self._scpi.__getattribute__(verbose_cmd),
             )
-            fix_cmd = cmd.replace('*', '').replace('?', 'Q')
+            fix_cmd = cmd.replace("*", "").replace("?", "Q")
             self.__setattr__(fix_cmd, self.__getattribute__(verbose_cmd))
 
         return

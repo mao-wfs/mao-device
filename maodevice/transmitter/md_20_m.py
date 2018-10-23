@@ -4,14 +4,14 @@ from maodevice.utils.decorators import decoder, limitter
 
 
 class Md20M(BaseDeviceHandler):
-    """Control 'MD-20-M'.
+    """Control "MD-20-M".
 
     The Optilab MD-20-M Modulator Driver (MD) is a 20 GHz bandwidth
     RF amplifier in a compact and user-friendly module that provides
     a high-quality, single-ended voltage to drive an optical modulator.
 
     Note:
-        This class is based on 'maodevice.core.BaseDeviceHandler'
+        This class is based on "maodevice.core.BaseDeviceHandler"
 
     Args:
         com (maodevice.communicator):
@@ -80,10 +80,10 @@ class Md20M(BaseDeviceHandler):
 
     @decoder
     def show_status(self):
-        """Show the status fo 'MD-20-M'.
+        """Show the status fo "MD-20-M".
 
         Return:
-            ret (bytes): Status of 'MD-20-M'
+            ret (bytes): Status of "MD-20-M"
         """
         ret = self.query(msg="READ", byte=1024)
         return ret

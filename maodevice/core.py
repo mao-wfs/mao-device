@@ -25,18 +25,6 @@ class BaseCommunicator(object):
         if len(args) != 0:
             self.open()
 
-    def __del__(self):
-        """Destructor -- close the connection.
-
-        Args:
-            None
-
-        Return:
-            None
-        """
-        self.close()
-        return
-
     def set_terminator(self, term_char):
         """Set the termination character.
 
@@ -139,7 +127,7 @@ class BaseDeviceHandler(object):
         """Open the connection to the device.
 
         Note:
-            This method uses the one of 'com'.
+            This method uses the one of "com".
 
         Return:
             None
@@ -151,9 +139,10 @@ class BaseDeviceHandler(object):
         """Close the connection to the device.
 
         Note:
-            This method uses the one of 'com'.
+            This method uses the one of "com".
 
         Return:
             None
         """
         self.com.close()
+        return

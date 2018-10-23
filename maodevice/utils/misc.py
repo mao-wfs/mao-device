@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __all__ = [
-    'extract_bits',
-    'or_of_bits',
+    "extract_bits",
+    "or_of_bits",
 ]
 
 
@@ -18,18 +18,18 @@ def extract_bits(bit, bit_dict):
 
     Example:
         >>> sample_dict = {
-        ...     'S1': 0b001,
-        ...     'S2': 0b010,
-        ...     'S3': 0b100,
+        ...     "S1": 0b001,
+        ...     "S2": 0b010,
+        ...     "S3": 0b100,
         ... }
         >>> extract_bits(0b101, sample_dict)
-        ['S1', 'S3']
+        ["S1", "S3"]
     """
     assert all(isinstance(val, int) for val in bit_dict.values()), \
         "bit_dict: all elements are expected to be 'int'"
 
     valid_bit = [
-        key for key, val in bit_dict.items() if not bit & val == 0
+        key for key, val in bit_dict.items() if not int(bit) & val == 0
     ]
     return valid_bit
 

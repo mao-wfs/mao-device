@@ -194,7 +194,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of ‘arg_name’ is not in the ‘choice_list’.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of “arg_name” is not in the “choice_list”.</p>
 </td>
 </tr>
 </tbody>
@@ -205,16 +205,13 @@
 <dt id="maodevice.utils.decorators.decoder">
 <code class="descclassname">maodevice.utils.decorators.</code><code class="descname">decoder</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/utils/decorators.html#decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.utils.decorators.decoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode bytes objects.</p>
-<dl class="docutils">
-<dt>This function is intended to be used as a decorator like follows::</dt>
-<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@decoder</span>
+<p>This function is intended to be used as a decorator like follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@decoder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="c1"># do something</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">ret</span>
 </pre></div>
 </div>
-</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -234,7 +231,7 @@
 <code class="descclassname">maodevice.utils.decorators.</code><code class="descname">limitter</code><span class="sig-paren">(</span><em>arg_name</em>, <em>min_val</em>, <em>max_val</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/utils/decorators.html#limitter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.utils.decorators.limitter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Limit the value of the specified argument.</p>
 <p>This function is intended to be used as a decorator like follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@limitter</span><span class="p">(</span><span class="s1">&#39;arg_name&#39;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">4.99</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@limitter</span><span class="p">(</span><span class="s2">&quot;arg_name&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">4.99</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="c1"># do something</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span>
@@ -252,7 +249,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of ‘arg_name’
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code> – If the value of “arg_name”
 is not expected type and value.</p>
 </td>
 </tr>
@@ -292,12 +289,12 @@ is not expected type and value.</p>
 </table>
 <p class="rubric">Example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_dict</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;S1&#39;</span><span class="p">:</span> <span class="mb">0b001</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="s1">&#39;S2&#39;</span><span class="p">:</span> <span class="mb">0b010</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="s1">&#39;S3&#39;</span><span class="p">:</span> <span class="mb">0b100</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;S1&quot;</span><span class="p">:</span> <span class="mb">0b001</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;S2&quot;</span><span class="p">:</span> <span class="mb">0b010</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;S3&quot;</span><span class="p">:</span> <span class="mb">0b100</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">extract_bits</span><span class="p">(</span><span class="mb">0b101</span><span class="p">,</span> <span class="n">sample_dict</span><span class="p">)</span>
-<span class="go">[&#39;S1&#39;, &#39;S3&#39;]</span>
+<span class="go">[&quot;S1&quot;, &quot;S3&quot;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -383,6 +380,7 @@ is not expected type and value.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

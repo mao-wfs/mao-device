@@ -169,14 +169,14 @@
 
 
 <div class="viewcode-block" id="Md20M"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M">[docs]</a><span class="k">class</span> <span class="nc">Md20M</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Control &#39;MD-20-M&#39;.</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;MD-20-M&quot;.</span>
 
 <span class="sd">    The Optilab MD-20-M Modulator Driver (MD) is a 20 GHz bandwidth</span>
 <span class="sd">    RF amplifier in a compact and user-friendly module that provides</span>
 <span class="sd">    a high-quality, single-ended voltage to drive an optical modulator.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        This class is based on &#39;maodevice.core.BaseDeviceHandler&#39;</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        com (maodevice.communicator):</span>
@@ -245,10 +245,10 @@
 
 <div class="viewcode-block" id="Md20M.show_status"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M.show_status">[docs]</a>    <span class="nd">@decoder</span>
     <span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Show the status fo &#39;MD-20-M&#39;.</span>
+        <span class="sd">&quot;&quot;&quot;Show the status fo &quot;MD-20-M&quot;.</span>
 
 <span class="sd">        Return:</span>
-<span class="sd">            ret (bytes): Status of &#39;MD-20-M&#39;</span>
+<span class="sd">            ret (bytes): Status of &quot;MD-20-M&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;READ&quot;</span><span class="p">,</span> <span class="n">byte</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div></div>
@@ -297,6 +297,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

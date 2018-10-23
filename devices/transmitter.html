@@ -187,24 +187,48 @@
 <dl class="attribute">
 <dt id="maodevice.transmitter.Keithley3390.manufacturer">
 <code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.manufacturer" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Manufacturer of the device.</p>
+<dd><p>Manufacturer of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Keithley3390.product_name">
 <code class="descname">product_name</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.product_name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Name of the device.</p>
+<dd><p>Name of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Keithley3390.classification">
 <code class="descname">classification</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.classification" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Classification of the device.</p>
+<dd><p>Classification of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Keithley3390.FUNCTIONS_DICT">
-<code class="descname">FUNCTIONS_DICT</code><em class="property"> = {'DC': 'aaa', 'NOIS': {'freq': {'min': 1.0}}, 'PATT': 'aaa', 'PULS': {'freq': {'min': 0.0005, 'max': 10000000.0, 'step': 1.0000000000000002e-10}, 'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'symmetry': {'min': 0, 'max': 100}}, 'RAMP': {'freq': {'MIN': 1e-06, 'MAX': 200000.0, 'STEP': 1.0000000000000002e-10}, 'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'symmetry': {'min': 0, 'max': 100}}, 'SIN': {'freq': {'min': 1e-06, 'max': 50000000.0, 'step': 1.0000000000000002e-10}, 'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}}, 'SQU': {'freq': {'min': 1e-06, 'max': 25000000.0, 'step': 1.0000000000000002e-10}, 'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1}, 'dcycle': {'min': 0, 'max': 100}}, 'USER': 'aaa'}</em><a class="headerlink" href="#maodevice.transmitter.Keithley3390.FUNCTIONS_DICT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">FUNCTIONS_DICT</code><em class="property"> = {'DC': 'aaa', 'NOIS': {'freq': {'min': 1.0}}, 'PATT': 'aaa', 'PULS': {'freq': {'max': 10000000.0, 'min': 0.0005, 'step': 1.0000000000000002e-10}, 'symmetry': {'max': 100, 'min': 0}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'RAMP': {'freq': {'MAX': 200000.0, 'MIN': 1e-06, 'STEP': 1.0000000000000002e-10}, 'symmetry': {'max': 100, 'min': 0}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'SIN': {'freq': {'max': 50000000.0, 'min': 1e-06, 'step': 1.0000000000000002e-10}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'SQU': {'dcycle': {'max': 100, 'min': 0}, 'freq': {'max': 25000000.0, 'min': 1e-06, 'step': 1.0000000000000002e-10}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'USER': 'aaa'}</em><a class="headerlink" href="#maodevice.transmitter.Keithley3390.FUNCTIONS_DICT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -501,13 +525,13 @@ the waveform polarity is specified inverted.</td>
 <dt id="maodevice.transmitter.Md20M">
 <em class="property">class </em><code class="descclassname">maodevice.transmitter.</code><code class="descname">Md20M</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/md_20_m.html#Md20M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Md20M" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core.html#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
-<p>Control ‘MD-20-M’.</p>
+<p>Control “MD-20-M”.</p>
 <p>The Optilab MD-20-M Modulator Driver (MD) is a 20 GHz bandwidth
 RF amplifier in a compact and user-friendly module that provides
 a high-quality, single-ended voltage to drive an optical modulator.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This class is based on ‘maodevice.core.BaseDeviceHandler’</p>
+<p class="last">This class is based on “maodevice.core.BaseDeviceHandler”</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -520,19 +544,43 @@ a high-quality, single-ended voltage to drive an optical modulator.</p>
 <dl class="attribute">
 <dt id="maodevice.transmitter.Md20M.manufacturer">
 <code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.transmitter.Md20M.manufacturer" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Manufacturer of the device.</p>
+<dd><p>Manufacturer of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Md20M.product_name">
 <code class="descname">product_name</code><a class="headerlink" href="#maodevice.transmitter.Md20M.product_name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Name of the device.</p>
+<dd><p>Name of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Md20M.classification">
 <code class="descname">classification</code><a class="headerlink" href="#maodevice.transmitter.Md20M.classification" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Classification of the device.</p>
+<dd><p>Classification of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -613,12 +661,12 @@ a high-quality, single-ended voltage to drive an optical modulator.</p>
 <dl class="method">
 <dt id="maodevice.transmitter.Md20M.show_status">
 <code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/md_20_m.html#Md20M.show_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Md20M.show_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show the status fo ‘MD-20-M’.</p>
+<dd><p>Show the status fo “MD-20-M”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of ‘MD-20-M’</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of “MD-20-M”</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
@@ -632,13 +680,13 @@ a high-quality, single-ended voltage to drive an optical modulator.</p>
 <dt id="maodevice.transmitter.Lta20Q">
 <em class="property">class </em><code class="descclassname">maodevice.transmitter.</code><code class="descname">Lta20Q</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/lta_20_q.html#Lta20Q"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Lta20Q" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core.html#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
-<p>Control ‘LTA-20-Q’.</p>
+<p>Control “LTA-20-Q”.</p>
 <p>The LTA-20-Q modular transmitters are a wideband RF-over-fiber
 transmitter modules designed for antenna remoting and broadband
 RF transmission applications using single mode optical fiber.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This class is based on ‘maodevice.core.BaseDeviceHandler’.</p>
+<p class="last">This class is based on “maodevice.core.BaseDeviceHandler”.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -651,19 +699,43 @@ RF transmission applications using single mode optical fiber.</p>
 <dl class="attribute">
 <dt id="maodevice.transmitter.Lta20Q.manufacturer">
 <code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.transmitter.Lta20Q.manufacturer" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Manufacturer of the device.</p>
+<dd><p>Manufacturer of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Lta20Q.product_name">
 <code class="descname">product_name</code><a class="headerlink" href="#maodevice.transmitter.Lta20Q.product_name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Name of the device.</p>
+<dd><p>Name of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Lta20Q.classification">
 <code class="descname">classification</code><a class="headerlink" href="#maodevice.transmitter.Lta20Q.classification" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Classification of the device.</p>
+<dd><p>Classification of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -684,12 +756,12 @@ RF transmission applications using single mode optical fiber.</p>
 <dl class="method">
 <dt id="maodevice.transmitter.Lta20Q.show_status">
 <code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/lta_20_q.html#Lta20Q.show_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Lta20Q.show_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show status of ‘LTA-20-M’.</p>
+<dd><p>Show status of “LTA-20-M”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of ‘LTA-20-Q’.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of “LTA-20-Q”.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
@@ -703,13 +775,13 @@ RF transmission applications using single mode optical fiber.</p>
 <dt id="maodevice.transmitter.Pd30M">
 <em class="property">class </em><code class="descclassname">maodevice.transmitter.</code><code class="descname">Pd30M</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/pd_30_m.html#Pd30M"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Pd30M" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core.html#maodevice.core.BaseDeviceHandler" title="maodevice.core.BaseDeviceHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseDeviceHandler</span></code></a></p>
-<p>Control ‘PD-30-M’.</p>
+<p>Control “PD-30-M”.</p>
 <p>The PD-30-M is a 30 GHz bandwidth PIN receiver photodiode module
 designed for RF over fiber, antenna remoting, and broadband RF
 transmission applications using single mode optical.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This class is based on ‘maodevice.core.BaseDeviceHandler’.</p>
+<p class="last">This class is based on “maodevice.core.BaseDeviceHandler”.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -723,19 +795,43 @@ Communicator instance to control the device.</td>
 <dl class="attribute">
 <dt id="maodevice.transmitter.Pd30M.manufacturer">
 <code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.transmitter.Pd30M.manufacturer" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Manufacturer of the device.</p>
+<dd><p>Manufacturer of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Pd30M.product_name">
 <code class="descname">product_name</code><a class="headerlink" href="#maodevice.transmitter.Pd30M.product_name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Name of the device.</p>
+<dd><p>Name of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.transmitter.Pd30M.classification">
 <code class="descname">classification</code><a class="headerlink" href="#maodevice.transmitter.Pd30M.classification" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Classification of the device.</p>
+<dd><p>Classification of the device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -756,12 +852,12 @@ Communicator instance to control the device.</td>
 <dl class="method">
 <dt id="maodevice.transmitter.Pd30M.show_status">
 <code class="descname">show_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/pd_30_m.html#Pd30M.show_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Pd30M.show_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show status of ‘PD-30-M’.</p>
+<dd><p>Show status of “PD-30-M”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of ‘PD-30-M’</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Status of “PD-30-M”</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
@@ -827,6 +923,7 @@ Communicator instance to control the device.</td>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

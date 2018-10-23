@@ -169,12 +169,12 @@
 
 
 <div class="viewcode-block" id="OctadS"><a class="viewcode-back" href="../../../devices/correlator.html#maodevice.correlator.OctadS">[docs]</a><span class="k">class</span> <span class="nc">OctadS</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Control &#39;OCTAD-S&#39;.</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;OCTAD-S&quot;.</span>
 
 <span class="sd">    The OCTAD-S is the FPGA-based correlator.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        This class is based on &#39;maodevice.core.BaseDeviceHandler&#39;.</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        com (maodevice.communicator):</span>
@@ -204,10 +204,10 @@
         <span class="sd">&quot;&quot;&quot;Calibrate the data transfer from the ADC to the FPGA.</span>
 
 <span class="sd">        Notes:</span>
-<span class="sd">            - Execute this method only when &#39;show_status&#39; shows</span>
-<span class="sd">              &#39;DBBC_module_adc_de-multiplexer_bit-alignment_error&#39;.</span>
+<span class="sd">            - Execute this method only when &quot;show_status&quot; shows</span>
+<span class="sd">              &quot;DBBC_module_adc_de-multiplexer_bit-alignment_error&quot;.</span>
 <span class="sd">            - This method may take up to several minutes to complete.</span>
-<span class="sd">            - You must execute &#39;synchronize_with_external&#39;</span>
+<span class="sd">            - You must execute &quot;synchronize_with_external&quot;</span>
 <span class="sd">              after executing this method.</span>
 
 <span class="sd">        Args:</span>
@@ -221,7 +221,7 @@
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="OctadS.restart"><a class="viewcode-back" href="../../../devices/correlator.html#maodevice.correlator.OctadS.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Restart &#39;OCTAD-S&#39;.</span>
+        <span class="sd">&quot;&quot;&quot;Restart &quot;OCTAD-S&quot;.</span>
 
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
@@ -379,7 +379,7 @@
 
 <span class="sd">        Notes:</span>
 <span class="sd">            - You must execute this method after the method</span>
-<span class="sd">              &#39;synchronize_with_external&#39;.</span>
+<span class="sd">              &quot;synchronize_with_external&quot;.</span>
 <span class="sd">            - You do not need to execute this method</span>
 <span class="sd">              if you use a NTP server.</span>
 
@@ -435,9 +435,9 @@
         <span class="sd">&quot;&quot;&quot;Set IP address of a NTP server.</span>
 
 <span class="sd">        Notes:</span>
-<span class="sd">            - You must restart or execute &#39;synchronize_with_external&#39;</span>
+<span class="sd">            - You must restart or execute &quot;synchronize_with_external&quot;</span>
 <span class="sd">              after execution of this method.</span>
-<span class="sd">            - You set the IP address &#39;0.0.0.0&#39; to disable the SNTP function.</span>
+<span class="sd">            - You set the IP address &quot;0.0.0.0&quot; to disable the SNTP function.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            ip (str): IP address of a NTP server.</span>
@@ -503,8 +503,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            win_func (str): Window function of FFT.</span>
-<span class="sd">                Select one of &#39;nont&#39;, &#39;hamming&#39;, &#39;hanning&#39; or &#39;blackman&#39;.</span>
-<span class="sd">                Defaults to &#39;none&#39;.</span>
+<span class="sd">                Select one of &quot;nont&quot;, &quot;hamming&quot;, &quot;hanning&quot; or &quot;blackman&quot;.</span>
+<span class="sd">                Defaults to &quot;none&quot;.</span>
 
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
@@ -572,10 +572,10 @@
 
 <div class="viewcode-block" id="OctadS.show_system"><a class="viewcode-back" href="../../../devices/correlator.html#maodevice.correlator.OctadS.show_system">[docs]</a>    <span class="nd">@decoder</span>
     <span class="k">def</span> <span class="nf">show_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Show various information of &#39;OCTAD-S&#39;.</span>
+        <span class="sd">&quot;&quot;&quot;Show various information of &quot;OCTAD-S&quot;.</span>
 
 <span class="sd">        Return:</span>
-<span class="sd">            ret (bytes): Information of &#39;OCTAD-S&#39;.</span>
+<span class="sd">            ret (bytes): Information of &quot;OCTAD-S&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;show_system?&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
@@ -653,6 +653,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

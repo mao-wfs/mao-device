@@ -165,8 +165,8 @@
   <h1>Source code for maodevice.utils.misc</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;extract_bits&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;or_of_bits&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;extract_bits&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;or_of_bits&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
@@ -183,18 +183,18 @@
 
 <span class="sd">    Example:</span>
 <span class="sd">        &gt;&gt;&gt; sample_dict = {</span>
-<span class="sd">        ...     &#39;S1&#39;: 0b001,</span>
-<span class="sd">        ...     &#39;S2&#39;: 0b010,</span>
-<span class="sd">        ...     &#39;S3&#39;: 0b100,</span>
+<span class="sd">        ...     &quot;S1&quot;: 0b001,</span>
+<span class="sd">        ...     &quot;S2&quot;: 0b010,</span>
+<span class="sd">        ...     &quot;S3&quot;: 0b100,</span>
 <span class="sd">        ... }</span>
 <span class="sd">        &gt;&gt;&gt; extract_bits(0b101, sample_dict)</span>
-<span class="sd">        [&#39;S1&#39;, &#39;S3&#39;]</span>
+<span class="sd">        [&quot;S1&quot;, &quot;S3&quot;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">bit_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> \
         <span class="s2">&quot;bit_dict: all elements are expected to be &#39;int&#39;&quot;</span>
 
     <span class="n">valid_bit</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">bit_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">bit</span> <span class="o">&amp;</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">bit_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span>
     <span class="p">]</span>
     <span class="k">return</span> <span class="n">valid_bit</span></div>
 
@@ -270,6 +270,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

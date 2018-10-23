@@ -172,8 +172,8 @@
 <dt id="maodevice.communicator.SocketCom">
 <em class="property">class </em><code class="descclassname">maodevice.communicator.</code><code class="descname">SocketCom</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>timeout=1.0</em>, <em>family=&lt;AddressFamily.AF_INET: 2&gt;</em>, <em>type=&lt;SocketKind.SOCK_STREAM: 1&gt;</em>, <em>proto=0</em>, <em>fileno=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/communicator/socketcom.html#SocketCom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.communicator.SocketCom" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="core.html#maodevice.core.BaseCommunicator" title="maodevice.core.BaseCommunicator"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseCommunicator</span></code></a></p>
-<p>Communicate with the device via ‘Socket’.</p>
-<p>This is a child class of the base class ‘maodevice.core.BaseCommunicator’.</p>
+<p>Communicate with the device via “Socket”.</p>
+<p>This is a child class of the base class “maodevice.core.BaseCommunicator”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -207,20 +207,44 @@ Defaults to None.</li>
 <dl class="attribute">
 <dt id="maodevice.communicator.SocketCom.method">
 <code class="descname">method</code><a class="headerlink" href="#maodevice.communicator.SocketCom.method" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Communication method.</p>
+<dd><p>Communication method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.communicator.SocketCom.connection">
 <code class="descname">connection</code><a class="headerlink" href="#maodevice.communicator.SocketCom.connection" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>bool</em> – Connection indicator.
+<dd><p>Connection indicator.
 If it is true, the connection has been established.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.communicator.SocketCom.terminator">
 <code class="descname">terminator</code><a class="headerlink" href="#maodevice.communicator.SocketCom.terminator" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Termination character.</p>
+<dd><p>Termination character.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -229,7 +253,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Close the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘close’ in the base class.</p>
+<p class="last">This method override the “close” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -252,7 +276,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Open the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘open’ in the base class.</p>
+<p class="last">This method override the “open” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -270,7 +294,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Receive the response of the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘recv’ in the base class.</p>
+<p class="last">This method override the “recv” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -292,7 +316,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Send a message to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘send’ in the base class.</p>
+<p class="last">This method override the “send” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,8 +336,8 @@ If it is true, the connection has been established.</p>
 <dt id="maodevice.communicator.SerialCom">
 <em class="property">class </em><code class="descclassname">maodevice.communicator.</code><code class="descname">SerialCom</code><span class="sig-paren">(</span><em>port</em>, <em>baudrate=9600</em>, <em>bytesize=8</em>, <em>parity='N'</em>, <em>stopbits=1</em>, <em>timeout=1.0</em>, <em>xonxoff=False</em>, <em>rtscts=False</em>, <em>dsrdtr=False</em>, <em>write_timeout=None</em>, <em>inter_byte_timeout=None</em>, <em>exclusive=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/communicator/serialcom.html#SerialCom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.communicator.SerialCom" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="core.html#maodevice.core.BaseCommunicator" title="maodevice.core.BaseCommunicator"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.core.BaseCommunicator</span></code></a></p>
-<p>Communicate with the device via ‘Serial’.</p>
-<p>This is a child class of the base class ‘maodevice.core.BaseCommunicator’.</p>
+<p>Communicate with the device via “Serial”.</p>
+<p>This is a child class of the base class “maodevice.core.BaseCommunicator”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -352,20 +376,44 @@ Defaults to None.</li>
 <dl class="attribute">
 <dt id="maodevice.communicator.SerialCom.method">
 <code class="descname">method</code><a class="headerlink" href="#maodevice.communicator.SerialCom.method" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Communication method.</p>
+<dd><p>Communication method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.communicator.SerialCom.connection">
 <code class="descname">connection</code><a class="headerlink" href="#maodevice.communicator.SerialCom.connection" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>bool</em> – Connection indicator.
+<dd><p>Connection indicator.
 If it is true, the connection has been established.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="maodevice.communicator.SerialCom.terminator">
 <code class="descname">terminator</code><a class="headerlink" href="#maodevice.communicator.SerialCom.terminator" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Termination character.</p>
+<dd><p>Termination character.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -374,7 +422,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Close the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method is override the ‘close’ in the base class.</p>
+<p class="last">This method is override the “close” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -397,7 +445,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Open the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘open’ in the base class.</p>
+<p class="last">This method override the “open” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -415,7 +463,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Receive the response of the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘recv’ in the base class.</p>
+<p class="last">This method override the “recv” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -437,7 +485,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Send a message to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method override the ‘send’ in the base class.</p>
+<p class="last">This method override the “send” in the base class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -508,6 +556,7 @@ If it is true, the connection has been established.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

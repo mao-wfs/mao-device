@@ -165,9 +165,9 @@
   <h1>Source code for maodevice.utils.decorators</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;chooser&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;decoder&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;limitter&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;chooser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;decoder&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;limitter&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">decimal</span>
@@ -190,7 +190,7 @@
 <span class="sd">        choice_list (list): List of choices.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        AssertionError: If the value of &#39;arg_name&#39; is not in the &#39;choice_list&#39;.</span>
+<span class="sd">        AssertionError: If the value of &quot;arg_name&quot; is not in the &quot;choice_list&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_chooser</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
@@ -209,6 +209,7 @@
     <span class="sd">&quot;&quot;&quot;Decode bytes objects.</span>
 
 <span class="sd">    This function is intended to be used as a decorator like follows::</span>
+
 <span class="sd">        &gt;&gt;&gt; @decoder</span>
 <span class="sd">        &gt;&gt;&gt; def func(*args, **kwargs):</span>
 <span class="sd">        &gt;&gt;&gt;     # do something</span>
@@ -237,15 +238,15 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        arg_name (str): Name of the specified argument.</span>
-<span class="sd">        func (function): Function with &#39;arg_name&#39;.</span>
-<span class="sd">        *func_args: Variable lengh arguments of &#39;func&#39;.</span>
-<span class="sd">        *func_kwargs: Arbitary keyword arguments of &#39;func&#39;.</span>
+<span class="sd">        func (function): Function with &quot;arg_name&quot;.</span>
+<span class="sd">        *func_args: Variable lengh arguments of &quot;func&quot;.</span>
+<span class="sd">        *func_kwargs: Arbitary keyword arguments of &quot;func&quot;.</span>
 
 <span class="sd">    Return:</span>
-<span class="sd">        arg_val: Value of &#39;arg_name&#39;.</span>
+<span class="sd">        arg_val: Value of &quot;arg_name&quot;.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        TypeError: If &#39;func&#39; does not have the argument &#39;arg_name&#39;.</span>
+<span class="sd">        TypeError: If &quot;func&quot; does not have the argument &quot;arg_name&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sig</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="n">bound_args</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
@@ -265,7 +266,7 @@
 
 <span class="sd">    This function is intended to be used as a decorator like follows::</span>
 
-<span class="sd">        &gt;&gt;&gt; @limitter(&#39;arg_name&#39;, 0.01, 4.99, 0.01)</span>
+<span class="sd">        &gt;&gt;&gt; @limitter(&quot;arg_name&quot;, 0.01, 4.99, 0.01)</span>
 <span class="sd">        &gt;&gt;&gt; def func(*args, **kwargs):</span>
 <span class="sd">        &gt;&gt;&gt;     # do something</span>
 <span class="sd">        &gt;&gt;&gt;     return</span>
@@ -277,7 +278,7 @@
 <span class="sd">        step (int or float): Step number.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        AssertionError: If the value of &#39;arg_name&#39;</span>
+<span class="sd">        AssertionError: If the value of &quot;arg_name&quot;</span>
 <span class="sd">            is not expected type and value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_limitter</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
@@ -350,6 +351,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

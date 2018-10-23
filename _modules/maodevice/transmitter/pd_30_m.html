@@ -169,14 +169,14 @@
 
 
 <div class="viewcode-block" id="Pd30M"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Pd30M">[docs]</a><span class="k">class</span> <span class="nc">Pd30M</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Control &#39;PD-30-M&#39;.</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;PD-30-M&quot;.</span>
 
 <span class="sd">    The PD-30-M is a 30 GHz bandwidth PIN receiver photodiode module</span>
 <span class="sd">    designed for RF over fiber, antenna remoting, and broadband RF</span>
 <span class="sd">    transmission applications using single mode optical.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        This class is based on &#39;maodevice.core.BaseDeviceHandler&#39;.</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        com: (maodevice.communicator)</span>
@@ -193,14 +193,14 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Pd30M.show_status"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Pd30M.show_status">[docs]</a>    <span class="nd">@decoder</span>
     <span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Show status of &#39;PD-30-M&#39;.</span>
+        <span class="sd">&quot;&quot;&quot;Show status of &quot;PD-30-M&quot;.</span>
 
 <span class="sd">        Return:</span>
-<span class="sd">            ret (bytes): Status of &#39;PD-30-M&#39;</span>
+<span class="sd">            ret (bytes): Status of &quot;PD-30-M&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;READP&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div></div>
@@ -249,6 +249,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

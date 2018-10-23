@@ -190,18 +190,6 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Destructor -- close the connection.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">return</span>
-
 <div class="viewcode-block" id="BaseCommunicator.set_terminator"><a class="viewcode-back" href="../../core.html#maodevice.core.BaseCommunicator.set_terminator">[docs]</a>    <span class="k">def</span> <span class="nf">set_terminator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_char</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the termination character.</span>
 
@@ -304,7 +292,7 @@
         <span class="sd">&quot;&quot;&quot;Open the connection to the device.</span>
 
 <span class="sd">        Note:</span>
-<span class="sd">            This method uses the one of &#39;com&#39;.</span>
+<span class="sd">            This method uses the one of &quot;com&quot;.</span>
 
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
@@ -316,12 +304,13 @@
         <span class="sd">&quot;&quot;&quot;Close the connection to the device.</span>
 
 <span class="sd">        Note:</span>
-<span class="sd">            This method uses the one of &#39;com&#39;.</span>
+<span class="sd">            This method uses the one of &quot;com&quot;.</span>
 
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
 </pre></div>
 
            </div>
@@ -367,6 +356,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

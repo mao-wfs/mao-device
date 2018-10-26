@@ -36,12 +36,12 @@ class SerialCom(BaseCommunicator):
             Defaults to None.
 
     Attributes:
-        method (str): Communication method.
+        METHOD (str): Communication method.
         connection (bool): Connection indicator.
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = "Serial"
+    METHOD = "Serial"
 
     def __init__(
             self,

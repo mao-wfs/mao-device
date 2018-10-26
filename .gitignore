@@ -1,6 +1,7 @@
-.DS_Store
-__pycache__
-*.pyc
-.pytest_cache
 docs/build/html/
-.tags
+.envrc
+.vscode
+.pytest_cache
+*.pyc
+__pycache__
+.DS_Store

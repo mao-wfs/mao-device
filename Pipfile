@@ -7,6 +7,7 @@ name = "pypi"
 pyserial = "*"
 
 [dev-packages]
+pylint = "*"
 pytest-cov = "*"
 sphinx-rtd-theme = "*"
 

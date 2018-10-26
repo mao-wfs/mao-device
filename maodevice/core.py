@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-class BaseCommunicator(object):
+from abc import ABCMeta, abstractmethod
+
+
+class BaseCommunicator(metaclass=ABCMeta):
     """Communicate with a device.
 
     This is the base class of device communicators.
@@ -12,55 +15,59 @@ class BaseCommunicator(object):
         *args: Variable length argument list.
 
     Attributes:
-        method (str): Communication method.
+        METHOD (str): Communication method.
         connection (bool): Connection indicator.
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = ""
+    METHOD = ""
+
     connection = False
     terminator = "\n"
 
     def __init__(self, *args):
-        if len(args) != 0:
+        if not len(args) != 0:
             self.open()
 
-    def set_terminator(self, term_char):
-        """Set the termination character.
-
-        Args:
-            term_char (str): Termination character.
-
-        Return:
-            None
-        """
-        self.terminator = term_char
-        return
-
+    @abstractmethod
     def open(self):
         """Open the connection to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
         """
         pass
 
+    @abstractmethod
     def close(self):
         """Close the connection to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
         """
         pass
 
+    @abstractmethod
     def send(self, msg):
         """Send a message to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
 
         Args:
             msg (str): A message to send the device.
+        """
+        pass
+
+    @abstractmethod
+    def recv(self, byte):
+        """Receive the response of the device.
+
+        Note:
+            This method must be overridden in the child class.
+
+        Args:
+            byte (int): Bytes to read.
         """
         pass
 
@@ -77,27 +84,21 @@ class BaseCommunicator(object):
         ret = self.recv(byte)
         return ret
 
-    def recv(self, byte):
-        """Receive the response of the device.
-
-        Note:
-            This method is overridden in the child class.
+    @classmethod
+    def set_terminator(cls, term_char):
+        """Set the termination character.
 
         Args:
-            byte (int): Bytes to read.
+            term_char (str): Termination character.
+
+        Return:
+            None
         """
-        pass
-
-    def readlines(self):
-        """Receive the multiple rows response of the device.
-
-        Note:
-            This method is overridden in the child class.
-        """
-        pass
+        cls.terminator = term_char
+        return
 
 
-class BaseDeviceHandler(object):
+class BaseDeviceHandler(metaclass=ABCMeta):
     """Control a device.
 
     This is the base class of device handler.
@@ -111,38 +112,23 @@ class BaseDeviceHandler(object):
             Communicator instance to control the device.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device.
-        product_name (str): Name of the device.
-        classification (str): Classification of the device.
+        MANUFACTURER (str): Manufacturer of the device.
+        PRODUCT_NAME (str): Name of the device.
+        CLASSIFICATION (str): Classification of the device.
     """
-    manufacturer = ""
-    product_name = ""
-    classification = ""
+    MANUFACTURER = ""
+    PRODUCT_NAME = ""
+    CLASSIFICATION = ""
 
     def __init__(self, com):
         self.com = com
-        self.open()
+        com.open()
 
-    def open(self):
-        """Open the connection to the device.
-
-        Note:
-            This method uses the one of "com".
-
-        Return:
-            None
-        """
-        self.com.open()
-        return
-
-    def close(self):
-        """Close the connection to the device.
+    @abstractmethod
+    def validate(self):
+        """Validate a communication to the device.
 
         Note:
-            This method uses the one of "com".
-
-        Return:
-            None
+            This method must be overridden in the child class.
         """
-        self.com.close()
-        return
+        pass

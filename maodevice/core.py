@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from abc import ABCMeta, abstractmethod
+from functools import wraps
+from types import FunctionType
 
 
-class BaseCommunicator(metaclass=ABCMeta):
+class BaseCommunicator(object, metaclass=ABCMeta):
     """Communicate with a device.
 
     This is the base class of device communicators.
@@ -28,6 +30,10 @@ class BaseCommunicator(metaclass=ABCMeta):
     def __init__(self, *args):
         if not len(args) != 0:
             self.open()
+
+    def __del__(self):
+        if self.connection == True:
+            self.close()
 
     @abstractmethod
     def open(self):
@@ -98,7 +104,7 @@ class BaseCommunicator(metaclass=ABCMeta):
         return
 
 
-class BaseDeviceHandler(metaclass=ABCMeta):
+class BaseDeviceHandler(object):
     """Control a device.
 
     This is the base class of device handler.
@@ -122,13 +128,54 @@ class BaseDeviceHandler(metaclass=ABCMeta):
 
     def __init__(self, com):
         self.com = com
-        com.open()
+        self.open()
 
-    @abstractmethod
-    def validate(self):
-        """Validate a communication to the device.
-
+    def open(self):
+        """Open the connection to the device.
         Note:
-            This method must be overridden in the child class.
+            This method uses the one of "com".
+        Return:
+            None
+        """
+        self.com.open()
+        return
+
+    def close(self):
+        """Close the connection to the device.
+        Note:
+            This method uses the one of "com".
+        Return:
+            None
+        """
+        self.com.close()
+        return
+
+
+class BaseValidator(type):
+    """
+    """
+    def __new__(meta, class_name, bases, class_dict):
+        new_class_dict = {}
+        for attribute_name, attribute in class_dict.items():
+            if isinstance(attribute, FunctionType):
+                if not attribute_name.startswith("_"):
+                    attribute = meta.validate(attribute)
+            new_class_dict[attribute_name] = attribute
+        return type.__new__(meta, class_name, bases, new_class_dict)
+
+    @classmethod
+    def validate(cls, method):
+        """
+        """
+        @wraps(method)
+        def wrapper(*args, **kwargs):
+            ret = method(*args, **kwargs)
+            cls._validate()
+            return
+        return wrapper
+
+    @classmethod
+    def _validate(cls):
+        """
         """
         pass

@@ -35,6 +35,12 @@ maodevice
    scpi
 
 .. toctree::
+   :caption: Validators
+   :maxdepth: 2
+
+   validators
+
+.. toctree::
    :caption: Utils
    :maxdepth: 2
 

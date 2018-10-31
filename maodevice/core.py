@@ -151,8 +151,14 @@ class BaseDeviceHandler(object):
         return
 
 
-class BaseValidator(type):
-    """
+class BaseValidator(type, metaclass=ABCMeta):
+    """Validate a communication with a device.
+
+    This is the base class of device validators.
+
+    Note:
+        This class itself is not used, but it is inherited by
+        child classes and used.
     """
     def __new__(meta, class_name, bases, class_dict):
         new_class_dict = {}
@@ -165,17 +171,28 @@ class BaseValidator(type):
 
     @classmethod
     def validate(cls, method):
-        """
+        """Validate a communication with a device.
+
+        This method decorates existing methods.
+
+        Args:
+            method (function): A function to be wrapped.
+
+        Return:
+            wrapper (function): A wrapped function.
         """
         @wraps(method)
-        def wrapper(*args, **kwargs):
-            ret = method(*args, **kwargs)
-            cls._validate()
-            return
+        def wrapper(self, *args, **kwargs):
+            ret = method(self, *args, **kwargs)
+            cls._validate(self)
+            return ret
         return wrapper
 
-    @classmethod
-    def _validate(cls):
-        """
+    @abstractmethod
+    def _validate(self):
+        """Validate a communication with a device.
+
+        Note:
+            This method must be overridden in the child class.
         """
         pass

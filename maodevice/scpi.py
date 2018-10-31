@@ -28,6 +28,8 @@ class ScpiCommonCommands(BaseDeviceHandler):
         "*OPC?": "operation_complete_query",
         "*PSC?": "power_on_status_clear_query",
         "*SRE?": "service_request_enable_query",
+        "*STB?": "read_status_byte_query",
+        "*TST?": "self_test",
     }
 
     def clear_status(self):

@@ -178,15 +178,14 @@
 <dt id="maodevice.transmitter.Keithley3390">
 <em class="property">class </em><code class="descclassname">maodevice.transmitter.</code><code class="descname">Keithley3390</code><span class="sig-paren">(</span><em>com</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/keithley_3390.html#Keithley3390"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Keithley3390" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../scpi.html#maodevice.scpi.ScpiHandler" title="maodevice.scpi.ScpiHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">maodevice.scpi.ScpiHandler</span></code></a></p>
-<p>Control ‘Model 3390 Arbitrary Waveform Generator’.</p>
-<p>Model 3390 Arbitrary Waveform generator</p>
+<p>Control “Model 3390 Arbitrary Waveform Generator”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This class is based on ‘maodevice.scpi.ScpiHandler’.</p>
+<p class="last">This class is based on “maodevice.scpi.ScpiHandler”.</p>
 </div>
 <dl class="attribute">
-<dt id="maodevice.transmitter.Keithley3390.manufacturer">
-<code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.manufacturer" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.transmitter.Keithley3390.MANUFACTURER">
+<code class="descname">MANUFACTURER</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.MANUFACTURER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manufacturer of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -199,8 +198,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.transmitter.Keithley3390.product_name">
-<code class="descname">product_name</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.product_name" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.transmitter.Keithley3390.PRODUCT_NAME">
+<code class="descname">PRODUCT_NAME</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.PRODUCT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -213,8 +212,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.transmitter.Keithley3390.classification">
-<code class="descname">classification</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.classification" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.transmitter.Keithley3390.CLASSIFICATION">
+<code class="descname">CLASSIFICATION</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.CLASSIFICATION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classification of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -227,13 +226,32 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.transmitter.Keithley3390.FUNCTIONS_DICT">
-<code class="descname">FUNCTIONS_DICT</code><em class="property"> = {'DC': 'aaa', 'NOIS': {'freq': {'min': 1.0}}, 'PATT': 'aaa', 'PULS': {'freq': {'max': 10000000.0, 'min': 0.0005, 'step': 1.0000000000000002e-10}, 'symmetry': {'max': 100, 'min': 0}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'RAMP': {'freq': {'MAX': 200000.0, 'MIN': 1e-06, 'STEP': 1.0000000000000002e-10}, 'symmetry': {'max': 100, 'min': 0}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'SIN': {'freq': {'max': 50000000.0, 'min': 1e-06, 'step': 1.0000000000000002e-10}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'SQU': {'dcycle': {'max': 100, 'min': 0}, 'freq': {'max': 25000000.0, 'min': 1e-06, 'step': 1.0000000000000002e-10}, 'v_off': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}, 'volt': {'max': 1, 'min': 1, 'step': 1, 'unit': 'dBm'}}, 'USER': 'aaa'}</em><a class="headerlink" href="#maodevice.transmitter.Keithley3390.FUNCTIONS_DICT" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.transmitter.Keithley3390.enable_cmds">
+<code class="descname">enable_cmds</code><a class="headerlink" href="#maodevice.transmitter.Keithley3390.enable_cmds" title="Permalink to this definition">¶</a></dt>
+<dd><p>IEEE-488.2 common commands to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">CLASSIFICATION</code><em class="property"> = 'Function generator'</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt>
-<code class="descname">classification</code><em class="property"> = 'Function generator'</em></dt>
+<code class="descname">MANUFACTURER</code><em class="property"> = 'Keithley'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">PRODUCT_NAME</code><em class="property"> = 'Model 3390 Arbitrary Waveform Generator'</em></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -264,6 +282,11 @@
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt>
+<code class="descname">enable_cmds</code><em class="property"> = ['*CLS', '*ESE', '*OPC', '*PSC', '*RCL', '*RST', '*SAV', '*SRE', '*TRG', '*WAI', '*ESE?', '*ESR?', '*IDN?', '*LRN?', '*OPC?', '*PSC?', '*SRE?', '*STB?', '*TST?']</em></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="maodevice.transmitter.Keithley3390.enable_output">
 <code class="descname">enable_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/keithley_3390.html#Keithley3390.enable_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Keithley3390.enable_output" title="Permalink to this definition">¶</a></dt>
@@ -292,16 +315,6 @@
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="descname">manufacturer</code><em class="property"> = 'Keithley'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">product_name</code><em class="property"> = 'Model 3390 Arbitrary Waveform Generator'</em></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="maodevice.transmitter.Keithley3390.query_frequency">
 <code class="descname">query_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maodevice/transmitter/keithley_3390.html#Keithley3390.query_frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.transmitter.Keithley3390.query_frequency" title="Permalink to this definition">¶</a></dt>
@@ -312,7 +325,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The frequency value in Hz.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (float)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -328,7 +341,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Function of the signal.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (str)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ret (bytes)</td>
 </tr>
 </tbody>
 </table>
@@ -397,11 +410,6 @@
 </tbody>
 </table>
 </dd></dl>
-
-<dl class="attribute">
-<dt id="maodevice.transmitter.Keithley3390.scpi_enable">
-<code class="descname">scpi_enable</code><em class="property"> = ['*CLS', '*ESE', '*ESE?', '*ESR?', '*IDN?', '*LRN?', '*OPC', '*OPC?', '*PSC', '*PSC?', '*RCL', '*RST', '*SAV', '*SRE', '*SRE?', '*STB?', '*TRG', '*TST?', '*WAI']</em><a class="headerlink" href="#maodevice.transmitter.Keithley3390.scpi_enable" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="maodevice.transmitter.Keithley3390.set_dc_offset_voltage">
@@ -890,7 +898,7 @@ Communicator instance to control the device.</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Project MAO Contributors.
+        &copy; Copyright 2018, Project MAO Contributors
 
     </p>
   </div>
@@ -909,21 +917,14 @@ Communicator instance to control the device.</td>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

@@ -188,8 +188,8 @@ child classes and used.</p>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="maodevice.core.BaseCommunicator.method">
-<code class="descname">method</code><a class="headerlink" href="#maodevice.core.BaseCommunicator.method" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.core.BaseCommunicator.METHOD">
+<code class="descname">METHOD</code><a class="headerlink" href="#maodevice.core.BaseCommunicator.METHOD" title="Permalink to this definition">¶</a></dt>
 <dd><p>Communication method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -230,13 +230,18 @@ If it is true, the connection has been established.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt>
+<code class="descname">METHOD</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="maodevice.core.BaseCommunicator.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Close the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method is overridden in the child class.</p>
+<p class="last">This method must be overridden in the child class.</p>
 </div>
 </dd></dl>
 
@@ -245,18 +250,13 @@ If it is true, the connection has been established.</p>
 <code class="descname">connection</code><em class="property"> = False</em></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="descname">method</code><em class="property"> = ''</em></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="maodevice.core.BaseCommunicator.open">
 <code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open the connection to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method is overridden in the child class.</p>
+<p class="last">This method must be overridden in the child class.</p>
 </div>
 </dd></dl>
 
@@ -279,22 +279,12 @@ If it is true, the connection has been established.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="maodevice.core.BaseCommunicator.readlines">
-<code class="descname">readlines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.readlines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.readlines" title="Permalink to this definition">¶</a></dt>
-<dd><p>Receive the multiple rows response of the device.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This method is overridden in the child class.</p>
-</div>
-</dd></dl>
-
-<dl class="method">
 <dt id="maodevice.core.BaseCommunicator.recv">
 <code class="descname">recv</code><span class="sig-paren">(</span><em>byte</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.recv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.recv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Receive the response of the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method is overridden in the child class.</p>
+<p class="last">This method must be overridden in the child class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,7 +302,7 @@ If it is true, the connection has been established.</p>
 <dd><p>Send a message to the device.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This method is overridden in the child class.</p>
+<p class="last">This method must be overridden in the child class.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -324,9 +314,9 @@ If it is true, the connection has been established.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="classmethod">
 <dt id="maodevice.core.BaseCommunicator.set_terminator">
-<code class="descname">set_terminator</code><span class="sig-paren">(</span><em>term_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.set_terminator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.set_terminator" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">set_terminator</code><span class="sig-paren">(</span><em>term_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseCommunicator.set_terminator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseCommunicator.set_terminator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the termination character.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -367,8 +357,8 @@ child classes and used.</p>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="maodevice.core.BaseDeviceHandler.manufacturer">
-<code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.manufacturer" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.core.BaseDeviceHandler.MANUFACTURER">
+<code class="descname">MANUFACTURER</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.MANUFACTURER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manufacturer of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -381,8 +371,8 @@ child classes and used.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.core.BaseDeviceHandler.product_name">
-<code class="descname">product_name</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.product_name" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.core.BaseDeviceHandler.PRODUCT_NAME">
+<code class="descname">PRODUCT_NAME</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.PRODUCT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -395,8 +385,8 @@ child classes and used.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.core.BaseDeviceHandler.classification">
-<code class="descname">classification</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.classification" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.core.BaseDeviceHandler.CLASSIFICATION">
+<code class="descname">CLASSIFICATION</code><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.CLASSIFICATION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classification of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -410,17 +400,24 @@ child classes and used.</p>
 
 <dl class="attribute">
 <dt>
-<code class="descname">classification</code><em class="property"> = ''</em></dt>
+<code class="descname">CLASSIFICATION</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">MANUFACTURER</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">PRODUCT_NAME</code><em class="property"> = ''</em></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="maodevice.core.BaseDeviceHandler.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseDeviceHandler.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close the connection to the device.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This method uses the one of “com”.</p>
-</div>
+<dd><p>Close the connection to the device.
+.. note:: This method uses the one of “com”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -430,20 +427,12 @@ child classes and used.</p>
 </tbody>
 </table>
 </dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">manufacturer</code><em class="property"> = ''</em></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="maodevice.core.BaseDeviceHandler.open">
 <code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseDeviceHandler.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseDeviceHandler.open" title="Permalink to this definition">¶</a></dt>
-<dd><p>Open the connection to the device.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This method uses the one of “com”.</p>
-</div>
+<dd><p>Open the connection to the device.
+.. note:: This method uses the one of “com”.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -454,10 +443,37 @@ child classes and used.</p>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="descname">product_name</code><em class="property"> = ''</em></dt>
-<dd></dd></dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="maodevice.core.BaseValidator">
+<em class="property">class </em><code class="descclassname">maodevice.core.</code><code class="descname">BaseValidator</code><a class="reference internal" href="_modules/maodevice/core.html#BaseValidator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseValidator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
+<p>Validate a communication with a device.</p>
+<p>This is the base class of device validators.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class itself is not used, but it is inherited by
+child classes and used.</p>
+</div>
+<dl class="classmethod">
+<dt id="maodevice.core.BaseValidator.validate">
+<em class="property">classmethod </em><code class="descname">validate</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/maodevice/core.html#BaseValidator.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#maodevice.core.BaseValidator.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a communication with a device.</p>
+<p>This method decorates existing methods.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>method</strong> (<em>function</em>) – A function to be wrapped.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A wrapped function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">wrapper (function)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -483,7 +499,7 @@ child classes and used.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Project MAO Contributors.
+        &copy; Copyright 2018, Project MAO Contributors
 
     </p>
   </div>
@@ -502,21 +518,14 @@ child classes and used.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

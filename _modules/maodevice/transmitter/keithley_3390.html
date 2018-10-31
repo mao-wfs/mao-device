@@ -165,61 +165,30 @@
   <h1>Source code for maodevice.transmitter.keithley_3390</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">from</span> <span class="nn">maodevice.scpi</span> <span class="k">import</span> <span class="n">ScpiHandler</span>
-<span class="kn">from</span> <span class="nn">maodevice.utils.decorators</span> <span class="k">import</span> <span class="n">chooser</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">limitter</span>
+<span class="kn">from</span> <span class="nn">maodevice.validators</span> <span class="k">import</span> <span class="n">Keithley3390Validator</span>
 
 
-<div class="viewcode-block" id="Keithley3390"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390">[docs]</a><span class="k">class</span> <span class="nc">Keithley3390</span><span class="p">(</span><span class="n">ScpiHandler</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Control &#39;Model 3390 Arbitrary Waveform Generator&#39;.</span>
-
-<span class="sd">    Model 3390 Arbitrary Waveform generator</span>
+<div class="viewcode-block" id="Keithley3390"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390">[docs]</a><span class="k">class</span> <span class="nc">Keithley3390</span><span class="p">(</span><span class="n">ScpiHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Keithley3390Validator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;Model 3390 Arbitrary Waveform Generator&quot;.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        This class is based on &#39;maodevice.scpi.ScpiHandler&#39;.</span>
+<span class="sd">        This class is based on &quot;maodevice.scpi.ScpiHandler&quot;.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        manufacturer (str): Manufacturer of the device.</span>
-<span class="sd">        product_name (str): Name of the device.</span>
-<span class="sd">        classification (str): Classification of the device.</span>
+<span class="sd">        MANUFACTURER (str): Manufacturer of the device.</span>
+<span class="sd">        PRODUCT_NAME (str): Name of the device.</span>
+<span class="sd">        CLASSIFICATION (str): Classification of the device.</span>
+<span class="sd">        enable_cmds (:obj:`list` of :obj:`str`):</span>
+<span class="sd">            IEEE-488.2 common commands to use.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">manufacturer</span> <span class="o">=</span> <span class="s2">&quot;Keithley&quot;</span>
-    <span class="n">product_name</span> <span class="o">=</span> <span class="s2">&quot;Model 3390 Arbitrary Waveform Generator&quot;</span>
-    <span class="n">classification</span> <span class="o">=</span> <span class="s2">&quot;Function generator&quot;</span>
+    <span class="n">MANUFACTURER</span> <span class="o">=</span> <span class="s2">&quot;Keithley&quot;</span>
+    <span class="n">PRODUCT_NAME</span> <span class="o">=</span> <span class="s2">&quot;Model 3390 Arbitrary Waveform Generator&quot;</span>
+    <span class="n">CLASSIFICATION</span> <span class="o">=</span> <span class="s2">&quot;Function generator&quot;</span>
 
-    <span class="n">scpi_enable</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*CLS&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESR?&quot;</span><span class="p">,</span> <span class="s2">&quot;*IDN?&quot;</span><span class="p">,</span> <span class="s2">&quot;*LRN?&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;*OPC&quot;</span><span class="p">,</span> <span class="s2">&quot;*OPC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*RCL&quot;</span><span class="p">,</span> <span class="s2">&quot;*RST&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;*SAV&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*STB?&quot;</span><span class="p">,</span> <span class="s2">&quot;*TRG&quot;</span><span class="p">,</span> <span class="s2">&quot;*TST?&quot;</span><span class="p">,</span> <span class="s2">&quot;*WAI&quot;</span><span class="p">]</span>
-
-    <span class="n">FUNCTIONS_DICT</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;SIN&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">50.</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">},</span>
-            <span class="s1">&#39;volt&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;v_off&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;SQU&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">25.</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">},</span>
-            <span class="s1">&#39;volt&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;v_off&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;dcycle&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;RAMP&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;MIN&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;MAX&#39;</span><span class="p">:</span> <span class="mf">200.</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;STEP&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">},</span>
-            <span class="s1">&#39;volt&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;v_off&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;symmetry&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;NOIS&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;PULS&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">500.</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">10.</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">},</span>
-            <span class="s1">&#39;volt&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;v_off&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;dBm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-            <span class="s1">&#39;symmetry&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;DC&#39;</span><span class="p">:</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;PATT&#39;</span><span class="p">:</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span>
-    <span class="p">}</span>
+    <span class="n">enable_cmds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*CLS&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE&quot;</span><span class="p">,</span> <span class="s2">&quot;*OPC&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC&quot;</span><span class="p">,</span> <span class="s2">&quot;*RCL&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*RST&quot;</span><span class="p">,</span> <span class="s2">&quot;*SAV&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE&quot;</span><span class="p">,</span> <span class="s2">&quot;*TRG&quot;</span><span class="p">,</span> <span class="s2">&quot;*WAI&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*ESE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESR?&quot;</span><span class="p">,</span> <span class="s2">&quot;*IDN?&quot;</span><span class="p">,</span> <span class="s2">&quot;*LRN?&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*OPC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*STB?&quot;</span><span class="p">,</span> <span class="s2">&quot;*TST?&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
@@ -235,14 +204,13 @@
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;FUNC </span><span class="si">{func}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="Keithley3390.query_function"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_function">[docs]</a>    <span class="k">def</span> <span class="nf">query_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query the function of the signal.</span>
 
 <span class="sd">        Return:</span>
-<span class="sd">            ret (str): Function of the signal.</span>
+<span class="sd">            ret (bytes): Function of the signal.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;FUNC?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
@@ -263,12 +231,12 @@
         <span class="sd">&quot;&quot;&quot;Query frequency of the signal.</span>
 
 <span class="sd">        Return:</span>
-<span class="sd">            ret (float): The frequency value in Hz.</span>
+<span class="sd">            ret (bytes): The frequency value in Hz.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;FREQ?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volt</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;dBm&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Keithley3390.set_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volt</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;dBm&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set voltage of the signal.</span>
 
 <span class="sd">        Args:</span>
@@ -415,7 +383,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Project MAO Contributors.
+        &copy; Copyright 2018, Project MAO Contributors
 
     </p>
   </div>
@@ -434,21 +402,14 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

@@ -165,64 +165,39 @@
   <h1>Source code for maodevice.scpi</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">from</span> <span class="nn">maodevice.core</span> <span class="k">import</span> <span class="n">BaseDeviceHandler</span>
-<span class="kn">from</span> <span class="nn">maodevice.utils.misc</span> <span class="k">import</span> <span class="n">extract_bits</span><span class="p">,</span> <span class="n">or_of_bits</span>
 
 
-<div class="viewcode-block" id="ScpiCommands"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands">[docs]</a><span class="k">class</span> <span class="nc">ScpiCommands</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands">[docs]</a><span class="k">class</span> <span class="nc">ScpiCommonCommands</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;IEEE-488.2 common commands.</span>
 
 <span class="sd">    This class is for handling IEEE-488.2 common commands.</span>
 
 <span class="sd">    Attribute:</span>
 <span class="sd">        SCPI_DICT (dict): Dictionary of IEEE-488.2 common commands.</span>
-<span class="sd">        STANDARD_EVENT_REGISTER_DICT (dict)</span>
-<span class="sd">        STATUS_BYTE_REGISTER_DICT (dict)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SCPI_DICT</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;*CLS&quot;</span><span class="p">:</span> <span class="s2">&quot;clear_status&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*ESE&quot;</span><span class="p">:</span> <span class="s2">&quot;standard_event_status_enable&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*CLS&quot;</span><span class="p">:</span>  <span class="s2">&quot;clear_status&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*ESE&quot;</span><span class="p">:</span>  <span class="s2">&quot;standard_event_status_enable&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*OPC&quot;</span><span class="p">:</span>  <span class="s2">&quot;operation_complete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*PSC&quot;</span><span class="p">:</span>  <span class="s2">&quot;power_on_status_clear&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*RCL&quot;</span><span class="p">:</span>  <span class="s2">&quot;recall&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*RST&quot;</span><span class="p">:</span>  <span class="s2">&quot;reset&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*SAV&quot;</span><span class="p">:</span>  <span class="s2">&quot;save&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*SRE&quot;</span><span class="p">:</span>  <span class="s2">&quot;service_request_enable&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*TRG&quot;</span><span class="p">:</span>  <span class="s2">&quot;trigger&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;*WAI&quot;</span><span class="p">:</span>  <span class="s2">&quot;wait_to_continue&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*ESE?&quot;</span><span class="p">:</span> <span class="s2">&quot;standard_event_status_enable_query&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*ESR?&quot;</span><span class="p">:</span> <span class="s2">&quot;standard_event_status_register_query&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*IDN?&quot;</span><span class="p">:</span> <span class="s2">&quot;identification_query&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*LRN?&quot;</span><span class="p">:</span> <span class="s2">&quot;learn_device_setup_query&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*OPC&quot;</span><span class="p">:</span> <span class="s2">&quot;operation_complete&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*OPC?&quot;</span><span class="p">:</span> <span class="s2">&quot;operation_complete_query&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*PSC&quot;</span><span class="p">:</span> <span class="s2">&quot;power_on_status_clear&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*PSC?&quot;</span><span class="p">:</span> <span class="s2">&quot;power_on_status_clear_query&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*RCL&quot;</span><span class="p">:</span> <span class="s2">&quot;recall&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*RST&quot;</span><span class="p">:</span> <span class="s2">&quot;reset&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*SAV&quot;</span><span class="p">:</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*SRE&quot;</span><span class="p">:</span> <span class="s2">&quot;service_request_enable&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*SRE?&quot;</span><span class="p">:</span> <span class="s2">&quot;service_request_enable_query&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*STB?&quot;</span><span class="p">:</span> <span class="s2">&quot;read_status_byte_query&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*TRG&quot;</span><span class="p">:</span> <span class="s2">&quot;trigger&quot;</span><span class="p">,</span>
         <span class="s2">&quot;*TST?&quot;</span><span class="p">:</span> <span class="s2">&quot;self_test&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*WAI&quot;</span><span class="p">:</span> <span class="s2">&quot;wait_to_continue&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="n">STANDARD_EVENT_REGISTER_DICT</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;Operation Complete&quot;</span><span class="p">:</span> <span class="mh">0x01</span><span class="p">,</span>
-        <span class="s2">&quot;Unused 1&quot;</span><span class="p">:</span> <span class="mh">0x02</span><span class="p">,</span>
-        <span class="s2">&quot;Query Error&quot;</span><span class="p">:</span> <span class="mh">0x04</span><span class="p">,</span>
-        <span class="s2">&quot;Device Error&quot;</span><span class="p">:</span> <span class="mh">0x08</span><span class="p">,</span>
-        <span class="s2">&quot;Execution Error&quot;</span><span class="p">:</span> <span class="mh">0x10</span><span class="p">,</span>
-        <span class="s2">&quot;Command Error&quot;</span><span class="p">:</span> <span class="mh">0x20</span><span class="p">,</span>
-        <span class="s2">&quot;Unused 2&quot;</span><span class="p">:</span> <span class="mh">0x40</span><span class="p">,</span>
-        <span class="s2">&quot;Power On&quot;</span><span class="p">:</span> <span class="mh">0x80</span><span class="p">,</span>
-    <span class="p">}</span>
-
-    <span class="n">STATUS_BYTE_REGISTER_DICT</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;Unused 1&quot;</span><span class="p">:</span> <span class="mh">0x01</span><span class="p">,</span>
-        <span class="s2">&quot;Unused 2&quot;</span><span class="p">:</span> <span class="mh">0x02</span><span class="p">,</span>
-        <span class="s2">&quot;Error Queue&quot;</span><span class="p">:</span> <span class="mh">0x04</span><span class="p">,</span>
-        <span class="s2">&quot;Questionable Data Register&quot;</span><span class="p">:</span> <span class="mh">0x08</span><span class="p">,</span>
-        <span class="s2">&quot;Output Buffer&quot;</span><span class="p">:</span> <span class="mh">0x10</span><span class="p">,</span>
-        <span class="s2">&quot;Standard Event Register&quot;</span><span class="p">:</span> <span class="mh">0x20</span><span class="p">,</span>
-        <span class="s2">&quot;Status Byte Register&quot;</span><span class="p">:</span> <span class="mh">0x40</span><span class="p">,</span>
-        <span class="s2">&quot;Unused 3&quot;</span><span class="p">:</span> <span class="mh">0x80</span><span class="p">,</span>
-    <span class="p">}</span>
-
-<div class="viewcode-block" id="ScpiCommands.clear_status"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.clear_status">[docs]</a>    <span class="k">def</span> <span class="nf">clear_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.clear_status"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.clear_status">[docs]</a>    <span class="k">def</span> <span class="nf">clear_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;CLS: Clear Status</span>
 
 <span class="sd">        This commands clear the status byte, the data questionable</span>
@@ -239,7 +214,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*CLS&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.standard_event_status_enable"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_enable">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">bits</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.standard_event_status_enable"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_enable">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;ESE: Standard Event Status Enable</span>
 
 <span class="sd">        This command sets the standard event status enable register.</span>
@@ -256,8 +231,7 @@
 <span class="sd">            - 7 (128): Power On</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            bits (:obj:`tuple` of :obj:`int`): Standard event register</span>
-<span class="sd">                bits to be turned on.</span>
+<span class="sd">            bit (int): Standard event register bits to be turned on.</span>
 
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
@@ -265,95 +239,12 @@
 <span class="sd">        Example:</span>
 <span class="sd">            Bit 4 and bit 5 of the enable register are on::</span>
 
-<span class="sd">                &gt;&gt;&gt; standard_event_status_enable(4, 5)</span>
+<span class="sd">                &gt;&gt;&gt; standard_event_status_enable(24) # 0b11000, 0x18</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">or_bit</span> <span class="o">=</span> <span class="n">or_of_bits</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*ESE </span><span class="si">{or_bit}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*ESE </span><span class="si">{bit}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.standard_event_status_enable_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_enable_query">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_enable_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;ESE?: Standard Event Status Enable query</span>
-
-<span class="sd">        This queries the status of standard event status enable</span>
-<span class="sd">        register. This is a destructive read.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (:obj:`list` of :obj:`str`): Standard event status</span>
-<span class="sd">                enable register.</span>
-
-<span class="sd">        Example:</span>
-<span class="sd">            When bit 1, bit 3, bit 5 are enable::</span>
-
-<span class="sd">                &gt;&gt;&gt; standard_event_status_enable_query()</span>
-<span class="sd">                [1, 3, 5]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*ESE?&quot;</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">extract_bits</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">STANDARD_EVENT_REGISTER_DICT</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.standard_event_status_register_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_register_query">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_register_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;ESR?: Standard Event Status Register query</span>
-
-<span class="sd">        This queries the value of the standard event status register.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (:obj:`list` of :obj:`str`): Standard event status</span>
-<span class="sd">                register.</span>
-
-<span class="sd">        Example:</span>
-<span class="sd">            When bit 3 and bit 4 are going::</span>
-
-<span class="sd">                &gt;&gt;&gt; standard_event_status_register_query()</span>
-<span class="sd">                [3, 4]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*ESR?&quot;</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">extract_bits</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">STANDARD_EVENT_REGISTER_DICT</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.identification_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.identification_query">[docs]</a>    <span class="k">def</span> <span class="nf">identification_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;IDN? Idntification query</span>
-
-<span class="sd">        This query outputs an identifying string to the GPIB. The response</span>
-<span class="sd">        for the signal generator will be a storing that shows the actual</span>
-<span class="sd">        model number, serial number and firmware revision will be</span>
-<span class="sd">        substituted.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (str): String that identify the device.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*IDN?&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.learn_device_setup_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.learn_device_setup_query">[docs]</a>    <span class="k">def</span> <span class="nf">learn_device_setup_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;LRN? Learn Device Setup query</span>
-
-<span class="sd">        This query returns instrument settings by binary block data</span>
-<span class="sd">        (same as Save/Recall state file contents) with &quot;SYSTem:SET&quot;</span>
-<span class="sd">        prefix.</span>
-<span class="sd">        The returned data is the same as the contents of state file</span>
-<span class="sd">        which can be saved by the SCPI.MMEMory.STORe.STATe. Therefore,</span>
-<span class="sd">        the returned data contents is changed according to the setting</span>
-<span class="sd">        of SCPI.MMEMory.STORe.STYPe.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (str): Instruments settings by binary block data</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*LRN?&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.operation_complete"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.operation_complete">[docs]</a>    <span class="k">def</span> <span class="nf">operation_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.operation_complete"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.operation_complete">[docs]</a>    <span class="k">def</span> <span class="nf">operation_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;OPC: Operation Complete</span>
 
 <span class="sd">        This command sets bit 0 in the standard event status register</span>
@@ -368,23 +259,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*OPC&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.operation_complete_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.operation_complete_query">[docs]</a>    <span class="k">def</span> <span class="nf">operation_complete_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;OPC?: Operation Complete query</span>
-
-<span class="sd">        This queries bit 0 in the standard event status register. The</span>
-<span class="sd">        signal generator will return an ASCII &quot;1&quot; when all pending</span>
-<span class="sd">        operations have finished.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (str): ASCII &quot;1&quot;.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.power_on_status_clear"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.power_on_status_clear">[docs]</a>    <span class="k">def</span> <span class="nf">power_on_status_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.power_on_status_clear"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.power_on_status_clear">[docs]</a>    <span class="k">def</span> <span class="nf">power_on_status_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PSC: Power on Status Clear</span>
 
 <span class="sd">        This command turns on / off clearing of the specific enable</span>
@@ -399,21 +274,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*PSC </span><span class="si">{status}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.power_on_status_clear_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.power_on_status_clear_query">[docs]</a>    <span class="k">def</span> <span class="nf">power_on_status_clear_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;PSC?: Power on Status Clear query</span>
-
-<span class="sd">        This command queries the power on status clear setting.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (int): On (1) or Off (0).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*PSC?&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.recall"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.recall">[docs]</a>    <span class="k">def</span> <span class="nf">recall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mem_loc</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.recall"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.recall">[docs]</a>    <span class="k">def</span> <span class="nf">recall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mem_loc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;RCL: Recall</span>
 
 <span class="sd">        This command recall the complete instrument setting from memory.</span>
@@ -428,7 +289,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*RCL </span><span class="si">{mem_loc}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.reset"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.reset"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;RST: Reset</span>
 
 <span class="sd">        This command resets the instrument to a factory pre-defined</span>
@@ -443,7 +304,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*RST&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.save"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mem_loc</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.save"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mem_loc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;SAV: Save</span>
 
 <span class="sd">        This command save the complete instrument setting to memory.</span>
@@ -458,7 +319,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*SAV </span><span class="si">{mem_loc}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.service_request_enable"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.service_request_enable">[docs]</a>    <span class="k">def</span> <span class="nf">service_request_enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">bits</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.service_request_enable"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.service_request_enable">[docs]</a>    <span class="k">def</span> <span class="nf">service_request_enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;SRE: Service Request Enable</span>
 
 <span class="sd">        This command sets the value of the service request enable</span>
@@ -476,46 +337,12 @@
 <span class="sd">            - 7 (128): Unused</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            bits (:obj:`tuple` of :obj:`int`): Standard event register</span>
-<span class="sd">                bits to be turned on.</span>
+<span class="sd">            bit (int): Standard event register bits to be turned on.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">or_bit</span> <span class="o">=</span> <span class="n">or_of_bits</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*SRE </span><span class="si">{or_bit}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;*SRE </span><span class="si">{bit}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.service_request_enable_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.service_request_enable_query">[docs]</a>    <span class="k">def</span> <span class="nf">service_request_enable_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;SRE?: Service Request Enable query</span>
-
-<span class="sd">        This queries the value of the service request enable</span>
-<span class="sd">        register.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (:obj:`list` of :obj:`str`): Status byte register.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*SRE?&quot;</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">extract_bits</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">STATUS_BYTE_REGISTER_DICT</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.read_status_byte_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.read_status_byte_query">[docs]</a>    <span class="k">def</span> <span class="nf">read_status_byte_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;STB?: Read Status Byte query</span>
-
-<span class="sd">        This queries the status byte. This is a non-destructive read.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (:obj:`list` of :obj:`int`): Status byte register bits</span>
-<span class="sd">                to be turned on.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*STB?&quot;</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">extract_bits</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">STATUS_BYTE_REGISTER_DICT</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.trigger"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.trigger">[docs]</a>    <span class="k">def</span> <span class="nf">trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.trigger"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.trigger">[docs]</a>    <span class="k">def</span> <span class="nf">trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;TRG: Trigger</span>
 
 <span class="sd">        This command triggers the device if, and only if, Bus</span>
@@ -531,21 +358,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*TRG&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="ScpiCommands.self_test"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.self_test">[docs]</a>    <span class="k">def</span> <span class="nf">self_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;TST?: Self-Test query</span>
-
-<span class="sd">        This query returns the result of the power-up selftest.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            None</span>
-
-<span class="sd">        Return:</span>
-<span class="sd">            ret (int): 0 (Passed) or 1 (Failed).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*TST?&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="ScpiCommands.wait_to_continue"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommands.wait_to_continue">[docs]</a>    <span class="k">def</span> <span class="nf">wait_to_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScpiCommonCommands.wait_to_continue"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.wait_to_continue">[docs]</a>    <span class="k">def</span> <span class="nf">wait_to_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;WAI: Wait-to-Continue</span>
 
 <span class="sd">        This command causes the instrument to wait until all pending</span>
@@ -558,7 +371,146 @@
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*WAI&quot;</span><span class="p">)</span>
-        <span class="k">return</span></div></div>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.standard_event_status_enable_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_enable_query">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_enable_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ESE?: Standard Event Status Enable query</span>
+
+<span class="sd">        This queries the status of standard event status enable</span>
+<span class="sd">        register. This is a destructive read.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Standard event status enable register.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*ESE?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+    
+<div class="viewcode-block" id="ScpiCommonCommands.standard_event_status_register_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_register_query">[docs]</a>    <span class="k">def</span> <span class="nf">standard_event_status_register_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ESR?: Standard Event Status Register query</span>
+
+<span class="sd">        This queries the value of the standard event status register.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Standard event status register.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*ESR?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.identification_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.identification_query">[docs]</a>    <span class="k">def</span> <span class="nf">identification_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;IDN? Idntification query</span>
+
+<span class="sd">        This query outputs an identifying string to the GPIB. The response</span>
+<span class="sd">        for the signal generator will be a storing that shows the actual</span>
+<span class="sd">        model number, serial number and firmware revision will be</span>
+<span class="sd">        substituted.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): String that identify the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*IDN?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.learn_device_setup_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.learn_device_setup_query">[docs]</a>    <span class="k">def</span> <span class="nf">learn_device_setup_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;LRN? Learn Device Setup query</span>
+
+<span class="sd">        This query returns instrument settings by binary block data</span>
+<span class="sd">        (same as Save/Recall state file contents) with &quot;SYSTem:SET&quot;</span>
+<span class="sd">        prefix.</span>
+<span class="sd">        The returned data is the same as the contents of state file</span>
+<span class="sd">        which can be saved by the SCPI.MMEMory.STORe.STATe. Therefore,</span>
+<span class="sd">        the returned data contents is changed according to the setting</span>
+<span class="sd">        of SCPI.MMEMory.STORe.STYPe.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Instruments settings by binary block data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*LRN?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+ 
+<div class="viewcode-block" id="ScpiCommonCommands.operation_complete_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.operation_complete_query">[docs]</a>    <span class="k">def</span> <span class="nf">operation_complete_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;OPC?: Operation Complete query</span>
+
+<span class="sd">        This queries bit 0 in the standard event status register. The</span>
+<span class="sd">        signal generator will return an ASCII &quot;1&quot; when all pending</span>
+<span class="sd">        operations have finished.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): ASCII &quot;1&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*OPC?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.power_on_status_clear_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.power_on_status_clear_query">[docs]</a>    <span class="k">def</span> <span class="nf">power_on_status_clear_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;PSC?: Power on Status Clear query</span>
+
+<span class="sd">        This command queries the power on status clear setting.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): On (1) or Off (0).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*PSC?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.service_request_enable_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.service_request_enable_query">[docs]</a>    <span class="k">def</span> <span class="nf">service_request_enable_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;SRE?: Service Request Enable query</span>
+
+<span class="sd">        This queries the value of the service request enable</span>
+<span class="sd">        register.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Status byte register.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*SRE?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.read_status_byte_query"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.read_status_byte_query">[docs]</a>    <span class="k">def</span> <span class="nf">read_status_byte_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;STB?: Read Status Byte query</span>
+
+<span class="sd">        This queries the status byte. This is a non-destructive read.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Status byte register bits to be turned on.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*STB?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="ScpiCommonCommands.self_test"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiCommonCommands.self_test">[docs]</a>    <span class="k">def</span> <span class="nf">self_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;TST?: Self-Test query</span>
+
+<span class="sd">        This query returns the result of the power-up selftest.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (int): 0 (Passed) or 1 (Failed).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;*TST?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
 
 
 <div class="viewcode-block" id="ScpiHandler"><a class="viewcode-back" href="../../scpi.html#maodevice.scpi.ScpiHandler">[docs]</a><span class="k">class</span> <span class="nc">ScpiHandler</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">):</span>
@@ -569,29 +521,28 @@
 <span class="sd">        before instantiation.</span>
 <span class="sd">        When you use only CLS and RST,::</span>
 
-<span class="sd">            &gt;&gt;&gt; scpi_enable = [&quot;*CLS&quot;, &quot;*RST&quot;]</span>
+<span class="sd">            &gt;&gt;&gt; enable_cmds = [&quot;*CLS&quot;, &quot;*RST&quot;]</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        com (maodevice.communicator):</span>
 <span class="sd">            Communicator instance to control the device.</span>
 
 <span class="sd">    Attribute:</span>
-<span class="sd">        scpi_enable (:obj:`list` of :obj:`str`):</span>
+<span class="sd">        enable_cmds (:obj:`list` of :obj:`str`):</span>
 <span class="sd">            IEEE-488.2 common commands to use.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">scpi_enable</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;*CLS&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESR?&quot;</span><span class="p">,</span> <span class="s2">&quot;*IDN?&quot;</span><span class="p">,</span> <span class="s2">&quot;*LRN?&quot;</span><span class="p">,</span> <span class="s2">&quot;*OPC&quot;</span><span class="p">,</span> <span class="s2">&quot;*OPC?&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*PSC&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*RCL&quot;</span><span class="p">,</span> <span class="s2">&quot;*RST&quot;</span><span class="p">,</span> <span class="s2">&quot;*SAV&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*STB?&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;*TRG&quot;</span><span class="p">,</span> <span class="s2">&quot;*TST?&quot;</span><span class="p">,</span> <span class="s2">&quot;*WAI&quot;</span><span class="p">,</span>
-    <span class="p">]</span>
+    <span class="n">enable_cmds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*CLS&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESE&quot;</span><span class="p">,</span> <span class="s2">&quot;*OPC&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC&quot;</span><span class="p">,</span> <span class="s2">&quot;*RCL&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*RST&quot;</span><span class="p">,</span> <span class="s2">&quot;*SAV&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE&quot;</span><span class="p">,</span> <span class="s2">&quot;*TRG&quot;</span><span class="p">,</span> <span class="s2">&quot;*WAI&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*ESE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*ESR?&quot;</span><span class="p">,</span> <span class="s2">&quot;*IDN?&quot;</span><span class="p">,</span> <span class="s2">&quot;*LRN?&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;*OPC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*PSC?&quot;</span><span class="p">,</span> <span class="s2">&quot;*SRE?&quot;</span><span class="p">,</span> <span class="s2">&quot;*STB?&quot;</span><span class="p">,</span> <span class="s2">&quot;*TST?&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scpi</span> <span class="o">=</span> <span class="n">ScpiCommands</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scpi</span> <span class="o">=</span> <span class="n">ScpiCommonCommands</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_scpi_methods</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_add_scpi_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add methods of IEEE-488-2 common commands.</span>
+        <span class="sd">&quot;&quot;&quot;Add methods of IEEE-488.2 common commands.</span>
 
 <span class="sd">        Note:</span>
 <span class="sd">            This method is only for the internal use.</span>
@@ -600,14 +551,9 @@
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">scpi_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scpi</span><span class="o">.</span><span class="n">SCPI_DICT</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scpi_enable</span> <span class="o">==</span> <span class="s2">&quot;ALL&quot;</span><span class="p">:</span>
-            <span class="n">add_items</span> <span class="o">=</span> <span class="n">scpi_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">add_items</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="p">[</span><span class="n">enable</span><span class="p">,</span> <span class="n">scpi_dict</span><span class="p">[</span><span class="n">enable</span><span class="p">]]</span> <span class="k">for</span> <span class="n">enable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scpi_enable</span>
-            <span class="p">]</span>
+        <span class="n">add_cmds</span> <span class="o">=</span> <span class="p">[(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">scpi_dict</span><span class="p">[</span><span class="n">cmd</span><span class="p">])</span> <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_cmds</span><span class="p">]</span>
 
-        <span class="k">for</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">verbose_cmd</span> <span class="ow">in</span> <span class="n">add_items</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">verbose_cmd</span> <span class="ow">in</span> <span class="n">add_cmds</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span>
                 <span class="n">verbose_cmd</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_scpi</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">verbose_cmd</span><span class="p">),</span>
@@ -628,7 +574,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Project MAO Contributors.
+        &copy; Copyright 2018, Project MAO Contributors
 
     </p>
   </div>
@@ -647,21 +593,14 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

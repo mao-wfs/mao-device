@@ -171,7 +171,6 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
- | <a href="#F"><strong>F</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -182,6 +181,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -193,6 +193,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core.html#maodevice.core.BaseDeviceHandler">BaseDeviceHandler (class in maodevice.core)</a>
+</li>
+      <li><a href="core.html#maodevice.core.BaseValidator">BaseValidator (class in maodevice.core)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -206,15 +208,15 @@
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.classfication">classfication (maodevice.correlator.OctadS attribute)</a>
 </li>
-      <li><a href="core.html#maodevice.core.BaseDeviceHandler.classification">classification (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.classification">[1]</a>
+      <li><a href="core.html#maodevice.core.BaseDeviceHandler.CLASSIFICATION">CLASSIFICATION (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.CLASSIFICATION">[1]</a>
+</li>
+      <li><a href="devices/correlator.html#maodevice.correlator.OctadS.classification">classification (maodevice.correlator.OctadS attribute)</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.CLASSIFICATION">CLASSIFICATION (maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.CLASSIFICATION">[1]</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.classification">classification (maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.classification">[1]</a>
 
       <ul>
-        <li><a href="devices/correlator.html#maodevice.correlator.OctadS.classification">(maodevice.correlator.OctadS attribute)</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.classification">(maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.classification">[1]</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.classification">(maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.classification">[1]</a>
-</li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Md20M.classification">(maodevice.transmitter.Md20M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Md20M.classification">[1]</a>
 </li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Pd30M.classification">(maodevice.transmitter.Pd30M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Pd30M.classification">[1]</a>
@@ -222,7 +224,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.clear_status">clear_status() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.clear_status">clear_status() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="communicator.html#maodevice.communicator.SerialCom.close">close() (maodevice.communicator.SerialCom method)</a>
 
@@ -264,10 +266,16 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_output">enable_output() (maodevice.transmitter.Keithley3390 method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiHandler.enable_cmds">enable_cmds (maodevice.scpi.ScpiHandler attribute)</a>
+
+      <ul>
+        <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_cmds">(maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_cmds">[1]</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_output">enable_output() (maodevice.transmitter.Keithley3390 method)</a>
+</li>
       <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_synchronize">enable_synchronize() (maodevice.transmitter.Keithley3390 method)</a>
 </li>
       <li><a href="utils.html#maodevice.utils.misc.extract_bits">extract_bits() (in module maodevice.utils.misc)</a>
@@ -275,18 +283,10 @@
   </ul></td>
 </tr></table>
 
-<h2 id="F">F</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.FUNCTIONS_DICT">FUNCTIONS_DICT (maodevice.transmitter.Keithley3390 attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.identification_query">identification_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.identification_query">identification_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -302,7 +302,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.learn_device_setup_query">learn_device_setup_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.learn_device_setup_query">learn_device_setup_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -316,15 +316,15 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="core.html#maodevice.core.BaseDeviceHandler.manufacturer">manufacturer (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.manufacturer">[1]</a>
+      <li><a href="core.html#maodevice.core.BaseDeviceHandler.MANUFACTURER">MANUFACTURER (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.MANUFACTURER">[1]</a>
+</li>
+      <li><a href="devices/correlator.html#maodevice.correlator.OctadS.manufacturer">manufacturer (maodevice.correlator.OctadS attribute)</a>, <a href="devices/correlator.html#maodevice.correlator.OctadS.manufacturer">[1]</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.MANUFACTURER">MANUFACTURER (maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.MANUFACTURER">[1]</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.manufacturer">manufacturer (maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.manufacturer">[1]</a>
 
       <ul>
-        <li><a href="devices/correlator.html#maodevice.correlator.OctadS.manufacturer">(maodevice.correlator.OctadS attribute)</a>, <a href="devices/correlator.html#maodevice.correlator.OctadS.manufacturer">[1]</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.manufacturer">(maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.manufacturer">[1]</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.manufacturer">(maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.manufacturer">[1]</a>
-</li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Md20M.manufacturer">(maodevice.transmitter.Md20M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Md20M.manufacturer">[1]</a>
 </li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Pd30M.manufacturer">(maodevice.transmitter.Pd30M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Pd30M.manufacturer">[1]</a>
@@ -342,12 +342,12 @@
 </li>
       <li><a href="devices/transmitter.html#maodevice.transmitter.Md20M">Md20M (class in maodevice.transmitter)</a>
 </li>
-      <li><a href="communicator.html#maodevice.communicator.SerialCom.method">method (maodevice.communicator.SerialCom attribute)</a>, <a href="communicator.html#maodevice.communicator.SerialCom.method">[1]</a>
+      <li><a href="communicator.html#maodevice.communicator.SerialCom.METHOD">METHOD (maodevice.communicator.SerialCom attribute)</a>, <a href="communicator.html#maodevice.communicator.SerialCom.METHOD">[1]</a>
 
       <ul>
-        <li><a href="communicator.html#maodevice.communicator.SocketCom.method">(maodevice.communicator.SocketCom attribute)</a>, <a href="communicator.html#maodevice.communicator.SocketCom.method">[1]</a>
+        <li><a href="communicator.html#maodevice.communicator.SocketCom.METHOD">(maodevice.communicator.SocketCom attribute)</a>, <a href="communicator.html#maodevice.communicator.SocketCom.METHOD">[1]</a>
 </li>
-        <li><a href="core.html#maodevice.core.BaseCommunicator.method">(maodevice.core.BaseCommunicator attribute)</a>, <a href="core.html#maodevice.core.BaseCommunicator.method">[1]</a>
+        <li><a href="core.html#maodevice.core.BaseCommunicator.METHOD">(maodevice.core.BaseCommunicator attribute)</a>, <a href="core.html#maodevice.core.BaseCommunicator.METHOD">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -370,9 +370,9 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.operation_complete">operation_complete() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.operation_complete">operation_complete() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.operation_complete_query">operation_complete_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.operation_complete_query">operation_complete_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="utils.html#maodevice.utils.misc.or_of_bits">or_of_bits() (in module maodevice.utils.misc)</a>
 </li>
@@ -384,19 +384,21 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="devices/transmitter.html#maodevice.transmitter.Pd30M">Pd30M (class in maodevice.transmitter)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.power_on_status_clear">power_on_status_clear() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.power_on_status_clear">power_on_status_clear() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.power_on_status_clear_query">power_on_status_clear_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.power_on_status_clear_query">power_on_status_clear_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="core.html#maodevice.core.BaseDeviceHandler.product_name">product_name (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.product_name">[1]</a>
+      <li><a href="core.html#maodevice.core.BaseDeviceHandler.PRODUCT_NAME">PRODUCT_NAME (maodevice.core.BaseDeviceHandler attribute)</a>, <a href="core.html#maodevice.core.BaseDeviceHandler.PRODUCT_NAME">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="devices/correlator.html#maodevice.correlator.OctadS.product_name">product_name (maodevice.correlator.OctadS attribute)</a>, <a href="devices/correlator.html#maodevice.correlator.OctadS.product_name">[1]</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.PRODUCT_NAME">PRODUCT_NAME (maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.PRODUCT_NAME">[1]</a>
+</li>
+      <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.product_name">product_name (maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.product_name">[1]</a>
 
       <ul>
-        <li><a href="devices/correlator.html#maodevice.correlator.OctadS.product_name">(maodevice.correlator.OctadS attribute)</a>, <a href="devices/correlator.html#maodevice.correlator.OctadS.product_name">[1]</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.product_name">(maodevice.transmitter.Keithley3390 attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.product_name">[1]</a>
-</li>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.product_name">(maodevice.transmitter.Lta20Q attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Lta20Q.product_name">[1]</a>
-</li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Md20M.product_name">(maodevice.transmitter.Md20M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Md20M.product_name">[1]</a>
 </li>
         <li><a href="devices/transmitter.html#maodevice.transmitter.Pd30M.product_name">(maodevice.transmitter.Pd30M attribute)</a>, <a href="devices/transmitter.html#maodevice.transmitter.Pd30M.product_name">[1]</a>
@@ -430,11 +432,9 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.read_status_byte_query">read_status_byte_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.read_status_byte_query">read_status_byte_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="core.html#maodevice.core.BaseCommunicator.readlines">readlines() (maodevice.core.BaseCommunicator method)</a>
-</li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.recall">recall() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.recall">recall() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="communicator.html#maodevice.communicator.SerialCom.recv">recv() (maodevice.communicator.SerialCom method)</a>
 
@@ -446,7 +446,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.reset">reset() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.reset">reset() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.restart">restart() (maodevice.correlator.OctadS method)</a>
 </li>
@@ -456,17 +456,11 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.save">save() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.save">save() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.SCPI_DICT">SCPI_DICT (maodevice.scpi.ScpiCommands attribute)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.SCPI_DICT">SCPI_DICT (maodevice.scpi.ScpiCommonCommands attribute)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiHandler.scpi_enable">scpi_enable (maodevice.scpi.ScpiHandler attribute)</a>
-
-      <ul>
-        <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.scpi_enable">(maodevice.transmitter.Keithley3390 attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands">ScpiCommands (class in maodevice.scpi)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands">ScpiCommonCommands (class in maodevice.scpi)</a>
 </li>
       <li><a href="scpi.html#maodevice.scpi.ScpiHandler">ScpiHandler (class in maodevice.scpi)</a>
 </li>
@@ -478,7 +472,7 @@
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.select_requantization_scaling">select_requantization_scaling() (maodevice.correlator.OctadS method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.self_test">self_test() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.self_test">self_test() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="communicator.html#maodevice.communicator.SerialCom.send">send() (maodevice.communicator.SerialCom method)</a>
 
@@ -490,9 +484,9 @@
       </ul></li>
       <li><a href="communicator.html#maodevice.communicator.SerialCom">SerialCom (class in maodevice.communicator)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.service_request_enable">service_request_enable() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.service_request_enable">service_request_enable() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.service_request_enable_query">service_request_enable_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.service_request_enable_query">service_request_enable_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.set_adc_delay_offset">set_adc_delay_offset() (maodevice.correlator.OctadS method)</a>
 </li>
@@ -522,7 +516,7 @@
 </li>
       <li><a href="devices/transmitter.html#maodevice.transmitter.Keithley3390.set_pluse_high_low_levels">set_pluse_high_low_levels() (maodevice.transmitter.Keithley3390 method)</a>
 </li>
-      <li><a href="core.html#maodevice.core.BaseCommunicator.set_terminator">set_terminator() (maodevice.core.BaseCommunicator method)</a>
+      <li><a href="core.html#maodevice.core.BaseCommunicator.set_terminator">set_terminator() (maodevice.core.BaseCommunicator class method)</a>
 </li>
       <li><a href="devices/transmitter.html#maodevice.transmitter.Md20M.set_vadj">set_vadj() (maodevice.transmitter.Md20M method)</a>
 </li>
@@ -562,17 +556,13 @@
 </li>
       <li><a href="communicator.html#maodevice.communicator.SocketCom">SocketCom (class in maodevice.communicator)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.STANDARD_EVENT_REGISTER_DICT">STANDARD_EVENT_REGISTER_DICT (maodevice.scpi.ScpiCommands attribute)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_enable">standard_event_status_enable() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_enable">standard_event_status_enable() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_enable_query">standard_event_status_enable_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_enable_query">standard_event_status_enable_query() (maodevice.scpi.ScpiCommands method)</a>
-</li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.standard_event_status_register_query">standard_event_status_register_query() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.standard_event_status_register_query">standard_event_status_register_query() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.start_correlation">start_correlation() (maodevice.correlator.OctadS method)</a>
-</li>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.STATUS_BYTE_REGISTER_DICT">STATUS_BYTE_REGISTER_DICT (maodevice.scpi.ScpiCommands attribute)</a>
 </li>
       <li><a href="devices/correlator.html#maodevice.correlator.OctadS.stop_correlation">stop_correlation() (maodevice.correlator.OctadS method)</a>
 </li>
@@ -594,7 +584,15 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.trigger">trigger() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.trigger">trigger() (maodevice.scpi.ScpiCommonCommands method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core.html#maodevice.core.BaseValidator.validate">validate() (maodevice.core.BaseValidator class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -602,7 +600,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scpi.html#maodevice.scpi.ScpiCommands.wait_to_continue">wait_to_continue() (maodevice.scpi.ScpiCommands method)</a>
+      <li><a href="scpi.html#maodevice.scpi.ScpiCommonCommands.wait_to_continue">wait_to_continue() (maodevice.scpi.ScpiCommonCommands method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -619,7 +617,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Project MAO Contributors.
+        &copy; Copyright 2018, Project MAO Contributors
 
     </p>
   </div>
@@ -638,21 +636,14 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

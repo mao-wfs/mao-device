@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/python-3.6%2C%203.7-blue.svg)]()
 
-**maodevice** is the `python3` package to control MAO devices.
+**maodevice** is the `Python3` package to control MAO devices.
 
 
 ## Installation

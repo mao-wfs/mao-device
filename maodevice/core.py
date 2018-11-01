@@ -196,3 +196,14 @@ class BaseValidator(type, metaclass=ABCMeta):
             This method must be overridden in the child class.
         """
         pass
+
+
+# NOTE: TBD
+class BaseDeviceError(Exception):
+    """Base exception class of "maodevice" package.
+
+    Note:
+        This class itself is not used, but it is inherited by
+        child classes and used.
+    """
+    pass

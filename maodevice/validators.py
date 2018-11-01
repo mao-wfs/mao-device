@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseValidator
+from maodevice.exceptions import *
 
 
 # OCTAD-S (Elecs, Inc.)
@@ -22,7 +23,7 @@ class OctadSValidator(BaseValidator):
 
 
 # Model 3390 Arbitrary Waveform Generator (Keithley Instruments, Inc.)
-class Keithley3390Validator(BaseValidator):
+class Model3390AWGValidator(BaseValidator):
     """Validate a communication with "Model 3390 Arbitrary Waveform Generator".
 
     This class is based on "maodevice.core.BaseValidator".

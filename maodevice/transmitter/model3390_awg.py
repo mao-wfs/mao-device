@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from maodevice.scpi import ScpiHandler
-from maodevice.validators import Keithley3390Validator
+from maodevice.validators import Model3390AWGValidator
 
 
-class Keithley3390(ScpiHandler, metaclass=Keithley3390Validator):
+class Model3390AWG(ScpiHandler, metaclass=Model3390AWGValidator):
     """Control "Model 3390 Arbitrary Waveform Generator".
 
     Note:
@@ -81,8 +81,8 @@ class Keithley3390(ScpiHandler, metaclass=Keithley3390Validator):
         Return:
             None
         """
-        self.com.send(f"VOLT {volt}")
         self.com.send(f"VOLT:UNIT {unit}")
+        self.com.send(f"VOLT {volt}")
         return
 
     def query_voltage(self):
@@ -115,7 +115,7 @@ class Keithley3390(ScpiHandler, metaclass=Keithley3390Validator):
         ret = self.com.query('VOLT:OFFS?')
         return ret
 
-    def set_pluse_high_low_levels(self, v_hi, v_low):
+    def set_pulse_high_low_levels(self, v_hi, v_low):
         """Set pulse high and low levels.
 
         Args:

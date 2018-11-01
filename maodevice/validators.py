@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseValidator
-from maodevice.exceptions import *
+# from maodevice.exceptions import *
 
 
 # OCTAD-S (Elecs, Inc.)

@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>maodevice.transmitter.rfll_20_h &mdash; maodevice 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> maodevice
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../core.html">maodevice.core module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Communicator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../communicator.html">maodevice.communicator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Devices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../devices/transmitter.html">maodevice.transmitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devices/correlator.html">maodevice.correlator module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SCPI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scpi.html">maodevice.scpi module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Validators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../validators.html">maodevice.validators module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Exceptions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">maodevice.exceptions module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utils</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">maodevice.utils package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">maodevice</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>maodevice.transmitter.rfll_20_h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for maodevice.transmitter.rfll_20_h</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Md20M&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lta20Q&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pd30M&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="kn">from</span> <span class="nn">maodevice.core</span> <span class="k">import</span> <span class="n">BaseDeviceHandler</span>
+<span class="kn">from</span> <span class="nn">maodevice.validators</span> <span class="k">import</span> <span class="n">Rfll20HValidator</span>
+
+
+<div class="viewcode-block" id="Md20M"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M">[docs]</a><span class="k">class</span> <span class="nc">Md20M</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Rfll20HValidator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;MD-20-M&quot;.</span>
+
+<span class="sd">    The Optilab MD-20-M Modulator Driver (MD) is a 20 GHz bandwidth</span>
+<span class="sd">    RF amplifier in a compact and user-friendly module that provides</span>
+<span class="sd">    a high-quality, single-ended voltage to drive an optical modulator.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        com (maodevice.communicator):</span>
+<span class="sd">            Communicator instance to control the device.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        MANUFACTURER (str): Manufacturer of the device.</span>
+<span class="sd">        PRODUCT_NAME (str): Name of the device.</span>
+<span class="sd">        CLASSIFICATION (str): Classification of the device.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">MANUFACTURER</span> <span class="o">=</span> <span class="s2">&quot;Optilab&quot;</span>
+    <span class="n">PRODUCT_NAME</span> <span class="o">=</span> <span class="s2">&quot;MD-20-M&quot;</span>
+    <span class="n">CLASSIFICATION</span> <span class="o">=</span> <span class="s2">&quot;Modulator Driver&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Md20M.set_vadj"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M.set_vadj">[docs]</a>    <span class="k">def</span> <span class="nf">set_vadj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vadj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the voltage which controls the duty cycle.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The setting range is 0.01 - 4.99.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            vadj (float): The voltage which controls the duty cycle.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;SETADJ:</span><span class="si">{vadj}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Md20M.set_vbias"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M.set_vbias">[docs]</a>    <span class="k">def</span> <span class="nf">set_vbias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vbias</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the voltage of the output DC voltage.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The setting range is 0.01 - 9.99.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            vbias (float): The voltage of the output DC voltage.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;SETBIAS:</span><span class="si">{vbias}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Md20M.set_vgain"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M.set_vgain">[docs]</a>    <span class="k">def</span> <span class="nf">set_vgain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vgain</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the voltage which controls the RF gain.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The setting range is 1.00 - 8.50.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            vgain (float): The voltage which controls the RF gain.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;SETGAIN:</span><span class="si">{vgain}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Md20M.show_status"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Md20M.show_status">[docs]</a>    <span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Show the status fo &quot;MD-20-M&quot;.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Status of &quot;MD-20-M&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;READ&quot;</span><span class="p">,</span> <span class="n">byte</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
+
+
+<div class="viewcode-block" id="Lta20Q"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Lta20Q">[docs]</a><span class="k">class</span> <span class="nc">Lta20Q</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Rfll20HValidator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;LTA-20-Q&quot;.</span>
+
+<span class="sd">    The LTA-20-Q modular transmitters are a wideband RF-over-fiber</span>
+<span class="sd">    transmitter modules designed for antenna remoting and broadband</span>
+<span class="sd">    RF transmission applications using single mode optical fiber.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        com (maodevice.communicator)</span>
+<span class="sd">            Communicator instance to control the device.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        MANUFACTURER (str): Manufacturer of the device.</span>
+<span class="sd">        PRODUCT_NAME (str): Name of the device.</span>
+<span class="sd">        CLASSIFICATION (str): Classification of the device.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">MANUFACTURER</span> <span class="o">=</span> <span class="s2">&quot;Optilab&quot;</span>
+    <span class="n">PRODUCT_NAME</span> <span class="o">=</span> <span class="s2">&quot;LTA-20-Q&quot;</span>
+    <span class="n">CLASSIFICATION</span> <span class="o">=</span> <span class="s2">&quot;E/O Converter&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Lta20Q.show_status"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Lta20Q.show_status">[docs]</a>    <span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Show status of &quot;LTA-20-M&quot;.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Status of &quot;LTA-20-Q&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;READ&quot;</span><span class="p">,</span> <span class="n">byte</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
+
+
+<div class="viewcode-block" id="Pd30M"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Pd30M">[docs]</a><span class="k">class</span> <span class="nc">Pd30M</span><span class="p">(</span><span class="n">BaseDeviceHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Rfll20HValidator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Control &quot;PD-30-M&quot;.</span>
+
+<span class="sd">    The PD-30-M is a 30 GHz bandwidth PIN receiver photodiode module</span>
+<span class="sd">    designed for RF over fiber, antenna remoting, and broadband RF</span>
+<span class="sd">    transmission applications using single mode optical.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        This class is based on &quot;maodevice.core.BaseDeviceHandler&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        com: (maodevice.communicator)</span>
+<span class="sd">            Communicator instance to control the device.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        MANUFACTURER (str): Manufacturer of the device.</span>
+<span class="sd">        PRODUCT_NAME (str): Name of the device.</span>
+<span class="sd">        CLASSIFICATION (str): Classification of the device.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">MANUFACTURER</span> <span class="o">=</span> <span class="s2">&quot;Optilab&quot;</span>
+    <span class="n">PRODUCT_NAME</span> <span class="o">=</span> <span class="s2">&quot;PD-30-M&quot;</span>
+    <span class="n">CLASSIFICATION</span> <span class="o">=</span> <span class="s2">&quot;O/E converter&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Pd30M.show_status"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Pd30M.show_status">[docs]</a>    <span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Show status of &quot;PD-30-M&quot;.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            ret (bytes): Status of &quot;PD-30-M&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;READP&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Project MAO Contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

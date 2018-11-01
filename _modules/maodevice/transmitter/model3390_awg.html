@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>maodevice.transmitter.keithley_3390 &mdash; maodevice 1.0 documentation</title>
+  <title>maodevice.transmitter.model3390_awg &mdash; maodevice 1.0 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>maodevice.transmitter.keithley_3390</li>
+      <li>maodevice.transmitter.model3390_awg</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,13 +170,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for maodevice.transmitter.keithley_3390</h1><div class="highlight"><pre>
+  <h1>Source code for maodevice.transmitter.model3390_awg</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">from</span> <span class="nn">maodevice.scpi</span> <span class="k">import</span> <span class="n">ScpiHandler</span>
-<span class="kn">from</span> <span class="nn">maodevice.validators</span> <span class="k">import</span> <span class="n">Keithley3390Validator</span>
+<span class="kn">from</span> <span class="nn">maodevice.validators</span> <span class="k">import</span> <span class="n">Model3390AWGValidator</span>
 
 
-<div class="viewcode-block" id="Keithley3390"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390">[docs]</a><span class="k">class</span> <span class="nc">Keithley3390</span><span class="p">(</span><span class="n">ScpiHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Keithley3390Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG">[docs]</a><span class="k">class</span> <span class="nc">Model3390AWG</span><span class="p">(</span><span class="n">ScpiHandler</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Model3390AWGValidator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Control &quot;Model 3390 Arbitrary Waveform Generator&quot;.</span>
 
 <span class="sd">    Note:</span>
@@ -202,7 +202,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">com</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">set_terminator</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Keithley3390.set_function"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_function">[docs]</a>    <span class="k">def</span> <span class="nf">set_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_function"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_function">[docs]</a>    <span class="k">def</span> <span class="nf">set_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set function of the signal.</span>
 
 <span class="sd">        Args:</span>
@@ -214,7 +214,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;FUNC </span><span class="si">{func}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_function"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_function">[docs]</a>    <span class="k">def</span> <span class="nf">query_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_function"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_function">[docs]</a>    <span class="k">def</span> <span class="nf">query_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query the function of the signal.</span>
 
 <span class="sd">        Return:</span>
@@ -223,7 +223,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;FUNC?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_frequency"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">set_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_frequency"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">set_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set frequency of the signal.</span>
 
 <span class="sd">        Args:</span>
@@ -235,7 +235,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;FREQ </span><span class="si">{freq}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_frequency"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">query_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_frequency"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">query_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query frequency of the signal.</span>
 
 <span class="sd">        Return:</span>
@@ -244,7 +244,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;FREQ?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volt</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;dBm&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volt</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;dBm&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set voltage of the signal.</span>
 
 <span class="sd">        Args:</span>
@@ -254,11 +254,11 @@
 <span class="sd">        Return:</span>
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;VOLT </span><span class="si">{volt}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;VOLT:UNIT </span><span class="si">{unit}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;VOLT </span><span class="si">{volt}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">query_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">query_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query voltage of the signal.</span>
 
 <span class="sd">        Return:</span>
@@ -267,7 +267,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;VOLT?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_dc_offset_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_dc_offset_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_dc_offset_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_off</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_dc_offset_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_dc_offset_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">set_dc_offset_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_off</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set DC offset voltage of the signal.</span>
 
 <span class="sd">        Args:</span>
@@ -279,7 +279,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;VOLT:OFFS </span><span class="si">{v_off}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_offset_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_offset_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">query_offset_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_offset_voltage"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_offset_voltage">[docs]</a>    <span class="k">def</span> <span class="nf">query_offset_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query the DC offset voltage of the signal.</span>
 
 <span class="sd">        Return:</span>
@@ -288,7 +288,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;VOLT:OFFS?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_pluse_high_low_levels"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_pluse_high_low_levels">[docs]</a>    <span class="k">def</span> <span class="nf">set_pluse_high_low_levels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_hi</span><span class="p">,</span> <span class="n">v_low</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_pulse_high_low_levels"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_pulse_high_low_levels">[docs]</a>    <span class="k">def</span> <span class="nf">set_pulse_high_low_levels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_hi</span><span class="p">,</span> <span class="n">v_low</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set pulse high and low levels.</span>
 
 <span class="sd">        Args:</span>
@@ -302,7 +302,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;VOLT:LOW </span><span class="si">{v_low}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_pulse_high_low_levels"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_pulse_high_low_levels">[docs]</a>    <span class="k">def</span> <span class="nf">query_pulse_high_low_levels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_pulse_high_low_levels"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_pulse_high_low_levels">[docs]</a>    <span class="k">def</span> <span class="nf">query_pulse_high_low_levels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query pulse high and low levels.</span>
 
 <span class="sd">        Return:</span>
@@ -315,7 +315,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;HIGH&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">_v_hi</span><span class="p">),</span> <span class="s1">&#39;LOW&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">_v_low</span><span class="p">)}</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_waveform_polarity"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_waveform_polarity">[docs]</a>    <span class="k">def</span> <span class="nf">set_waveform_polarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_waveform_polarity"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_waveform_polarity">[docs]</a>    <span class="k">def</span> <span class="nf">set_waveform_polarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the waveform polarity.</span>
 
 <span class="sd">        Args:</span>
@@ -329,7 +329,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;OUTP:POL </span><span class="si">{_polarity}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.query_waveform_polarity"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.query_waveform_polarity">[docs]</a>    <span class="k">def</span> <span class="nf">query_waveform_polarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.query_waveform_polarity"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.query_waveform_polarity">[docs]</a>    <span class="k">def</span> <span class="nf">query_waveform_polarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query waveform polarity.</span>
 
 <span class="sd">        Return:</span>
@@ -338,13 +338,13 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;OUTP:POL?&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Keithley3390.set_output_termination"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.set_output_termination">[docs]</a>    <span class="k">def</span> <span class="nf">set_output_termination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ohms</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.set_output_termination"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.set_output_termination">[docs]</a>    <span class="k">def</span> <span class="nf">set_output_termination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ohms</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the output termination.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;OUTP:LOAD </span><span class="si">{ohms}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.enable_output"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_output">[docs]</a>    <span class="k">def</span> <span class="nf">enable_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.enable_output"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.enable_output">[docs]</a>    <span class="k">def</span> <span class="nf">enable_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enables the RF output.</span>
 
 <span class="sd">        Return:</span>
@@ -353,7 +353,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;OUTP ON&#39;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.disable_output"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.disable_output">[docs]</a>    <span class="k">def</span> <span class="nf">disable_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.disable_output"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.disable_output">[docs]</a>    <span class="k">def</span> <span class="nf">disable_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Disable the RF output.</span>
 
 <span class="sd">        Return:</span>
@@ -362,7 +362,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;OUTP OFF&#39;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.enable_synchronize"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.enable_synchronize">[docs]</a>    <span class="k">def</span> <span class="nf">enable_synchronize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.enable_synchronize"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.enable_synchronize">[docs]</a>    <span class="k">def</span> <span class="nf">enable_synchronize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable synchronization.</span>
 
 <span class="sd">        Return:</span>
@@ -371,7 +371,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;OUTP:SYNC ON&#39;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="Keithley3390.disable_synchronize"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Keithley3390.disable_synchronize">[docs]</a>    <span class="k">def</span> <span class="nf">disable_synchronize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model3390AWG.disable_synchronize"><a class="viewcode-back" href="../../../devices/transmitter.html#maodevice.transmitter.Model3390AWG.disable_synchronize">[docs]</a>    <span class="k">def</span> <span class="nf">disable_synchronize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Disable synchronization.</span>
 
 <span class="sd">        Return:</span>

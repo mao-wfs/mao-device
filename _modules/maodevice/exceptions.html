@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>maodevice.validators &mdash; maodevice 1.0 documentation</title>
+  <title>maodevice.exceptions &mdash; maodevice 1.0 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>maodevice.validators</li>
+      <li>maodevice.exceptions</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,71 +170,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for maodevice.validators</h1><div class="highlight"><pre>
+  <h1>Source code for maodevice.exceptions</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">maodevice.core</span> <span class="k">import</span> <span class="n">BaseValidator</span>
-<span class="kn">from</span> <span class="nn">maodevice.exceptions</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">maodevice.core</span> <span class="k">import</span> <span class="n">BaseDeviceError</span>
 
 
 <span class="c1"># OCTAD-S (Elecs, Inc.)</span>
-<div class="viewcode-block" id="OctadSValidator"><a class="viewcode-back" href="../../validators.html#maodevice.validators.OctadSValidator">[docs]</a><span class="k">class</span> <span class="nc">OctadSValidator</span><span class="p">(</span><span class="n">BaseValidator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Validate a communication with &quot;OCTAD-S&quot;.</span>
+<span class="c1"># NOTE: TBD</span>
+<div class="viewcode-block" id="OctadSError"><a class="viewcode-back" href="../../exceptions.html#maodevice.exceptions.OctadSError">[docs]</a><span class="k">class</span> <span class="nc">OctadSError</span><span class="p">(</span><span class="n">BaseDeviceError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error class for &quot;OCTAD-S&quot;</span>
 
-<span class="sd">    This class is based on &quot;maodevice.core.BaseValidator&quot;.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        This class is used as a metaclass.</span>
+<span class="sd">    This class is based on &quot;maodevice.core.BaseDeviceError&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Actual validator function of this validator.</span>
-
-<span class="sd">        Note:</span>
-<span class="sd">            This method override the &quot;_validator&quot; in the base class.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># NOTE: TBD</span>
-        <span class="k">pass</span></div>
+    <span class="k">pass</span></div>
 
 
 <span class="c1"># Model 3390 Arbitrary Waveform Generator (Keithley Instruments, Inc.)</span>
-<div class="viewcode-block" id="Model3390AWGValidator"><a class="viewcode-back" href="../../validators.html#maodevice.validators.Model3390AWGValidator">[docs]</a><span class="k">class</span> <span class="nc">Model3390AWGValidator</span><span class="p">(</span><span class="n">BaseValidator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Validate a communication with &quot;Model 3390 Arbitrary Waveform Generator&quot;.</span>
+<span class="c1"># NOTE: TBD</span>
+<div class="viewcode-block" id="Model3390AWGError"><a class="viewcode-back" href="../../exceptions.html#maodevice.exceptions.Model3390AWGError">[docs]</a><span class="k">class</span> <span class="nc">Model3390AWGError</span><span class="p">(</span><span class="n">BaseDeviceError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error class for &quot;Model 3390 Arbitrary Waveform Generator&quot;.</span>
 
-<span class="sd">    This class is based on &quot;maodevice.core.BaseValidator&quot;.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        This class is used as a metaclass.</span>
+<span class="sd">    This class is based on &quot;maodevice.core.BaseDeviceError&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Actual validator function of this validator.</span>
-
-<span class="sd">        Note:</span>
-<span class="sd">            This method override the &quot;_validator&quot; in the base class.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SYST:ERR?&quot;</span><span class="p">)</span>
-        <span class="c1"># NOTE: TBD</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;+0,&quot;No error&quot;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-
-        <span class="k">return</span></div>
+    <span class="k">pass</span></div>
 
 
-<span class="c1"># RFLL-20-H (Optilab)</span>
-<div class="viewcode-block" id="Rfll20HValidator"><a class="viewcode-back" href="../../validators.html#maodevice.validators.Rfll20HValidator">[docs]</a><span class="k">class</span> <span class="nc">Rfll20HValidator</span><span class="p">(</span><span class="n">BaseValidator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Validate a communication with a components of &quot;RFLL-20-H&quot;.</span>
+<span class="c1"># RFLL-20-H (Optilab, LLC.)</span>
+<span class="c1"># NOTE: TBD</span>
+<div class="viewcode-block" id="Rfll20HError"><a class="viewcode-back" href="../../exceptions.html#maodevice.exceptions.Rfll20HError">[docs]</a><span class="k">class</span> <span class="nc">Rfll20HError</span><span class="p">(</span><span class="n">BaseDeviceError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error class for &quot;RFLL-20-H&quot;.</span>
 
-<span class="sd">    This class is based on &quot;maodevice.core.BaseValidator&quot;.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        This class is used as a metaclass</span>
+<span class="sd">    This class is based on &quot;maodevice.core.BaseDeviceError&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Actual validator function of this validator.</span>
-
-<span class="sd">        Note:</span>
-<span class="sd">            This method override the &quot;_validator&quot; in the base class.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># NOTE: TBD</span>
-        <span class="k">pass</span></div>
+    <span class="k">pass</span></div>
 </pre></div>
 
            </div>

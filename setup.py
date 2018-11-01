@@ -10,11 +10,11 @@ with open("LICENSE") as f:
 setup(
     name="maodevice",
     version="1.0",
-    description="Python 3.7 package to control MAO devices",
+    description="Python 3 package to control MAO devices",
     long_description=readme,
     author="Project MAO Contributors",
     author_email="tueda1207@gmail.com",
-    url="https://github.com/mao-wfs/maodevice",
+    url="https://mao-wfs.github.io/maodevice",
     license=license,
     packages=find_packages(exclude=("docs", "tests")),
     install_requires=["pyserial>=3.4"],

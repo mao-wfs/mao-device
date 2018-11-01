@@ -49,7 +49,7 @@ class Md20M(BaseDeviceHandler, metaclass=Rfll20HValidator):
         Return:
             None
         """
-        self.send(f"SETADJ:{vadj}")
+        self.com.send(f"SETADJ:{vadj}")
         return
 
     def set_vbias(self, vbias):
@@ -64,7 +64,7 @@ class Md20M(BaseDeviceHandler, metaclass=Rfll20HValidator):
         Return:
             None
         """
-        self.send(f"SETBIAS:{vbias}")
+        self.com.send(f"SETBIAS:{vbias}")
         return
 
     def set_vgain(self, vgain):
@@ -79,7 +79,7 @@ class Md20M(BaseDeviceHandler, metaclass=Rfll20HValidator):
         Return:
             None
         """
-        self.send(f"SETGAIN:{vgain}")
+        self.com.send(f"SETGAIN:{vgain}")
         return
 
     def show_status(self):
@@ -88,7 +88,7 @@ class Md20M(BaseDeviceHandler, metaclass=Rfll20HValidator):
         Return:
             ret (bytes): Status of "MD-20-M"
         """
-        ret = self.query(msg="READ", byte=1024)
+        ret = self.com.query(msg="READ", byte=1024)
         return ret
 
 

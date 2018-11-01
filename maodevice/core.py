@@ -10,7 +10,7 @@ class BaseCommunicator(object, metaclass=ABCMeta):
     This is the base class of device communicators.
 
     Note:
-        This class itself is not used, but it is inherited b
+        This class itself is not used, but it is inherited by
         child classes and used.
 
     Args:

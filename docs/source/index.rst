@@ -41,6 +41,12 @@ maodevice
    validators
 
 .. toctree::
+   :caption: Exceptions
+   :maxdepth: 2
+
+   exceptions
+
+.. toctree::
    :caption: Utils
    :maxdepth: 2
 

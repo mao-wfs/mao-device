@@ -4,7 +4,7 @@ maodevice.transmitter module
 Controller of Optical Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: maodevice.transmitter.Keithley3390
+.. autoclass:: maodevice.transmitter.Model3390AWG
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseDeviceHandler
-from maodevice.utils.decorators import chooser, decoder, limitter
+from maodevice.validators import OctadSValidator
 
 
-class OctadS(BaseDeviceHandler):
+class OctadS(BaseDeviceHandler, metaclass=OctadSValidator):
     """Control "OCTAD-S".
 
     The OCTAD-S is the FPGA-based correlator.
@@ -16,17 +16,17 @@ class OctadS(BaseDeviceHandler):
             Communicator instance to control the device.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device.
-        product_name (str): Name of the device.
-        classification (str): Classification of the device.
+        MANUFACTURER (str): Manufacturer of the device.
+        PRODUCT_NAME (str): Name of the device.
+        CLASSIFICATION (str): Classification of the device.
     """
-    manufacturer = "Elecs"
-    product_name = "OCTAD-S"
-    classfication = "Correlator"
+    MANUFACTURER = "Elecs"
+    PRODUCT_NAME = "OCTAD-S"
+    CLASSFICATION = "Correlator"
 
     CORRELATION_MODE = {
-        "Auto1": 0x01,
-        "Auto2": 0x02,
+        "Auto1":    0x01,
+        "Auto2":    0x02,
         "Cross1-2": 0x10,
     }
 
@@ -34,7 +34,6 @@ class OctadS(BaseDeviceHandler):
         super().__init__(com)
         self.com.set_terminator(";")
 
-    @chooser("n", (1, 2))
     def calibrate_de_multiplexer(self, n):
         """Calibrate the data transfer from the ADC to the FPGA.
 
@@ -64,8 +63,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send("reset=system")
         return
 
-    @chooser("n", (1, 2, 5))
-    @limitter("scale", 0, 31, 1)
     def select_correlation_scaling(self, n, scale=0):
         """Set scaling of X (Correlation) part.
 
@@ -88,7 +85,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_scaling{n}={scale}")
         return
 
-    @chooser("integ_time", (5, 10))
     def select_integration_time(self, integ_time=5):
         """Select integration time.
 
@@ -117,8 +113,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_ipreq={is_output}")
         return
 
-    @chooser("n", (1, 2))
-    @limitter("scale", 0, 31, 1)
     def select_requantization_scaling(self, n, scale=0):
         """Set scaling of Y (Requantization) part.
 
@@ -135,8 +129,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_requantization{n}={scale}")
         return
 
-    @chooser("n", (1, 2))
-    @limitter("offset", 0, 32767, 1)
     def set_adc_delay_offset(self, n, offset=16384):
         """Set the delay offset of ADC.
 
@@ -153,9 +145,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_dlyoffset{n}={offset}")
         return
 
-    @chooser("n", (1, 2))
-    @limitter("d_range", 240., 270., 0.1)
-    @limitter("offset", -128., 128., 0.1)
     def set_adc_dynamic_range(self, n, d_range=256., offset=0.):
         """Set dynamic range of ADC.
 
@@ -248,7 +237,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_gbeip={ip}")
         return
 
-    @limitter("mask_time", 0, 2000, 1)
     def set_mask_time_of_integration(self, mask_time=0):
         """Set the time to mask integration.
 
@@ -283,7 +271,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_ntp={ip}")
         return
 
-    @chooser("n", (1, 2, 5))
     def set_vdif_destination_ip(self, n, ip):
         """Set the destination IP address of VDIF.
 
@@ -304,7 +291,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_vdifdes{n}={ip}")
         return
 
-    @chooser("n", (1, 2, 5))
     def set_vdif_destination_port(self, n, port):
         """Set the destination UDP port of VDIF.
 
@@ -325,7 +311,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_vdifdesport{n}={port}")
         return
 
-    @chooser("win_func", ("none", "hamming", "hanning", "blackman"))
     def set_window_function(self, win_func="none"):
         """Set the window function of FFT.
 
@@ -347,7 +332,6 @@ class OctadS(BaseDeviceHandler):
         self.com.send(f"set_window={win_func}")
         return
 
-    @decoder
     def show_1pps_gap(self):
         """Show the gap between internal 1PPS and external one.
 
@@ -357,8 +341,6 @@ class OctadS(BaseDeviceHandler):
         ret = self.com.query("show_1ppsgap?")
         return ret
 
-    @chooser("n", (1, 2))
-    @decoder
     def show_adc_sampling_bit(self, n):
         """Show the bit distribution after sampling with ADC.
 
@@ -372,8 +354,6 @@ class OctadS(BaseDeviceHandler):
         ret = self.com.query(f"show_adcsmpbit{n}?")
         return ret
 
-    @chooser("n", (1, 2, 3, 4, 5))
-    @decoder
     def show_fpga_power(self, n):
         """Show the power supply voltage measured by FPGA.
 
@@ -389,7 +369,6 @@ class OctadS(BaseDeviceHandler):
         ret = self.com.query(f"show_fpga_power{n}?")
         return ret
 
-    @decoder
     def show_status(self):
         """Show malfunctions occured now or in the past.
 
@@ -405,7 +384,6 @@ class OctadS(BaseDeviceHandler):
         ret = self.com.query("show_status?")
         return ret
 
-    @decoder
     def show_system(self):
         """Show various information of "OCTAD-S".
 
@@ -415,7 +393,6 @@ class OctadS(BaseDeviceHandler):
         ret = self.com.query("show_system?")
         return ret
 
-    @decoder
     def show_temperature(self):
         """Show FPGA junction temperature.
 

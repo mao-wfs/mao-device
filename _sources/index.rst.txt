@@ -1,7 +1,7 @@
 maodevice
 =========
 
-`maodevice` is the Python3.7 package to control MAO devices.
+**maodevice** is the ``Python3`` package to control MAO devices.
 
 .. toctree::
    :caption: Getting started

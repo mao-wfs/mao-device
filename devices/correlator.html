@@ -99,6 +99,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../scpi.html">maodevice.scpi module</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Validators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../validators.html">maodevice.validators module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Exceptions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">maodevice.exceptions module</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Utils</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">maodevice.utils package</a></li>
@@ -187,8 +195,8 @@
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="maodevice.correlator.OctadS.manufacturer">
-<code class="descname">manufacturer</code><a class="headerlink" href="#maodevice.correlator.OctadS.manufacturer" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.correlator.OctadS.MANUFACTURER">
+<code class="descname">MANUFACTURER</code><a class="headerlink" href="#maodevice.correlator.OctadS.MANUFACTURER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manufacturer of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -201,8 +209,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.correlator.OctadS.product_name">
-<code class="descname">product_name</code><a class="headerlink" href="#maodevice.correlator.OctadS.product_name" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.correlator.OctadS.PRODUCT_NAME">
+<code class="descname">PRODUCT_NAME</code><a class="headerlink" href="#maodevice.correlator.OctadS.PRODUCT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -215,8 +223,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="maodevice.correlator.OctadS.classification">
-<code class="descname">classification</code><a class="headerlink" href="#maodevice.correlator.OctadS.classification" title="Permalink to this definition">¶</a></dt>
+<dt id="maodevice.correlator.OctadS.CLASSIFICATION">
+<code class="descname">CLASSIFICATION</code><a class="headerlink" href="#maodevice.correlator.OctadS.CLASSIFICATION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classification of the device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -229,8 +237,23 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="maodevice.correlator.OctadS.CLASSFICATION">
+<code class="descname">CLASSFICATION</code><em class="property"> = 'Correlator'</em><a class="headerlink" href="#maodevice.correlator.OctadS.CLASSFICATION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="maodevice.correlator.OctadS.CORRELATION_MODE">
 <code class="descname">CORRELATION_MODE</code><em class="property"> = {'Auto1': 1, 'Auto2': 2, 'Cross1-2': 16}</em><a class="headerlink" href="#maodevice.correlator.OctadS.CORRELATION_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">MANUFACTURER</code><em class="property"> = 'Elecs'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">PRODUCT_NAME</code><em class="property"> = 'OCTAD-S'</em></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -257,21 +280,6 @@ Allowed values are 1 or 2.</td>
 </tbody>
 </table>
 </dd></dl>
-
-<dl class="attribute">
-<dt id="maodevice.correlator.OctadS.classfication">
-<code class="descname">classfication</code><em class="property"> = 'Correlator'</em><a class="headerlink" href="#maodevice.correlator.OctadS.classfication" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">manufacturer</code><em class="property"> = 'Elecs'</em></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">product_name</code><em class="property"> = 'OCTAD-S'</em></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="maodevice.correlator.OctadS.restart">

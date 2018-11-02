@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from maodevice.core import BaseValidator
 # from maodevice.exceptions import *
+from maodevice.exceptions import Model3390AWGError
 
 
 # OCTAD-S (Elecs, Inc.)
@@ -37,15 +38,14 @@ class Model3390AWGValidator(BaseValidator):
         Note:
             This method override the "_validator" in the base class.
         """
-        ret = self.com.query("SYST:ERR?")
-        # NOTE: TBD
-        if not ret == b'+0,"No error"\n':
-            raise AssertionError(ret.decode())
-
+        ret = self.com.query("SYST:ERR?").decode()
+        valid_msg = f'+0,"No error"{self.com.terminator}'
+        if ret != valid_msg:
+            raise Model3390AWGError(ret)
         return
 
 
-# RFLL-20-H (Optilab)
+# RFLL-20-H (Optilab, LLC.)
 class Rfll20HValidator(BaseValidator):
     """Validate a communication with a components of "RFLL-20-H".
 

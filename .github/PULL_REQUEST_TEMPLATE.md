@@ -6,20 +6,20 @@ Please write the overview of your changes as follows::
 + etc.
 
 
-## Done
-Please write items what you completed below::
-
-
-## To Do
-Please write items what to do below::
+## Important changes
+Please write the particulaly important changes below::
 
 
 ## Changes
 Please write your changes below::
 
 
-## Important changes
-Please write the particulaly important changes below::
+## Done
+Please write items what you completed below::
+
+
+## To Do
+Please write items what to do below::
 
 
 ## Note

@@ -1,21 +1,35 @@
 # maodevice
 
-[![Build Status](https://travis-ci.org/mao-wfs/maodevice.svg?branch=master)](https://travis-ci.org/mao-wfs/maodevice)
-[![codecov](https://codecov.io/gh/mao-wfs/maodevice/branch/master/graph/badge.svg)](https://codecov.io/gh/mao-wfs/maodevice)
-[![Documents](https://img.shields.io/badge/docs-mao--wfs.github.io%2Fmaodevice-brightgreen.svg)](https://mao-wfs.github.io/maodevice)
+[![](https://img.shields.io/badge/python-3.6%2C%203.7-blue.svg)]()
 
-**maodevice** is the `python3.7` package to control MAO devices.
+**maodevice** is the `Python3` package to control MAO devices.
 
 
 ## Installation
+### Using pip
+You can install the package without being root by adding the `--user` flag:
+
 ```sh
-pip install git+https://github.com/mao-wfs/maodevice
+$ pip install git+https://github.com/mao-wfs/maodevice
 ```
 
-## Overview
+### Install from source
+Clone the repository somewhere on your disk and enter to the repository:
+
+```sh
+$ git clone https://github.com/mao-wfs/maodevice.git
+$ cd maodevice
+```
+
+Now you can install it on your system:
+
+```sh
+$ python setup.py install
+```
+
+## Documentation
+You can see information and full documentation at [maodevice site](https://mao-wfs.github.io/maodevice).
 
 
-## Description
-
-
-## Requirements
+## Copyright
+**maodevice** is an open source project by Project MAO Contributors. See the [license](https://github.com/mao-wfs/maodevice/blob/master/LICENSE) file for more information.

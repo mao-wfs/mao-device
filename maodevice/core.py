@@ -1,66 +1,79 @@
 # -*- coding: utf-8 -*-
-class BaseCommunicator(object):
+from abc import ABCMeta, abstractmethod
+from functools import wraps
+from types import FunctionType
+
+
+class BaseCommunicator(object, metaclass=ABCMeta):
     """Communicate with a device.
 
     This is the base class of device communicators.
 
     Note:
-        This class itself is not used, but it is inherited b
+        This class itself is not used, but it is inherited by
         child classes and used.
 
     Args:
         *args: Variable length argument list.
 
     Attributes:
-        method (str): Communication method.
+        METHOD (str): Communication method.
         connection (bool): Connection indicator.
             If it is true, the connection has been established.
         terminator (str): Termination character.
     """
-    method = ""
+    METHOD = ""
+
     connection = False
     terminator = "\n"
 
     def __init__(self, *args):
-        if len(args) != 0:
+        if not len(args) != 0:
             self.open()
 
-    def set_terminator(self, term_char):
-        """Set the termination character.
+    def __del__(self):
+        if self.connection == True:
+            self.close()
 
-        Args:
-            term_char (str): Termination character.
-
-        Return:
-            None
-        """
-        self.terminator = term_char
-        return
-
+    @abstractmethod
     def open(self):
         """Open the connection to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
         """
         pass
 
+    @abstractmethod
     def close(self):
         """Close the connection to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
         """
         pass
 
+    @abstractmethod
     def send(self, msg):
         """Send a message to the device.
 
         Note:
-            This method is overridden in the child class.
+            This method must be overridden in the child class.
 
         Args:
             msg (str): A message to send the device.
+        """
+        pass
+
+    @abstractmethod
+    def recv(self, byte):
+        """Receive the response of the device.
+
+        Note:
+            This method must be overridden in the child class.
+
+        Args:
+            byte (int): Bytes to read.
         """
         pass
 
@@ -77,24 +90,18 @@ class BaseCommunicator(object):
         ret = self.recv(byte)
         return ret
 
-    def recv(self, byte):
-        """Receive the response of the device.
-
-        Note:
-            This method is overridden in the child class.
+    @classmethod
+    def set_terminator(cls, term_char):
+        """Set the termination character.
 
         Args:
-            byte (int): Bytes to read.
-        """
-        pass
+            term_char (str): Termination character.
 
-    def readlines(self):
-        """Receive the multiple rows response of the device.
-
-        Note:
-            This method is overridden in the child class.
+        Return:
+            None
         """
-        pass
+        cls.terminator = term_char
+        return
 
 
 class BaseDeviceHandler(object):
@@ -111,13 +118,13 @@ class BaseDeviceHandler(object):
             Communicator instance to control the device.
 
     Attributes:
-        manufacturer (str): Manufacturer of the device.
-        product_name (str): Name of the device.
-        classification (str): Classification of the device.
+        MANUFACTURER (str): Manufacturer of the device.
+        PRODUCT_NAME (str): Name of the device.
+        CLASSIFICATION (str): Classification of the device.
     """
-    manufacturer = ""
-    product_name = ""
-    classification = ""
+    MANUFACTURER = ""
+    PRODUCT_NAME = ""
+    CLASSIFICATION = ""
 
     def __init__(self, com):
         self.com = com
@@ -125,10 +132,8 @@ class BaseDeviceHandler(object):
 
     def open(self):
         """Open the connection to the device.
-
         Note:
             This method uses the one of "com".
-
         Return:
             None
         """
@@ -137,12 +142,68 @@ class BaseDeviceHandler(object):
 
     def close(self):
         """Close the connection to the device.
-
         Note:
             This method uses the one of "com".
-
         Return:
             None
         """
         self.com.close()
         return
+
+
+class BaseValidator(type, metaclass=ABCMeta):
+    """Validate a communication with a device.
+
+    This is the base class of device validators.
+
+    Note:
+        This class itself is not used, but it is inherited by
+        child classes and used.
+    """
+    def __new__(meta, class_name, bases, class_dict):
+        new_class_dict = {}
+        for attribute_name, attribute in class_dict.items():
+            if isinstance(attribute, FunctionType):
+                if not attribute_name.startswith("_"):
+                    attribute = meta.validate(attribute)
+            new_class_dict[attribute_name] = attribute
+        return type.__new__(meta, class_name, bases, new_class_dict)
+
+    @classmethod
+    def validate(cls, method):
+        """Validate a communication with a device.
+
+        This method decorates existing methods.
+
+        Args:
+            method (function): A function to be wrapped.
+
+        Return:
+            wrapper (function): A wrapped function.
+        """
+        @wraps(method)
+        def wrapper(self, *args, **kwargs):
+            ret = method(self, *args, **kwargs)
+            cls._validate(self)
+            return ret
+        return wrapper
+
+    @abstractmethod
+    def _validate(self):
+        """Validate a communication with a device.
+
+        Note:
+            This method must be overridden in the child class.
+        """
+        pass
+
+
+# NOTE: TBD
+class BaseDeviceError(Exception):
+    """Base exception class of "maodevice" package.
+
+    Note:
+        This class itself is not used, but it is inherited by
+        child classes and used.
+    """
+    pass

@@ -1,60 +1,29 @@
 # -*- coding: utf-8 -*-
 from maodevice.scpi import ScpiHandler
-from maodevice.utils.decorators import chooser, decoder, limitter
+from maodevice.validators import Model3390AWGValidator
 
 
-class Keithley3390(ScpiHandler):
-    """Control 'Model 3390 Arbitrary Waveform Generator'.
-
-    Model 3390 Arbitrary Waveform generator
+class Model3390AWG(ScpiHandler, metaclass=Model3390AWGValidator):
+    """Control "Model 3390 Arbitrary Waveform Generator".
 
     Note:
-        This class is based on 'maodevice.scpi.ScpiHandler'.
+        This class is based on "maodevice.scpi.ScpiHandler".
 
     Attributes:
-        manufacturer (str): Manufacturer of the device.
-        product_name (str): Name of the device.
-        classification (str): Classification of the device.
+        MANUFACTURER (str): Manufacturer of the device.
+        PRODUCT_NAME (str): Name of the device.
+        CLASSIFICATION (str): Classification of the device.
+        enable_cmds (:obj:`list` of :obj:`str`):
+            IEEE-488.2 common commands to use.
     """
-    manufacturer = "Keithley"
-    product_name = "Model 3390 Arbitrary Waveform Generator"
-    classification = "Function generator"
+    MANUFACTURER = "Keithley"
+    PRODUCT_NAME = "Model 3390 Arbitrary Waveform Generator"
+    CLASSIFICATION = "Function generator"
 
-    scpi_enable = ["*CLS", "*ESE", "*ESE?", "*ESR?", "*IDN?", "*LRN?",
-                   "*OPC", "*OPC?", "*PSC", "*PSC?", "*RCL", "*RST",
-                   "*SAV", "*SRE", "*SRE?", "*STB?", "*TRG", "*TST?", "*WAI"]
-
-    FUNCTIONS_DICT = {
-        'SIN': {
-            'freq': {'min': 1.*10**-6, 'max': 50.*10**6, 'step': 0.1*10**-9},
-            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-        },
-        'SQU': {
-            'freq': {'min': 1.*10**-6, 'max': 25.*10**6, 'step': 0.1*10**-9},
-            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'dcycle': {'min': 0, 'max': 100},
-        },
-        'RAMP': {
-            'freq': {'MIN': 1.*10**-6, 'MAX': 200.*10**3, 'STEP': 0.1*10**-9},
-            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'symmetry': {'min': 0, 'max': 100},
-        },
-        'NOIS': {
-            'freq': {'min': 1.},
-        },
-        'PULS': {
-            'freq': {'min': 500.*10**-6, 'max': 10.*10**6, 'step': 0.1*10**-9},
-            'volt': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'v_off': {'unit': 'dBm', 'min': 1, 'max': 1, 'step': 1},
-            'symmetry': {'min': 0, 'max': 100},
-        },
-        'DC': 'aaa',
-        'USER': 'aaa',
-        'PATT': 'aaa',
-    }
+    enable_cmds = ["*CLS", "*ESE", "*OPC", "*PSC", "*RCL",
+                   "*RST", "*SAV", "*SRE", "*TRG", "*WAI",
+                   "*ESE?", "*ESR?", "*IDN?", "*LRN?",
+                   "*OPC?", "*PSC?", "*SRE?", "*STB?", "*TST?"]
 
     def __init__(self, com):
         super().__init__(com)
@@ -70,14 +39,13 @@ class Keithley3390(ScpiHandler):
             None
         """
         self.com.send(f"FUNC {func}")
-        self.func = func
         return
 
     def query_function(self):
         """Query the function of the signal.
 
         Return:
-            ret (str): Function of the signal.
+            ret (bytes): Function of the signal.
         """
         ret = self.com.query('FUNC?')
         return ret
@@ -98,12 +66,12 @@ class Keithley3390(ScpiHandler):
         """Query frequency of the signal.
 
         Return:
-            ret (float): The frequency value in Hz.
+            ret (bytes): The frequency value in Hz.
         """
         ret = self.com.query('FREQ?')
         return ret
 
-    def set_voltage(self, volt, unit='dBm'):
+    def set_voltage(self, volt, unit="dBm"):
         """Set voltage of the signal.
 
         Args:
@@ -113,8 +81,8 @@ class Keithley3390(ScpiHandler):
         Return:
             None
         """
-        self.com.send(f"VOLT {volt}")
         self.com.send(f"VOLT:UNIT {unit}")
+        self.com.send(f"VOLT {volt}")
         return
 
     def query_voltage(self):
@@ -147,7 +115,7 @@ class Keithley3390(ScpiHandler):
         ret = self.com.query('VOLT:OFFS?')
         return ret
 
-    def set_pluse_high_low_levels(self, v_hi, v_low):
+    def set_pulse_high_low_levels(self, v_hi, v_low):
         """Set pulse high and low levels.
 
         Args:

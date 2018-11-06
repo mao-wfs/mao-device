@@ -1,4 +1,11 @@
 #!/bin/bash
+# Check current branch is "master"
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ $current_branch != master ]]; then
+  echo "execution on non-master branch is not allowed"
+  exit 1
+fi
+
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Build the project

@@ -41,10 +41,10 @@ class Model3390AWGValidator(BaseValidator):
         Note:
             This method override the "_validator" in the base class.
         """
-        ret = self.com.query("SYST:ERR?").decode()
         valid_msg = f'+0,"No error"{self.com.terminator}'
-        if ret != valid_msg:
-            raise Model3390AWGError(ret)
+        err = self.com.query("SYST:ERR?").decode()
+        if err != valid_msg:
+            raise Model3390AWGError(err)
         return
 
 

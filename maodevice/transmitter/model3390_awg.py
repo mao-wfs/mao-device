@@ -29,29 +29,72 @@ class Model3390AWG(ScpiHandler, metaclass=Model3390AWGValidator):
         super().__init__(com)
         self.com.set_terminator("\n")
 
-    def set_function(self, func):
-        """Set function of the signal.
-
-        Args:
-            func (str): Function of the signal.
+    def enable_output(self):
+        """Enable the output of a signal.
 
         Return:
             None
         """
-        self.com.send(f"FUNC {func}")
+        self.com.send("OUTP ON")
         return
 
-    def query_function(self):
-        """Query the function of the signal.
+    def disable_output(self):
+        """Disable the output of a signal.
 
         Return:
-            ret (bytes): Function of the signal.
+            None
         """
-        ret = self.com.query('FUNC?')
+        self.com.send("OUTP OFF")
+        return
+
+    def enable_digital_pattern(self):
+        """Enable the digital pattern signal.
+
+        Rerturn:
+            None
+        """
+        self.com.send("DIG:PATT ON")
+        return
+
+    def disable_digital_pattern(self):
+        """Disable the digital pattern signal.
+
+        Return:
+            None
+        """
+        self.com.send("DIG:PATT OFF")
+        return
+
+    def set_data_pattern_volatile(self, *values):
+        """TBD
+        """
+        str_values = ",".join(map(str, values))
+        self.com.send(f"DATA:PATTERN VOLATILE, {str_values}")
+        return
+
+    def set_digital_pattern_function(self, func):
+        """Set function of the digital pattern signal.
+
+        Args:
+            func (str): Function of the digital pattern signal.
+
+        Return:
+            None
+        """
+        self.com.send(f"FUNC:PATT {func}")
+        return
+
+    def query_digital_pattern_function(self):
+        """Query function of the digital pattern signal.
+
+        Return:
+            ret (bytes): Function of the digital pattern signal.
+        """
+        ret = self.com.query("FUNC:PATT?")
         return ret
 
-    def set_frequency(self, freq):
-        """Set frequency of the signal.
+    def set_digital_pattern_frequency(self, freq):
+        """Set frequency of the digital pattern signal.
 
         Args:
             freq (float): Value of the frequency.
@@ -59,150 +102,140 @@ class Model3390AWG(ScpiHandler, metaclass=Model3390AWGValidator):
         Return:
             None
         """
-        self.com.send(f"FREQ {freq}")
+        self.com.send(f"DIG:PATT:FREQ {freq}")
         return
 
-    def query_frequency(self):
-        """Query frequency of the signal.
+    def query_digital_pattern_frequency(self):
+        """Query the frequency of the digital pattern signal.
 
         Return:
-            ret (bytes): The frequency value in Hz.
+            ret (bytes): Frequency of the digital pattern signal.
         """
-        ret = self.com.query('FREQ?')
+        ret = self.com.query("DIG:PATT:FREQ?")
         return ret
 
-    def set_voltage(self, volt, unit="dBm"):
-        """Set voltage of the signal.
-
-        Args:
-            volt (float): An voltage value.
-            unit (str): An unit of the voltage. (Default: 'dBm')
-
-        Return:
-            None
+    def set_digital_pattern_start_address(self, addr):
+        """TBD
         """
-        self.com.send(f"VOLT:UNIT {unit}")
-        self.com.send(f"VOLT {volt}")
+        self.com.send(f"DIG:PATT:STAR {addr}")
         return
 
-    def query_voltage(self):
-        """Query voltage of the signal.
-
-        Return:
-            ret (float): The voltage value in the specified unit.
+    def query_digital_pattern_start_address(self):
+        """TBD
         """
-        ret = self.com.query('VOLT?')
+        ret = self.com.query("DIG:PATT:STAR?")
         return ret
 
-    def set_dc_offset_voltage(self, v_off):
-        """Set DC offset voltage of the signal.
-
-        Args:
-            v_off (float): The DC offset voltage values.
-
-        Return:
-            None
+    def set_digital_pattern_stop_address(self, addr):
+        """TBD
         """
-        self.com.send(f"VOLT:OFFS {v_off}")
+        self.com.send(f"DIG:PATT:STOP {addr}")
         return
 
-    def query_offset_voltage(self):
-        """Query the DC offset voltage of the signal.
-
-        Return:
-            ret (float): The DC offset voltage value.
+    def query_digital_pattern_stop_address(self):
+        """TBD
         """
-        ret = self.com.query('VOLT:OFFS?')
+        ret = self.com.query("DIG:PATT:STOP?")
         return ret
 
-    def set_pulse_high_low_levels(self, v_hi, v_low):
-        """Set pulse high and low levels.
-
-        Args:
-            v_hi (float): Pulse high level.
-            v_low (float): Pulse low level.
-
-        Return:
-            None
+    def enable_digital_pattern_repeat(self):
+        """TBD
         """
-        self.com.send(f"VOLT:HIGH {v_hi}")
-        self.com.send(f"VOLT:LOW {v_low}")
+        self.com.send("DIG:PATT:REP ON")
         return
 
-    def query_pulse_high_low_levels(self):
-        """Query pulse high and low levels.
-
-        Return:
-            ret (dict): Dictionary of Pulse high and low levels.
+    def disable_digital_pattern_repeat(self):
+        """TBD
         """
-        self.com.send('VOLT:HIGH?')
-        _v_hi = self.com.readline()
-        self.com.send('VOLT:LOW?')
-        _v_low = self.com.readline()
-        ret = {'HIGH': float(_v_hi), 'LOW': float(_v_low)}
+        self.com.send("DIG:PATT:REP OFF")
+        return
+
+    def query_digital_pattern_repeat(self):
+        """TBD
+        """
+        ret = self.com.query("DIG:PATT:REP?")
         return ret
 
-    def set_waveform_polarity(self, invert=False):
-        """Set the waveform polarity.
-
-        Args:
-            invert (bool): If it is True,
-                the waveform polarity is specified inverted.
-
-        Return:
-            None
+    def set_digital_pattern_clock_positive(self):
+        """TBD
         """
-        _polarity = 'NORM' if not invert else 'INV'
-        self.com.send(f'OUTP:POL {_polarity}')
+        self.com.send("DIG:PATT:CLOC POS")
         return
 
-    def query_waveform_polarity(self):
-        """Query waveform polarity.
-
-        Return:
-            ret (str): The waveform polarity.
+    def set_digital_pattern_clock_negative(self):
+        """TBD
         """
-        ret = self.com.query('OUTP:POL?')
+        self.com.send("DIG:PATT:CLOC NEG")
+        return
+
+    def query_digital_pattern_clock(self):
+        """TBD
+        """
+        ret = self.com.query("DIG:PATT:CLOC?")
         return ret
 
-    def set_output_termination(self, ohms):
-        """Set the output termination.
+    def set_digital_pattern_trigger_source(self, source):
+        """TBD
         """
-        self.com.send(f"OUTP:LOAD {ohms}")
+        self.com.send(f"DIG:PATT:TRIG:SOUR {source}")
         return
 
-    def enable_output(self):
-        """Enables the RF output.
-
-        Return:
-            None
+    def query_digital_pattern_trigger_source(self):
+        """TBD
         """
-        self.com.send('OUTP ON')
+        ret = self.com.query("DIG:PATT:TRIG:SOUR?")
+        return ret
+
+    def set_digital_pattern_trigger_slope_positive(self):
+        """TBD
+        """
+        self.com.send("DIG:PATT:TRIG:SLOP POS")
         return
 
-    def disable_output(self):
-        """Disable the RF output.
-
-        Return:
-            None
+    def set_digital_pattern_trigger_slope_negative(self):
+        """TBD
         """
-        self.com.send('OUTP OFF')
+        self.com.send("DIG:PATT:TRIG:SLOP NEG")
         return
 
-    def enable_synchronize(self):
-        """Enable synchronization.
-
-        Return:
-            None
+    def query_digital_pattern_trigger_slope(self):
+        """TBD
         """
-        self.com.send('OUTP:SYNC ON')
+        ret = self.com.query("DIG:PATT:TRIG:SLOP?")
+        return ret
+
+    def set_digital_pattern_output_trigger_slope_positive(self):
+        """TBD
+        """
+        self.com.send("DIG:PATT:OUTP:TRIG:SLOP POS")
         return
 
-    def disable_synchronize(self):
-        """Disable synchronization.
-
-        Return:
-            None
+    def set_digital_pattern_output_trigger_slope_negative(self):
+        """TBD
         """
-        self.com.send('OUTP:SYNC OFF')
+        self.com.send("DIG:PATT:OUTP:TRIG:SLOP NEG")
         return
+
+    def query_digital_pattern_output_trigger_slope(self):
+        """TBD
+        """
+        ret = self.com.query("DIG:PATT:OUTP:TRIG:SLOP?")
+        return ret
+
+    def enable_digital_pattern_trigger_output(self):
+        """TBD
+        """
+        self.com.send("DIG:PATT:OUTP:TRIG ON")
+        return
+
+    def disable_digital_pattern_trigger_output(self):
+        """TBD
+        """
+        self.com.send("DIG:PATT:OUTP:TRIG OFF")
+        return
+
+    def query_digital_pattern_output_trigger(self):
+        """TBD
+        """
+        ret = self.com.query("DIG:PATT:OUTP:TRIG?")
+        return ret
